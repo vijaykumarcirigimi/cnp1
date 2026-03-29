@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 import json
 import cssutils
 import logging
-import google.generativeai as genai
+import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from io import BytesIO
@@ -19,6 +19,15 @@ st.set_page_config(page_title="Edstellar Page Builder", page_icon="📝", layout
 
 LIBRARY_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Library")
 LIBRARY_INDEX = os.path.join(LIBRARY_DIR, "library-index.json")
+
+OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
+
+DEEPSEEK_MODELS = {
+    "DeepSeek V3": "deepseek/deepseek-chat-v3-0324",
+    "DeepSeek R1": "deepseek/deepseek-r1",
+    "DeepSeek V3 (free)": "deepseek/deepseek-chat-v3-0324:free",
+    "DeepSeek R1 (free)": "deepseek/deepseek-r1:free",
+}
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -35,15 +44,10 @@ def extract_docx_text(file_bytes):
 
 
 def parse_page_flow(docx_text):
-    """Deterministically extract the ordered module list from the PAGE FLOW OVERVIEW table.
-    Returns list of dicts: [{number, section_name, module_file}, ...]
-    """
+    """Deterministically extract the ordered module list from the PAGE FLOW OVERVIEW table."""
     sections = []
-    # Match lines like:  02\nHero + Meta Tags\nedstellar-hero-classic-split.html
-    # The docx text has rows as: number \n section_name \n module_file
     lines = docx_text.split("\n")
 
-    # Find the PAGE FLOW OVERVIEW region
     start_idx = None
     end_idx = None
     for i, line in enumerate(lines):
@@ -52,7 +56,6 @@ def parse_page_flow(docx_text):
         if start_idx and "NOTES" == line.strip() and i > start_idx + 5:
             end_idx = i
             break
-        # Also stop at the section separator
         if start_idx and line.strip().startswith("S01") or (start_idx and "________________" in line and i > start_idx + 10):
             if end_idx is None:
                 end_idx = i
@@ -63,15 +66,12 @@ def parse_page_flow(docx_text):
 
     flow_text = "\n".join(lines[start_idx:end_idx] if end_idx else lines[start_idx:start_idx + 200])
 
-    # Extract .html filenames in order
     html_pattern = re.compile(r"(edstellar-[\w-]+\.html|seo-metadata-block-template\.md)")
     matches = html_pattern.findall(flow_text)
 
-    # Also try to capture section names — look for numbered rows
     number_pattern = re.compile(r"^(\d{2})$", re.MULTILINE)
     numbers = number_pattern.findall(flow_text)
 
-    # Build section list from matches, skip non-HTML entries
     for idx, match in enumerate(matches):
         num = numbers[idx] if idx < len(numbers) else f"{idx + 1:02d}"
         sections.append({
@@ -84,14 +84,10 @@ def parse_page_flow(docx_text):
 
 
 def parse_section_content(docx_text):
-    """Parse the per-section content blocks from the docx.
-    Returns dict keyed by section number like 'S01', 'S02', etc.
-    """
+    """Parse the per-section content blocks from the docx."""
     sections = {}
-    # Split on the separator pattern
     parts = re.split(r"_{10,}", docx_text)
     for part in parts:
-        # Look for section header like: S01  |  \nHero + Meta Tags
         match = re.match(r"\s*S(\d{2})\s*\|\s*\n(.+?)(?:\n|$)", part)
         if match:
             sec_num = f"S{match.group(1)}"
@@ -141,8 +137,51 @@ def scope_module_css(html_content, scope_id):
     return f'<style>\n{final_css}\n</style>\n<div id="{scope_id}">\n{inner_html}\n</div>'
 
 
-def inject_content_with_gemini(module_filename, scoped_html, section_content, section_number, full_docx_text):
-    """Use Gemini to replace placeholder text with real content from the document."""
+def call_openrouter(api_key, model, prompt):
+    """Call OpenRouter API with the given model and prompt. Returns the text response."""
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": model,
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are an expert HTML developer. You only output valid HTML. No markdown fences, no commentary, no explanations."
+            },
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        "max_tokens": 16000,
+        "temperature": 0.2,
+    }
+    response = requests.post(OPENROUTER_API_URL, headers=headers, json=payload, timeout=120)
+    response.raise_for_status()
+    data = response.json()
+
+    if "error" in data:
+        raise RuntimeError(data["error"].get("message", str(data["error"])))
+
+    text = data["choices"][0]["message"]["content"].strip()
+
+    # DeepSeek R1 may include <think>...</think> blocks — strip them
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
+
+    # Strip markdown fences if present
+    if text.startswith("```html"):
+        text = text[7:]
+    if text.startswith("```"):
+        text = text[3:]
+    if text.endswith("```"):
+        text = text[:-3]
+    return text.strip()
+
+
+def inject_content_with_deepseek(api_key, model, module_filename, scoped_html, section_content, section_number, full_docx_text):
+    """Use DeepSeek via OpenRouter to replace placeholder text with real content."""
     prompt = f"""You are building an Edstellar consulting landing page.
 
 Below is:
@@ -168,16 +207,7 @@ RULES:
 ── HTML BOILERPLATE TO INJECT ──
 {scoped_html}
 """
-    model = genai.GenerativeModel("gemini-2.5-flash")
-    response = model.generate_content(prompt)
-    html = response.text.strip()
-    if html.startswith("```html"):
-        html = html[7:]
-    if html.startswith("```"):
-        html = html[3:]
-    if html.endswith("```"):
-        html = html[:-3]
-    return html.strip()
+    return call_openrouter(api_key, model, prompt)
 
 
 def load_library_index():
@@ -203,14 +233,16 @@ st.caption("Upload a Developer Reference .docx → build a fully stitched HTML p
 # Sidebar config
 with st.sidebar:
     st.header("⚙️ Configuration")
-    api_key = os.getenv("GEMINI_API_KEY", "")
-    if not api_key:
-        api_key = st.text_input("Gemini API Key", type="password")
-    else:
-        st.success("Gemini API Key loaded from .env")
 
-    if api_key:
-        genai.configure(api_key=api_key)
+    api_key = os.getenv("OPENROUTER_API_KEY", "")
+    if not api_key:
+        api_key = st.text_input("OpenRouter API Key", type="password", help="Get your key at openrouter.ai/keys")
+    else:
+        st.success("OpenRouter API Key loaded from .env")
+
+    selected_model_label = st.selectbox("DeepSeek Model", list(DEEPSEEK_MODELS.keys()), index=0)
+    selected_model = DEEPSEEK_MODELS[selected_model_label]
+    st.caption(f"`{selected_model}`")
 
     st.divider()
     st.header("📚 Design Library")
@@ -233,7 +265,7 @@ with st.sidebar:
 uploaded_file = st.file_uploader("Upload Developer Reference (.docx)", type="docx")
 
 if uploaded_file and not api_key:
-    st.warning("Enter your Gemini API Key in the sidebar to continue.")
+    st.warning("Enter your OpenRouter API Key in the sidebar to continue.")
     st.stop()
 
 if not uploaded_file:
@@ -266,7 +298,6 @@ st.caption(f"Found **{len(page_flow)}** sections in the document. Toggle section
 
 section_content_map = parse_section_content(docx_text)
 
-# Build editable section list
 cols_header = st.columns([0.5, 3, 4, 1])
 cols_header[0].markdown("**#**")
 cols_header[1].markdown("**Module File**")
@@ -276,12 +307,11 @@ cols_header[3].markdown("**Include**")
 enabled_sections = []
 for i, sec in enumerate(page_flow):
     if not sec["is_html"]:
-        continue  # skip non-HTML like seo-metadata-block-template.md
+        continue
 
     sec_key = f"S{sec['number']}"
     content_preview = ""
     if sec_key in section_content_map:
-        # First meaningful line after the header
         content_lines = section_content_map[sec_key].split("\n")
         for cl in content_lines[2:6]:
             if cl.strip() and "DESIGN MODULE" not in cl and "edstellar-" not in cl:
@@ -303,7 +333,7 @@ st.markdown(f"**{len(enabled_sections)}** sections enabled for build.")
 # Step 4: Build
 if st.button("🚀 Build HTML Page", type="primary", use_container_width=True):
     if not api_key:
-        st.error("No Gemini API key configured.")
+        st.error("No OpenRouter API key configured.")
         st.stop()
 
     progress = st.progress(0, text="Starting build...")
@@ -332,18 +362,19 @@ if st.button("🚀 Build HTML Page", type="primary", use_container_width=True):
         scoped_html = scope_module_css(raw_html, scope_id)
         log_area.info(f"✅ Scoped CSS for {module_file} → #{scope_id}")
 
-        # Inject content via Gemini
+        # Inject content via DeepSeek
         section_content = section_content_map.get(sec_num, "")
         if section_content:
             try:
-                injected = inject_content_with_gemini(
+                injected = inject_content_with_deepseek(
+                    api_key, selected_model,
                     module_file, scoped_html, section_content, sec_num, docx_text
                 )
                 final_blocks.append(f"<!-- {sec_num}: {module_file} -->\n{injected}")
                 log_area.success(f"✅ Content injected for {sec_num}: {module_file}")
             except Exception as e:
                 final_blocks.append(f"<!-- {sec_num}: {module_file} (fallback) -->\n{scoped_html}")
-                log_area.error(f"❌ Gemini injection failed for {sec_num}: {e} — using boilerplate.")
+                log_area.error(f"❌ DeepSeek injection failed for {sec_num}: {e} — using boilerplate.")
         else:
             final_blocks.append(f"<!-- {sec_num}: {module_file} -->\n{scoped_html}")
             log_area.warning(f"⚠️ No content block found for {sec_num} — using boilerplate.")
@@ -365,7 +396,7 @@ if st.button("🚀 Build HTML Page", type="primary", use_container_width=True):
 </html>"""
 
     st.session_state.final_html = final_html
-    status_area.success(f"Page built with {len(final_blocks)} sections.")
+    status_area.success(f"Page built with {len(final_blocks)} sections using {selected_model_label}.")
 
 # Step 5: Preview & Download
 if "final_html" in st.session_state:
