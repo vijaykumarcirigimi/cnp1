@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Resources Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--surface); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--surface); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .section-inner > h2 {
+    font-size:30px; font-weight:800; line-height:1.2;
+    letter-spacing:-0.03em; margin-bottom:8px;
+  }
+  .section-inner > h2 .dark { color:var(--text-primary); }
+  .section-inner > h2 .accent { color:var(--navy); }
+  .section-inner > p {
+    font-size:15px; color:var(--text-secondary); line-height:1.6;
+    margin-bottom:36px;
+  }
+
+  .cards-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+  .res-card {
+    cursor:pointer;
+    transition:transform 0.25s;
+  }
+  .res-card:hover { transform:translateY(-4px); }
+
+  .card-img {
+    width:100%; aspect-ratio:16/10;
+    border-radius:var(--radius-lg);
+    overflow:hidden; margin-bottom:14px;
+    background:#C8CAD8;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:4px;
+    font-size:11px; color:var(--text-muted); font-weight:500;
+  }
+  .card-img svg { opacity:0.15; }
+  .card-img .img-inner {
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:4px;
+    width:100%; height:100%;
+    transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .res-card:hover .img-inner { transform:scale(1.08); }
+
+  .card-tags {
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:10px;
+  }
+  .tag-blog {
+    font-size:11px; font-weight:700; color:var(--lime-text);
+    background:var(--lime); padding:3px 10px;
+    border-radius:4px; letter-spacing:0.02em;
+  }
+  .tag-category {
+    font-size:12px; font-weight:600; color:var(--text-secondary);
+  }
+
+  .res-card h3 {
+    font-size:16px; font-weight:700; color:var(--text-primary);
+    line-height:1.35; letter-spacing:-0.01em; margin-bottom:6px;
+  }
+  .res-card .date {
+    font-size:12px; color:var(--text-muted); font-weight:500;
+  }
+
+  @media (max-width:900px) {
+    .section { padding:40px 20px; }
+    .cards-row { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:580px) {
+    .cards-row { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <h2><span class="dark">Edstellar</span> <span class="accent">Resources</span></h2>
+    <p>Deep dive into industry trends, expert insights, success stories and innovative training practices</p>
+
+    <div class="cards-row">
+
+      <div class="res-card">
+        <div class="card-img">
+          <div class="img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Blog image</span>
+          </div>
+        </div>
+        <div class="card-tags">
+          <span class="tag-blog">Blog</span>
+          <span class="tag-category">In-Demand Skills</span>
+        </div>
+        <h3>10 Must-have Skills for a Frontend Developer in 2026</h3>
+        <span class="date">January 23, 2026</span>
+      </div>
+
+      <div class="res-card">
+        <div class="card-img">
+          <div class="img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Blog image</span>
+          </div>
+        </div>
+        <div class="card-tags">
+          <span class="tag-blog">Blog</span>
+          <span class="tag-category">Workforce Optimization</span>
+        </div>
+        <h3>5 Real-World Case Studies of Internal Talent Mobility Powered by Skill Mapping</h3>
+        <span class="date">January 23, 2026</span>
+      </div>
+
+      <div class="res-card">
+        <div class="card-img">
+          <div class="img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Blog image</span>
+          </div>
+        </div>
+        <div class="card-tags">
+          <span class="tag-blog">Blog</span>
+          <span class="tag-category">In-Demand Skills</span>
+        </div>
+        <h3>10 Must-Have Skills for a System Administrator in 2026</h3>
+        <span class="date">January 20, 2026</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

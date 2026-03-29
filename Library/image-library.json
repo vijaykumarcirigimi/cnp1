@@ -1,0 +1,988 @@
+{
+  "version": 1,
+  "description": "Reusable image library for Edstellar consulting pages. All images are from Unsplash (royalty-free). Check this library before searching Unsplash to save time and maintain visual consistency across pages.",
+  "images": [
+    {
+      "unsplash_id": "gMsnXqILjp4",
+      "base_url": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
+      "photographer": "Campaign Creators",
+      "description": "Team meeting at conference table, collaborative business discussion",
+      "alt_text": "Engineering team in a collaborative training session at a conference table",
+      "category": "HUMAN",
+      "tags": ["team", "meeting", "collaboration", "training", "conference", "business", "corporate"],
+      "orientation": "landscape",
+      "tone": "professional",
+      "used_on": ["aaos-course-page.html"],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "wD1LRb9OeEo",
+      "base_url": "https://images.unsplash.com/photo-1557804506-669a67965ba0",
+      "photographer": "Austin Distel",
+      "description": "Business team collaborating on a software project in modern office",
+      "alt_text": "Team collaborating on automotive software project in modern office",
+      "category": "HUMAN",
+      "tags": ["team", "collaboration", "software", "office", "modern", "project", "discussion"],
+      "orientation": "landscape",
+      "tone": "professional",
+      "used_on": ["aaos-course-page.html"],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "7YVZYZeITc8",
+      "base_url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+      "photographer": "Jurica Koletic",
+      "description": "Professional man portrait headshot, clean background",
+      "alt_text": "Professional male headshot portrait with clean background",
+      "category": "HUMAN",
+      "tags": ["headshot", "professional", "male", "portrait", "clean", "corporate"],
+      "orientation": "portrait",
+      "tone": "professional",
+      "used_on": ["aaos-course-page.html"],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "C8Ta0gwPbQg",
+      "base_url": "https://images.unsplash.com/photo-1599566150163-29194dcaad36",
+      "photographer": "Vicky Hladynets",
+      "description": "Man with beard professional headshot, warm tones",
+      "alt_text": "Professional male headshot with beard",
+      "category": "HUMAN",
+      "tags": ["headshot", "professional", "male", "beard", "portrait", "warm"],
+      "orientation": "portrait",
+      "tone": "professional",
+      "used_on": ["aaos-course-page.html"],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "sibVwORYqs0",
+      "base_url": "https://images.unsplash.com/photo-1463453091185-61582044d556",
+      "photographer": "Ayo Ogunseinde",
+      "description": "Man portrait headshot, professional appearance",
+      "alt_text": "Professional male portrait headshot",
+      "category": "HUMAN",
+      "tags": ["headshot", "professional", "male", "portrait", "diverse"],
+      "orientation": "portrait",
+      "tone": "professional",
+      "used_on": ["aaos-course-page.html"],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "N8lRH2uxih4",
+      "base_url": "https://images.unsplash.com/photo-1651684215020-f7a5b6610f23",
+      "photographer": "The Connected Narrative",
+      "description": "Professional man smiling for camera, business headshot",
+      "alt_text": "Professional male business headshot portrait",
+      "category": "HUMAN",
+      "tags": ["headshot", "professional", "male", "business", "portrait", "smiling", "corporate"],
+      "orientation": "portrait",
+      "tone": "professional",
+      "used_on": ["aaos-course-page.html"],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "50TkCaP8M3A",
+      "base_url": "https://images.unsplash.com/photo-1573496527892-904f897eb744",
+      "photographer": "Christina @ wocintechchat.com",
+      "description": "Professional woman smiling, business headshot in office setting",
+      "alt_text": "Professional female business headshot portrait",
+      "category": "HUMAN",
+      "tags": ["headshot", "professional", "female", "business", "portrait", "smiling", "corporate", "tech"],
+      "orientation": "portrait",
+      "tone": "professional",
+      "used_on": ["aaos-course-page.html"],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "DvxlgRgX_Fo",
+      "base_url": "https://images.unsplash.com/photo-1758598497192-15ffa411c3de",
+      "photographer": "Vitaly Gariev",
+      "description": "Smiling man with beard in casual professional setting, headshot portrait",
+      "alt_text": "Professional male headshot portrait with beard",
+      "category": "HUMAN",
+      "tags": ["headshot", "professional", "male", "business", "portrait", "smiling", "beard", "casual"],
+      "orientation": "portrait",
+      "tone": "professional",
+      "used_on": ["aaos-course-page.html"],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "ebd97HAQbMI",
+      "base_url": "https://images.unsplash.com/photo-1668283764349-86c3f955d40a",
+      "photographer": "Patrick Langwallner",
+      "description": "Polestar 2 interior dashboard with digital infotainment display running Android Automotive OS",
+      "alt_text": "Polestar 2 car dashboard with digital infotainment display showing Android Automotive OS interface",
+      "category": "INDUSTRY",
+      "tags": [
+        "automotive",
+        "car-dashboard",
+        "infotainment",
+        "digital-display",
+        "polestar",
+        "aaos",
+        "android-automotive",
+        "vehicle-interior",
+        "technology",
+        "electric-vehicle"
+      ],
+      "orientation": "landscape",
+      "tone": "technology",
+      "used_on": [
+        "aaos-course-page.html"
+      ],
+      "added_date": "2026-03-24"
+    },
+    {
+      "unsplash_id": "OpOsPgGiFwc",
+      "base_url": "https://images.unsplash.com/photo-1758691736424-4b4273948341",
+      "photographer": "Vitaly Gariev",
+      "description": "Man presenting to colleagues in a modern office boardroom with digital screen",
+      "alt_text": "Senior executive presenting organizational strategy to colleagues in a modern boardroom",
+      "category": "HUMAN",
+      "tags": [
+        "executive",
+        "boardroom",
+        "strategy",
+        "presenting",
+        "professional",
+        "leadership",
+        "digital-screen",
+        "corporate",
+        "meeting"
+      ],
+      "orientation": "landscape",
+      "tone": "executive",
+      "used_on": [
+        "orgstrategy-page.html",
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "_4tpElFQemQ",
+      "base_url": "https://images.unsplash.com/photo-1758518731706-be5d5230e5a5",
+      "photographer": "Vitaly Gariev",
+      "description": "Diverse business team collaborating in a modern office",
+      "alt_text": "Diverse business team collaborating on organizational design challenges in modern office",
+      "category": "HUMAN",
+      "tags": [
+        "diverse",
+        "team",
+        "collaboration",
+        "office",
+        "organizational-design",
+        "challenges",
+        "modern",
+        "professional"
+      ],
+      "orientation": "portrait",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "K0aM-ztA76Q",
+      "base_url": "https://images.unsplash.com/photo-1758873269035-aae0e1fd3422",
+      "photographer": "Vitaly Gariev",
+      "description": "Team collaborating around a whiteboard in a modern office",
+      "alt_text": "Team collaborating around a whiteboard mapping organizational architecture in a modern office",
+      "category": "CONCEPTUAL",
+      "tags": [
+        "whiteboard",
+        "planning",
+        "architecture",
+        "collaboration",
+        "framework",
+        "strategy",
+        "office",
+        "team",
+        "brainstorming"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "rgKX4o2xSqI",
+      "base_url": "https://images.unsplash.com/photo-1758873268998-2f77c2d38862",
+      "photographer": "Vitaly Gariev",
+      "description": "Team collaborating around a whiteboard during a meeting",
+      "alt_text": "Professional facilitator leading an organizational strategy training workshop",
+      "category": "HUMAN",
+      "tags": [
+        "training",
+        "workshop",
+        "facilitation",
+        "whiteboard",
+        "delivery",
+        "corporate-training",
+        "instructor",
+        "professional"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "khxA-NYntQ4",
+      "base_url": "https://images.unsplash.com/photo-1758518727477-3885839edee7",
+      "photographer": "Vitaly Gariev",
+      "description": "Four smiling business people in a modern office",
+      "alt_text": "Four senior professionals discussing organizational strategy outcomes in modern office",
+      "category": "HUMAN",
+      "tags": [
+        "senior-professionals",
+        "leadership",
+        "strategy",
+        "discussion",
+        "modern-office",
+        "smiling",
+        "team",
+        "business"
+      ],
+      "orientation": "landscape",
+      "tone": "warm",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "ob1oe1CGQ1s",
+      "base_url": "https://images.unsplash.com/photo-1758518730178-6e237bc8b87d",
+      "photographer": "Vitaly Gariev",
+      "description": "Business professionals collaborating around a conference table",
+      "alt_text": "Business professionals collaborating on operating model design around a conference table",
+      "category": "CONCEPTUAL",
+      "tags": [
+        "conference-table",
+        "collaboration",
+        "operating-model",
+        "design",
+        "professional",
+        "business",
+        "discussion",
+        "planning"
+      ],
+      "orientation": "landscape",
+      "tone": "executive",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "5V6KbvRcnV8",
+      "base_url": "https://images.unsplash.com/photo-1758691737543-09a1b2b715fa",
+      "photographer": "Vitaly Gariev",
+      "description": "Diverse group of people in a modern office meeting",
+      "alt_text": "Diverse group of professionals in a strategic workforce planning meeting",
+      "category": "HUMAN",
+      "tags": [
+        "diverse",
+        "workforce-planning",
+        "meeting",
+        "office",
+        "strategic",
+        "HR",
+        "professionals",
+        "group"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html",
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "TCZ12fCpFVw",
+      "base_url": "https://images.unsplash.com/photo-1758691736433-4078b93abd72",
+      "photographer": "Vitaly Gariev",
+      "description": "Man presenting to colleagues in a modern office meeting room",
+      "alt_text": "Senior leader presenting decision rights and governance framework in boardroom",
+      "category": "HUMAN",
+      "tags": [
+        "presenting",
+        "governance",
+        "decision-rights",
+        "boardroom",
+        "leadership",
+        "framework",
+        "meeting-room",
+        "senior"
+      ],
+      "orientation": "landscape",
+      "tone": "executive",
+      "used_on": [
+        "orgstrategy-page.html",
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "KbEc5BWXX58",
+      "base_url": "https://images.unsplash.com/photo-1758518729463-0bb73ed899ac",
+      "photographer": "Vitaly Gariev",
+      "description": "Four business professionals conversing in a modern office lobby",
+      "alt_text": "Executive professionals discussing top team alignment in a modern office setting",
+      "category": "HUMAN",
+      "tags": [
+        "executive",
+        "top-team",
+        "alignment",
+        "conversing",
+        "lobby",
+        "professional",
+        "leadership",
+        "discussion"
+      ],
+      "orientation": "landscape",
+      "tone": "executive",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "tHuIKVmvO2M",
+      "base_url": "https://images.unsplash.com/photo-1758691736451-6937303cc06f",
+      "photographer": "Vitaly Gariev",
+      "description": "Man presents to colleagues in a modern office meeting",
+      "alt_text": "Consultant presenting operating model architecture to team in modern office",
+      "category": "HUMAN",
+      "tags": [
+        "consulting",
+        "operating-model",
+        "presenting",
+        "office",
+        "team",
+        "architecture",
+        "professional",
+        "meeting"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "Y7TJOcAtnpw",
+      "base_url": "https://images.unsplash.com/photo-1758691736580-a41e0cfe9e9f",
+      "photographer": "Vitaly Gariev",
+      "description": "Woman presenting to colleagues in a modern office meeting",
+      "alt_text": "Woman leading an organizational assessment and diagnostics session",
+      "category": "HUMAN",
+      "tags": [
+        "woman",
+        "presenting",
+        "assessment",
+        "diagnostics",
+        "office",
+        "meeting",
+        "organizational",
+        "professional"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html",
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "7mgkmRY4ZLM",
+      "base_url": "https://images.unsplash.com/photo-1758691736764-2a88e313b1f2",
+      "photographer": "Vitaly Gariev",
+      "description": "Woman presenting to colleagues in a modern office meeting",
+      "alt_text": "HR leader presenting strategic workforce planning data to business unit heads",
+      "category": "HUMAN",
+      "tags": [
+        "HR",
+        "workforce-planning",
+        "data",
+        "presenting",
+        "woman",
+        "office",
+        "strategic",
+        "business-leaders"
+      ],
+      "orientation": "landscape",
+      "tone": "data-driven",
+      "used_on": [
+        "orgstrategy-page.html",
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "fm4B1xWEIsU",
+      "base_url": "https://images.unsplash.com/photo-1758873269276-9518d0cb4a0b",
+      "photographer": "Vitaly Gariev",
+      "description": "Diverse team collaborates around a table in office",
+      "alt_text": "Agile cross-functional team collaborating on organizational design around a shared table",
+      "category": "HUMAN",
+      "tags": [
+        "agile",
+        "cross-functional",
+        "team",
+        "collaboration",
+        "office",
+        "diverse",
+        "table",
+        "organizational-design"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "SvYifX5HkeQ",
+      "base_url": "https://images.unsplash.com/photo-1758691736548-073bc97cdff4",
+      "photographer": "Vitaly Gariev",
+      "description": "Man presenting to colleagues in a modern office setting",
+      "alt_text": "Professional facilitating a RACI decision rights workshop in modern office",
+      "category": "HUMAN",
+      "tags": [
+        "RACI",
+        "decision-rights",
+        "workshop",
+        "facilitation",
+        "presenting",
+        "office",
+        "governance",
+        "accountability"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "oiqFyLx_KDU",
+      "base_url": "https://images.unsplash.com/photo-1758873269317-51888e824b28",
+      "photographer": "Vitaly Gariev",
+      "description": "Diverse team collaborating around a table in office",
+      "alt_text": "Diverse professionals collaborating on job architecture and role design",
+      "category": "HUMAN",
+      "tags": [
+        "job-architecture",
+        "role-design",
+        "collaboration",
+        "diverse",
+        "team",
+        "office",
+        "career",
+        "professional"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "ljG-4b5OXIM",
+      "base_url": "https://images.unsplash.com/photo-1758691737492-48e8fdd336f7",
+      "photographer": "Vitaly Gariev",
+      "description": "Diverse group of colleagues celebrating success in office",
+      "alt_text": "Diverse group of colleagues celebrating successful organizational culture change",
+      "category": "HUMAN",
+      "tags": [
+        "celebration",
+        "success",
+        "culture-change",
+        "diverse",
+        "colleagues",
+        "office",
+        "team",
+        "transformation"
+      ],
+      "orientation": "landscape",
+      "tone": "warm",
+      "used_on": [
+        "orgstrategy-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "Uf9kb06eqFw",
+      "base_url": "https://images.unsplash.com/photo-1718241905559-f76f2718ddc1",
+      "photographer": "BoliviaInteligente",
+      "description": "Computer keyboard with blue AI innovation light",
+      "alt_text": "Close-up of technology keyboard with AI innovation blue light representing digital transformation",
+      "category": "TOOL",
+      "tags": [
+        "AI",
+        "technology",
+        "digital-transformation",
+        "innovation",
+        "keyboard",
+        "blue-light",
+        "automation",
+        "tech"
+      ],
+      "orientation": "landscape",
+      "tone": "technical",
+      "used_on": [
+        "orgstrategy-page.html",
+        "Talent_Assessments-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "UUcgVSq2m3g",
+      "base_url": "https://images.unsplash.com/photo-1758876203342-fc14c0bba67c",
+      "photographer": "Vitaly Gariev",
+      "description": "Two colleagues collaborating on a project at a desk",
+      "alt_text": "Two colleagues collaborating on an organizational consulting project at a desk",
+      "category": "WORKSPACE",
+      "tags": [
+        "consulting",
+        "desk",
+        "collaboration",
+        "two-people",
+        "project",
+        "approachable",
+        "warm",
+        "professional",
+        "form-section"
+      ],
+      "orientation": "portrait",
+      "tone": "warm",
+      "used_on": [
+        "orgstrategy-page.html",
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "w4j16upQBqE",
+      "base_url": "https://images.unsplash.com/photo-1758691737182-d42aefd6dee8",
+      "photographer": "Vitaly Gariev",
+      "description": "Business people attending a presentation in a modern office",
+      "alt_text": "Business professionals attending a talent assessment presentation in a modern office boardroom",
+      "category": "HUMAN",
+      "tags": [
+        "presentation",
+        "boardroom",
+        "assessment",
+        "talent",
+        "professional",
+        "modern-office",
+        "team",
+        "corporate"
+      ],
+      "orientation": "landscape",
+      "tone": "executive",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "qynqu1rMnbk",
+      "base_url": "https://images.unsplash.com/photo-1758691736484-4914d363a3cc",
+      "photographer": "Vitaly Gariev",
+      "description": "Man presents charts on a screen during a meeting",
+      "alt_text": "Assessment specialist presenting diagnostic findings and charts on screen during leadership meeting",
+      "category": "HUMAN",
+      "tags": [
+        "charts",
+        "data",
+        "presenting",
+        "screen",
+        "meeting",
+        "analytics",
+        "diagnostics",
+        "leadership"
+      ],
+      "orientation": "landscape",
+      "tone": "data-driven",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "xgrP2icJduE",
+      "base_url": "https://images.unsplash.com/photo-1758873271831-c048f79b2283",
+      "photographer": "Vitaly Gariev",
+      "description": "Woman working on laptop in busy modern office",
+      "alt_text": "Professional working on behavioral profiling and psychometric assessment data in modern office",
+      "category": "HUMAN",
+      "tags": [
+        "laptop",
+        "office",
+        "woman",
+        "working",
+        "data",
+        "profiling",
+        "assessment",
+        "modern"
+      ],
+      "orientation": "landscape",
+      "tone": "focused",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "SSEuzLIIYAc",
+      "base_url": "https://images.unsplash.com/photo-1758691736542-c437fea2c673",
+      "photographer": "Vitaly Gariev",
+      "description": "Woman presents charts on a screen to colleagues",
+      "alt_text": "Woman presenting skills validation charts and competency framework to colleagues on screen",
+      "category": "HUMAN",
+      "tags": [
+        "charts",
+        "presenting",
+        "screen",
+        "skills",
+        "validation",
+        "competency",
+        "woman",
+        "colleagues"
+      ],
+      "orientation": "landscape",
+      "tone": "data-driven",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "Jv0HtxvVduI",
+      "base_url": "https://images.unsplash.com/photo-1758691737045-3ece61135061",
+      "photographer": "Vitaly Gariev",
+      "description": "Diverse team brainstorming with sticky notes on glass",
+      "alt_text": "Diverse team brainstorming with sticky notes on glass during 360-degree feedback session",
+      "category": "HUMAN",
+      "tags": [
+        "brainstorming",
+        "sticky-notes",
+        "glass",
+        "diverse",
+        "team",
+        "feedback",
+        "360-degree",
+        "collaboration"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "lWZqNCmQUgY",
+      "base_url": "https://images.unsplash.com/photo-1663780852938-f44b86ec3060",
+      "photographer": "Grin",
+      "description": "A woman writing on a whiteboard",
+      "alt_text": "Woman writing cognitive assessment framework on whiteboard",
+      "category": "CONCEPTUAL",
+      "tags": [
+        "whiteboard",
+        "writing",
+        "framework",
+        "cognitive",
+        "assessment",
+        "woman",
+        "planning",
+        "strategy"
+      ],
+      "orientation": "landscape",
+      "tone": "focused",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Training-Needs-Analysis.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "qNLUMx5SOgM",
+      "base_url": "https://images.unsplash.com/photo-1758518729371-5ee28c4ddf60",
+      "photographer": "Vitaly Gariev",
+      "description": "A man and woman in business attire smiling",
+      "alt_text": "Business professionals smiling and demonstrating emotional intelligence in collaborative setting",
+      "category": "HUMAN",
+      "tags": [
+        "smiling",
+        "professional",
+        "emotional-intelligence",
+        "business-attire",
+        "collaboration",
+        "warm",
+        "approachable"
+      ],
+      "orientation": "landscape",
+      "tone": "warm",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "QBpZGqEMsKg",
+      "base_url": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+      "photographer": "Alex Kotliarskyi",
+      "description": "People doing office works in modern open office",
+      "alt_text": "Professionals working together in open office validating skill proficiency",
+      "category": "HUMAN",
+      "tags": [
+        "open-office",
+        "working",
+        "skill",
+        "proficiency",
+        "team",
+        "modern",
+        "professional",
+        "collaboration"
+      ],
+      "orientation": "landscape",
+      "tone": "focused",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "SuDN17Hzudc",
+      "base_url": "https://images.unsplash.com/photo-1624555130296-e551faf8969b",
+      "photographer": "Memento Media",
+      "description": "Group of people sitting on chair in front of brown wooden table",
+      "alt_text": "Team members gathered around conference table discussing culture and values alignment",
+      "category": "HUMAN",
+      "tags": [
+        "conference-table",
+        "team",
+        "meeting",
+        "culture",
+        "values",
+        "alignment",
+        "discussion",
+        "corporate"
+      ],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "WrlIRaC9t-A",
+      "base_url": "https://images.unsplash.com/photo-1758876017801-f5a892ee460a",
+      "photographer": "Vitaly Gariev",
+      "description": "Woman working on a laptop in a modern office",
+      "alt_text": "Professional working on virtual assessment platform on laptop in modern office",
+      "category": "WORKSPACE",
+      "tags": [
+        "laptop",
+        "virtual",
+        "assessment",
+        "remote",
+        "modern-office",
+        "woman",
+        "technology",
+        "digital"
+      ],
+      "orientation": "landscape",
+      "tone": "focused",
+      "used_on": [
+        "Talent_Assessments-page.html",
+        "od-consulting-page.html",
+        "Learning_Content_Design_Development.html"
+      ],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "-Lzdk59aldE",
+      "base_url": "https://images.unsplash.com/photo-1758691736664-0b83e4f1215e",
+      "photographer": "Vitaly Gariev",
+      "description": "Woman presenting to audience in a modern office meeting room with flipchart",
+      "alt_text": "Professional facilitator presenting learning content design strategy to colleagues in a modern office meeting room",
+      "category": "HUMAN",
+      "tags": ["presenting", "facilitator", "learning-design", "meeting-room", "flipchart", "training", "workshop", "corporate", "woman", "strategy"],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "B93exUMEclk",
+      "base_url": "https://plus.unsplash.com/premium_photo-1749037209458-df7733a779a5",
+      "photographer": "Dmitrii Shirnin",
+      "description": "Colleagues work together and collaborate in the office",
+      "alt_text": "Instructional design colleagues collaborating on learning content development in modern office",
+      "category": "HUMAN",
+      "tags": ["collaboration", "colleagues", "office", "instructional-design", "teamwork", "content-development", "professional", "working"],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "gMsnXqILjp4",
+      "base_url": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
+      "photographer": "Campaign Creators",
+      "description": "Man standing in front of people sitting beside table with laptop computers",
+      "alt_text": "Professional leading a learning content strategy workshop with team around laptops",
+      "category": "HUMAN",
+      "tags": ["workshop", "presenting", "laptops", "team", "strategy", "training", "content-strategy", "professional", "corporate"],
+      "orientation": "landscape",
+      "tone": "collaborative",
+      "used_on": ["Learning_Content_Design_Development.html", "Training-Needs-Analysis.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "wGlgRXVax5c",
+      "base_url": "https://images.unsplash.com/photo-1758873272808-5580ed7deb44",
+      "photographer": "Vitaly Gariev",
+      "description": "Man working on laptop in modern office space",
+      "alt_text": "Professional working on eLearning course design on laptop in modern workspace",
+      "category": "WORKSPACE",
+      "tags": ["laptop", "workspace", "modern-office", "elearning", "digital", "working", "focused", "professional"],
+      "orientation": "landscape",
+      "tone": "focused",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "tLZhFRLj6nY",
+      "base_url": "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f",
+      "photographer": "Austin Distel",
+      "description": "Person using both laptop and smartphone for business",
+      "alt_text": "Professional using laptop and smartphone for mobile learning and microlearning content",
+      "category": "WORKSPACE",
+      "tags": ["laptop", "smartphone", "mobile-learning", "microlearning", "digital", "multi-device", "business", "professional"],
+      "orientation": "landscape",
+      "tone": "focused",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "smgTvepind4",
+      "base_url": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b",
+      "photographer": "Chris Montgomery",
+      "description": "MacBook Pro displaying group of people on video conference",
+      "alt_text": "Virtual instructor-led training session displayed on laptop screen",
+      "category": "TOOL",
+      "tags": ["video-conference", "VILT", "virtual-training", "zoom", "laptop", "remote", "meeting", "online-learning"],
+      "orientation": "landscape",
+      "tone": "technical",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "nC9kvcaFVsQ",
+      "base_url": "https://images.unsplash.com/photo-1683813479751-61c58cd6df5b",
+      "photographer": "Liam Charmer",
+      "description": "Close up of a video game controller",
+      "alt_text": "Game controller representing gamification and game-based learning design",
+      "category": "CONCEPTUAL",
+      "tags": ["gamification", "game-controller", "gaming", "game-based-learning", "engagement", "interactive", "digital"],
+      "orientation": "landscape",
+      "tone": "abstract",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "mazM0CcAZOs",
+      "base_url": "https://plus.unsplash.com/premium_photo-1709575454605-e5dc72e51908",
+      "photographer": "Yunus Tuğ",
+      "description": "Man in leather jacket wearing virtual reality headset",
+      "alt_text": "Professional wearing VR headset for immersive AR/VR learning experience",
+      "category": "TOOL",
+      "tags": ["VR", "virtual-reality", "headset", "immersive", "AR", "technology", "training", "simulation"],
+      "orientation": "landscape",
+      "tone": "technical",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "a-8FracGWiY",
+      "base_url": "https://images.unsplash.com/photo-1759417501248-0aa9489dab3f",
+      "photographer": "Phil Hearing",
+      "description": "Professional movie camera setup in a studio hallway",
+      "alt_text": "Professional video camera setup in studio for corporate training content production",
+      "category": "TOOL",
+      "tags": ["video-production", "camera", "studio", "filming", "content-creation", "corporate-training", "professional", "recording"],
+      "orientation": "landscape",
+      "tone": "technical",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    },
+    {
+      "unsplash_id": "gUIJ0YszPig",
+      "base_url": "https://images.unsplash.com/photo-1563986768609-322da13575f3",
+      "photographer": "Austin Distel",
+      "description": "Person using phone and laptop in office",
+      "alt_text": "Professional using smartphone and laptop for mobile learning content access",
+      "category": "WORKSPACE",
+      "tags": ["mobile-learning", "smartphone", "laptop", "multi-device", "office", "professional", "digital", "m-learning"],
+      "orientation": "landscape",
+      "tone": "focused",
+      "used_on": ["Learning_Content_Design_Development.html"],
+      "added_date": "2026-03-21"
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Challenges: Image + List</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --red: #D94848;
+    --red-bg: #FDF0F0;
+    --red-dim: rgba(217,72,72,0.06);
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--surface); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .section-label { display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+  .section-label .bar { width:24px; height:3px; background:var(--lime); border-radius:2px; }
+  .section-label span { font-size:12px; font-weight:700; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; }
+
+  .section-inner > h2 {
+    font-size:30px; font-weight:800; line-height:1.2; letter-spacing:-0.03em; margin-bottom:8px;
+  }
+  .section-inner > h2 .accent { color:var(--navy); }
+  .section-inner > h2 .dark { color:var(--text-primary); }
+  .section-inner > .sub {
+    font-size:15px; color:var(--text-secondary); line-height:1.6;
+    max-width:620px; margin-bottom:36px;
+  }
+
+  .layout {
+    display:grid;
+    grid-template-columns:42% 55%;
+    gap:3%;
+    align-items:start;
+  }
+
+  /* Left: Image */
+  .image-col {
+    position:sticky; top:80px;
+  }
+  .img-slot {
+    width:100%;
+    aspect-ratio:3/4;
+    border-radius:var(--radius-xl);
+    overflow:hidden;
+    background:#C8CAD8;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:8px;
+    font-size:12px; color:var(--text-muted); font-weight:500;
+    border:2px dashed rgba(45,47,107,0.15);
+  }
+  .img-slot svg { opacity:0.15; }
+  .img-slot .note {
+    font-size:11px; color:var(--text-muted); text-align:center; margin-top:6px; line-height:1.5;
+  }
+
+  .img-stat {
+    margin-top:16px;
+    background:var(--navy);
+    border-radius:var(--radius-lg);
+    padding:20px 24px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .img-stat .num {
+    font-size:36px; font-weight:800; color:var(--white);
+    letter-spacing:-0.04em; line-height:1;
+  }
+  .img-stat .num .sym { color:var(--lime); }
+  .img-stat .label {
+    font-size:13px; color:var(--text-muted); line-height:1.45; font-weight:500;
+    flex:1;
+  }
+
+  /* Right: Pain points */
+  .pain-list { display:flex; flex-direction:column; gap:0; }
+
+  .pain-item {
+    padding:24px 0;
+    border-bottom:1px solid var(--border);
+    display:flex; gap:16px; align-items:flex-start;
+    transition:background 0.2s;
+    cursor:default;
+  }
+  .pain-item:first-child { padding-top:0; }
+  .pain-item:last-child { border-bottom:none; padding-bottom:0; }
+  .pain-item:hover { background:var(--red-dim); margin:0 -16px; padding-left:16px; padding-right:16px; border-radius:var(--radius-lg); }
+
+  .pain-icon {
+    width:44px; height:44px; border-radius:12px;
+    background:var(--red-bg);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  .pain-content {}
+  .pain-item h4 {
+    font-size:16px; font-weight:700; color:var(--text-primary);
+    line-height:1.3; letter-spacing:-0.01em; margin-bottom:6px;
+  }
+  .pain-item p {
+    font-size:13px; color:var(--text-secondary); line-height:1.6;
+  }
+  .pain-tag {
+    display:inline-flex; align-items:center; gap:4px;
+    margin-top:8px;
+    font-size:11px; font-weight:700; color:var(--red);
+    letter-spacing:0.02em;
+  }
+  .pain-tag .dot { width:6px; height:6px; border-radius:50%; background:var(--red); }
+
+  /* Bottom CTA */
+  .bottom-cta {
+    margin-top:40px;
+    padding:32px;
+    background:var(--light-bg);
+    border-radius:var(--radius-xl);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:24px; flex-wrap:wrap;
+  }
+  .bottom-cta p {
+    font-size:15px; color:var(--text-secondary); line-height:1.6; max-width:560px;
+  }
+  .bottom-cta p strong { color:var(--text-primary); font-weight:700; }
+  .btn-lime {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 28px; background:var(--lime); color:var(--lime-text);
+    font-size:14px; font-weight:700; border:none; border-radius:8px;
+    cursor:pointer; font-family:var(--font); transition:background 0.15s;
+    white-space:nowrap;
+  }
+  .btn-lime:hover { background:#D4F23A; }
+
+  @media (max-width:768px) {
+    .section { padding:40px 20px; }
+    .layout { grid-template-columns:1fr; gap:28px; }
+    .image-col { position:static; }
+    .img-slot { aspect-ratio:16/9; }
+    .pain-item:hover { margin:0; padding-left:0; padding-right:0; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-label"><div class="bar"></div><span>What we solve</span></div>
+    <h2><span class="accent">Challenges</span> <span class="dark">organisations bring to us</span></h2>
+    <p class="sub">These are the recurring themes we hear from CHROs, L&D heads, and talent leaders — and exactly where our consulting creates the most impact.</p>
+
+    <div class="layout">
+
+      <div class="image-col">
+        <div class="img-slot">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="4" width="40" height="40" rx="8" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="18" r="5" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 36l11-11 6 6 8-8L44 38" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Professional in a thoughtful</span>
+          <span>or concerned workplace setting</span>
+          <span class="note">Recommended: HR leader reviewing<br>reports, or team in a strategy meeting<br>facing a complex challenge</span>
+        </div>
+
+        <div class="img-stat">
+          <div>
+            <div class="num">87<span class="sym">%</span></div>
+          </div>
+          <div class="label">of enterprise L&D leaders say connecting learning to business outcomes is their biggest challenge</div>
+        </div>
+      </div>
+
+      <div class="pain-list">
+
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16z"/><path d="M10 6v4l2.5 2.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="pain-content">
+            <h4>Learning investments not tied to business outcomes</h4>
+            <p>Training budgets are spent, but leadership can't connect L&D activity to measurable performance improvement or ROI.</p>
+            <div class="pain-tag"><span class="dot"></span> Impacts strategic credibility</div>
+          </div>
+        </div>
+
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M3 14l4-8 4 5 3-3 3 6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="3" width="16" height="14" rx="2"/></svg>
+          </div>
+          <div class="pain-content">
+            <h4>Skill gaps invisible until it's too late</h4>
+            <p>Workforce capabilities are assumed, not measured. Critical gaps surface only during succession crises or performance failures.</p>
+            <div class="pain-tag"><span class="dot"></span> Impacts workforce readiness</div>
+          </div>
+        </div>
+
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/><path d="M10 7v3M10 13h.01" stroke-linecap="round"/></svg>
+          </div>
+          <div class="pain-content">
+            <h4>Leadership pipeline lacks depth and consistency</h4>
+            <p>High-potential leaders are identified informally, with no structured development path, behavioural benchmarks, or readiness validation.</p>
+            <div class="pain-tag"><span class="dot"></span> Impacts succession planning</div>
+          </div>
+        </div>
+
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a12 12 0 0 1 3 8 12 12 0 0 1-3 8 12 12 0 0 1-3-8 12 12 0 0 1 3-8z"/></svg>
+          </div>
+          <div class="pain-content">
+            <h4>Fragmented training across regions and teams</h4>
+            <p>Multiple vendors, inconsistent quality, and disconnected systems make enterprise-wide learning governance nearly impossible.</p>
+            <div class="pain-tag"><span class="dot"></span> Impacts global consistency</div>
+          </div>
+        </div>
+
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><rect x="3" y="6" width="14" height="10" rx="2"/><path d="M7 6V5a3 3 0 0 1 6 0v1"/><path d="M10 10v2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="pain-content">
+            <h4>Compliance training that's checkbox, not capability</h4>
+            <p>Regulatory programs exist on paper but fail to build real understanding, leaving the organisation exposed during audits.</p>
+            <div class="pain-tag"><span class="dot"></span> Impacts regulatory risk</div>
+          </div>
+        </div>
+
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M14 3v4a1 1 0 0 0 1 1h4" stroke-linecap="round"/><path d="M5 17V5a2 2 0 0 1 2-2h5l5 5v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 11h4M9 14h2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="pain-content">
+            <h4>Workforce data that can't support real decisions</h4>
+            <p>Self-reported skills, outdated assessments, and no audit trail mean talent data isn't trusted at the board or leadership level.</p>
+            <div class="pain-tag"><span class="dot"></span> Impacts decision confidence</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="bottom-cta">
+      <p>If any of these resonate, you're in the right place. <strong>Our consulting is built specifically to address these challenges</strong> — with governed frameworks and expert-led delivery.</p>
+      <button class="btn-lime">Talk to a consultant <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

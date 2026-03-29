@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Sub Services: Option A (3-Col Image Cards)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--surface); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .section-header { margin-bottom:40px; }
+  .section-label { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .section-label .bar { width:24px; height:3px; background:var(--lime); border-radius:2px; }
+  .section-label span { font-size:12px; font-weight:700; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; }
+  .section-header h2 { font-size:30px; font-weight:800; color:var(--navy); line-height:1.2; letter-spacing:-0.03em; margin-bottom:8px; }
+  .section-header p { font-size:15px; color:var(--text-secondary); line-height:1.6; max-width:560px; }
+
+  .cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+  .svc-card {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    transition:box-shadow 0.3s, transform 0.3s;
+    cursor:pointer;
+    display:flex; flex-direction:column;
+  }
+  .svc-card:hover {
+    box-shadow:0 12px 40px rgba(45,47,107,0.10);
+    transform:translateY(-4px);
+  }
+
+  .card-img {
+    width:100%; height:200px;
+    overflow:hidden;
+    position:relative;
+  }
+  .card-img-inner {
+    width:100%; height:100%;
+    background:#C8CAD8;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:4px;
+    font-size:11px; color:var(--text-muted); font-weight:500;
+    transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .card-img-inner svg { opacity:0.2; }
+  .svc-card:hover .card-img-inner { transform:scale(1.08); }
+
+  .card-body {
+    padding:22px 24px 28px;
+    flex:1;
+    display:flex; flex-direction:column;
+  }
+
+  .card-title-row {
+    display:flex; align-items:flex-start; gap:12px;
+    margin-bottom:10px;
+  }
+  .card-accent {
+    width:4px; height:24px; border-radius:2px;
+    background:var(--lime);
+    flex-shrink:0; margin-top:2px;
+  }
+  .card-body h3 {
+    font-size:17px; font-weight:700; color:var(--text-primary);
+    line-height:1.3; letter-spacing:-0.01em;
+  }
+  .card-body p {
+    font-size:13px; color:var(--text-secondary); line-height:1.6;
+    margin-bottom:20px; flex:1;
+  }
+
+  .card-link {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:700; color:var(--navy);
+    text-decoration:none; cursor:pointer;
+    transition:gap 0.2s;
+  }
+  .card-link:hover { gap:10px; }
+
+  @media (max-width:900px) {
+    .section { padding:40px 20px; }
+    .cards-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:580px) {
+    .cards-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <div class="section-label"><div class="bar"></div><span>Our services</span></div>
+      <h2>Consulting services we offer</h2>
+      <p>Each engagement is tailored to your industry and organisation's specific needs.</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="svc-card">
+        <div class="card-img">
+          <div class="card-img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>L&D Strategy image</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row"><div class="card-accent"></div><h3>L&D Strategy Consulting</h3></div>
+          <p>Design strategic learning ecosystems that align workforce development with business goals and deliver measurable impact.</p>
+          <a class="card-link">Read more <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="card-img">
+          <div class="card-img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Talent Assessment image</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row"><div class="card-accent"></div><h3>Talent Assessment</h3></div>
+          <p>Identify skill gaps and build a data-driven talent strategy with governed, verifiable workforce intelligence.</p>
+          <a class="card-link">Read more <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="card-img">
+          <div class="card-img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Leadership Dev image</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row"><div class="card-accent"></div><h3>Leadership Development</h3></div>
+          <p>Build leaders who align teams, accelerate growth, and create lasting organisational impact at every level.</p>
+          <a class="card-link">Read more <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="card-img">
+          <div class="card-img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Skills Gap image</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row"><div class="card-accent"></div><h3>Skills Gap Analysis</h3></div>
+          <p>Map current workforce capabilities against future requirements and build actionable gap-closing roadmaps.</p>
+          <a class="card-link">Read more <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="card-img">
+          <div class="card-img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Change Mgmt image</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row"><div class="card-accent"></div><h3>Change Management</h3></div>
+          <p>Navigate complex organisational transformations with structured frameworks for people, processes, and culture.</p>
+          <a class="card-link">Read more <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="card-img">
+          <div class="card-img-inner">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Compliance image</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row"><div class="card-accent"></div><h3>Compliance Training Design</h3></div>
+          <p>Deploy regulatory training programs that are engaging, audit-ready, and measurable across all mandated areas.</p>
+          <a class="card-link">Read more <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

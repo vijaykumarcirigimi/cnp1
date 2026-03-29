@@ -1,0 +1,5 @@
+streamlit==1.42.2
+google-generativeai==0.8.4
+cssutils==2.11.1
+beautifulsoup4==4.13.3
+python-dotenv==1.0.1

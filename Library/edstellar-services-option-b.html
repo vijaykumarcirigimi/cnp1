@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Services Section: Option B (Tab Pills)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-card: #2E3054;
+    --navy-light: #3A3C7E;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --lime-dim: rgba(197,232,38,0.10);
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-body-light: #D0D2E0;
+    --text-muted-navy: #9496B0;
+    --border: #DCDEE5;
+    --border-navy: rgba(255,255,255,0.12);
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section {
+    padding: 64px 48px;
+    background: var(--light-bg);
+  }
+  .section-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+  }
+  .section-header-left {}
+  .section-label {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .section-label .bar { width: 24px; height: 3px; background: var(--lime); border-radius: 2px; }
+  .section-label span {
+    font-size: 12px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .section-header h2 {
+    font-size: 30px; font-weight: 800; color: var(--navy);
+    line-height: 1.2; letter-spacing: -0.03em;
+  }
+
+  .tab-pills {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .tab-pill {
+    padding: 10px 20px;
+    font-family: var(--font);
+    font-size: 13px; font-weight: 600;
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-pill:hover { border-color: var(--navy); color: var(--navy); }
+  .tab-pill.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+
+  .detail-panel {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    animation: slideDown 0.3s ease-out;
+  }
+  .detail-panel.active { display: grid; grid-template-columns: 55% 45%; }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .detail-content {
+    padding: 40px 36px;
+  }
+  .detail-num {
+    font-size: 48px; font-weight: 800; color: var(--light-bg);
+    letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px;
+  }
+  .detail-content h3 {
+    font-size: 24px; font-weight: 800; color: var(--text-primary);
+    line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 14px;
+  }
+  .detail-content p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .detail-features {
+    display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px;
+  }
+  .detail-feat {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600; color: var(--text-primary);
+  }
+  .feat-check {
+    width: 20px; height: 20px; border-radius: 50%; background: var(--lime);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .feat-check svg { width: 10px; height: 10px; }
+
+  .btn-lime {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 26px; background: var(--lime); color: var(--lime-text);
+    font-size: 14px; font-weight: 700; border: none; border-radius: 8px;
+    cursor: pointer; font-family: var(--font); transition: background 0.15s;
+  }
+  .btn-lime:hover { background: #D4F23A; }
+
+  .detail-visual {
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px;
+    position: relative;
+  }
+  .visual-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--border-navy);
+    background: rgba(255,255,255,0.04);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px;
+    color: var(--text-muted-navy); font-size: 12px; font-weight: 500;
+  }
+  .visual-placeholder svg { opacity: 0.25; }
+
+  .detail-visual .stat-float {
+    position: absolute; bottom: 24px; left: 24px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .stat-float .num { font-size: 20px; font-weight: 800; color: var(--navy); letter-spacing: -0.03em; }
+  .stat-float .label { font-size: 11px; color: var(--text-secondary); font-weight: 500; }
+
+  @media (max-width: 768px) {
+    .section { padding: 40px 20px; }
+    .detail-panel.active { grid-template-columns: 1fr; }
+    .detail-visual { min-height: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <div class="section-header-left">
+        <div class="section-label">
+          <div class="bar"></div>
+          <span>What we offer</span>
+        </div>
+        <h2>Our consulting services</h2>
+      </div>
+    </div>
+
+    <div class="tab-pills" id="tabPills">
+      <button class="tab-pill active" onclick="showTab(0,this)">L&D Strategy</button>
+      <button class="tab-pill" onclick="showTab(1,this)">Talent Assessment</button>
+      <button class="tab-pill" onclick="showTab(2,this)">Leadership Development</button>
+      <button class="tab-pill" onclick="showTab(3,this)">Skills Gap Analysis</button>
+      <button class="tab-pill" onclick="showTab(4,this)">Change Management</button>
+      <button class="tab-pill" onclick="showTab(5,this)">Compliance Training</button>
+    </div>
+
+    <div id="panels">
+
+      <div class="detail-panel active">
+        <div class="detail-content">
+          <div class="detail-num">01</div>
+          <h3>L&D Strategy Consulting</h3>
+          <p>We help organisations design strategic learning ecosystems that align workforce development with business goals, close critical skill gaps, and deliver measurable impact.</p>
+          <div class="detail-features">
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Capability-based learning architecture</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> ROI measurement frameworks</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Transfer of expertise, not dependency</div>
+          </div>
+          <button class="btn-lime">Explore this service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="detail-visual">
+          <div class="visual-placeholder">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="30" height="30" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="14" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 28l8-8 5 5 6-6L33 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Service illustration or</span>
+            <span>contextual image</span>
+          </div>
+          <div class="stat-float">
+            <div><div class="num">300<span style="color:var(--lime)">+</span></div><div class="label">Clients served</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-panel">
+        <div class="detail-content">
+          <div class="detail-num">02</div>
+          <h3>Talent Assessment</h3>
+          <p>Identify skill gaps and build a data-driven talent strategy. Our assessment consulting delivers governed, verifiable workforce intelligence your leadership team can act on with confidence.</p>
+          <div class="detail-features">
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Behavioural competency mapping</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Multi-rater assessment tools</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Enterprise-grade audit trail</div>
+          </div>
+          <button class="btn-lime">Explore this service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="detail-visual">
+          <div class="visual-placeholder"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="30" height="30" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="14" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 28l8-8 5 5 6-6L33 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Service illustration</span></div>
+          <div class="stat-float"><div><div class="num">95<span style="color:var(--lime)">%</span></div><div class="label">Gap identification rate</div></div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel">
+        <div class="detail-content">
+          <div class="detail-num">03</div>
+          <h3>Leadership Development</h3>
+          <p>Build leaders who drive transformation at every level. Our consulting combines behavioural science with practical frameworks to develop leaders who align teams and accelerate growth.</p>
+          <div class="detail-features">
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Executive coaching programs</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Succession pipeline design</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> 360-degree feedback integration</div>
+          </div>
+          <button class="btn-lime">Explore this service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="detail-visual">
+          <div class="visual-placeholder"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="30" height="30" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="14" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 28l8-8 5 5 6-6L33 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Service illustration</span></div>
+          <div class="stat-float"><div><div class="num">2,000<span style="color:var(--lime)">+</span></div><div class="label">Leaders developed</div></div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel">
+        <div class="detail-content">
+          <div class="detail-num">04</div>
+          <h3>Skills Gap Analysis</h3>
+          <p>Map your current workforce capabilities against future requirements. Our structured analysis identifies exactly where skill shortfalls exist, what they cost, and how to close them.</p>
+          <div class="detail-features">
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Role-based proficiency benchmarks</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Priority gap heat maps</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Actionable closing roadmaps</div>
+          </div>
+          <button class="btn-lime">Explore this service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="detail-visual">
+          <div class="visual-placeholder"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="30" height="30" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="14" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 28l8-8 5 5 6-6L33 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Service illustration</span></div>
+          <div class="stat-float"><div><div class="num">20<span style="color:var(--lime)">+</span></div><div class="label">Industries covered</div></div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel">
+        <div class="detail-content">
+          <div class="detail-num">05</div>
+          <h3>Change Management</h3>
+          <p>Navigate complex organisational transformations with structured change management frameworks. We prepare your people, processes, and culture for successful adoption of new strategies.</p>
+          <div class="detail-features">
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Stakeholder impact assessment</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Communication cascade planning</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Adoption readiness tracking</div>
+          </div>
+          <button class="btn-lime">Explore this service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="detail-visual">
+          <div class="visual-placeholder"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="30" height="30" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="14" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 28l8-8 5 5 6-6L33 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Service illustration</span></div>
+          <div class="stat-float"><div><div class="num">92<span style="color:var(--lime)">%</span></div><div class="label">Adoption success rate</div></div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel">
+        <div class="detail-content">
+          <div class="detail-num">06</div>
+          <h3>Compliance Training Design</h3>
+          <p>Design and deploy compliance training programs that meet regulatory requirements while engaging your workforce. Audit-ready documentation and measurable knowledge transfer across all mandated areas.</p>
+          <div class="detail-features">
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Regulatory gap mapping</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Multi-jurisdiction coverage</div>
+            <div class="detail-feat"><div class="feat-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="var(--lime-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div> Completion tracking dashboards</div>
+          </div>
+          <button class="btn-lime">Explore this service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="detail-visual">
+          <div class="visual-placeholder"><svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="3" y="3" width="30" height="30" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="14" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 28l8-8 5 5 6-6L33 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Service illustration</span></div>
+          <div class="stat-float"><div><div class="num">100<span style="color:var(--lime)">%</span></div><div class="label">Audit-ready programs</div></div></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+function showTab(idx, btn) {
+  document.querySelectorAll('.tab-pill').forEach(function(el) { el.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.detail-panel').forEach(function(el, i) {
+    el.classList.toggle('active', i === idx);
+  });
+}
+</script>
+
+</body>
+</html>

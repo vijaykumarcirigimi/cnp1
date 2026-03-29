@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Service Detail: Option C (Accordion Blocks)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-card: #2E3054;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --lime-dim: rgba(197,232,38,0.08);
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--light-bg); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .section-header { text-align:center; margin-bottom:44px; }
+  .section-label { display:inline-flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .section-label .bar { width:20px; height:3px; background:var(--lime); border-radius:2px; }
+  .section-label span { font-size:12px; font-weight:700; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; }
+  .section-header h2 { font-size:30px; font-weight:800; color:var(--navy); line-height:1.2; letter-spacing:-0.03em; margin-bottom:8px; }
+  .section-header p { font-size:15px; color:var(--text-secondary); line-height:1.6; max-width:540px; margin:0 auto; }
+
+  .acc-stack { display:flex; flex-direction:column; gap:12px; }
+
+  .acc-block {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+    overflow:hidden;
+    transition:box-shadow 0.3s;
+  }
+  .acc-block.active { box-shadow:0 8px 32px rgba(45,47,107,0.08); }
+
+  .acc-header {
+    padding:28px 32px;
+    display:flex; align-items:center; gap:20px;
+    cursor:pointer;
+    transition:background 0.2s;
+  }
+  .acc-header:hover { background:var(--lime-dim); }
+
+  .acc-num {
+    font-size:28px; font-weight:800; color:var(--border);
+    letter-spacing:-0.04em; line-height:1;
+    min-width:48px; transition:color 0.3s;
+  }
+  .acc-block.active .acc-num { color:var(--lime); }
+
+  .acc-icon {
+    width:48px; height:48px; border-radius:14px;
+    background:var(--lime-dim);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    transition:background 0.3s;
+  }
+  .acc-block.active .acc-icon { background:var(--lime); }
+  .acc-block.active .acc-icon svg { stroke:var(--lime-text); }
+
+  .acc-title-area { flex:1; }
+  .acc-title-area h3 {
+    font-size:18px; font-weight:800; color:var(--text-primary);
+    line-height:1.3; letter-spacing:-0.02em; margin-bottom:2px;
+  }
+  .acc-title-area span {
+    font-size:13px; color:var(--text-muted); font-weight:500;
+  }
+
+  .acc-toggle {
+    width:36px; height:36px; border-radius:50%;
+    border:1.5px solid var(--border);
+    background:transparent;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:all 0.3s; flex-shrink:0;
+  }
+  .acc-block.active .acc-toggle {
+    background:var(--navy); border-color:var(--navy);
+    transform:rotate(180deg);
+  }
+
+  .acc-body {
+    max-height:0; overflow:hidden;
+    transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .acc-block.active .acc-body { max-height:600px; }
+
+  .acc-body-inner {
+    padding:0 32px 32px;
+    display:grid;
+    grid-template-columns:40% 1fr;
+    gap:28px;
+    align-items:start;
+  }
+
+  .acc-image {
+    width:100%; aspect-ratio:16/10;
+    border-radius:var(--radius-lg); overflow:hidden;
+    background:#C8CAD8;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:4px;
+    font-size:11px; color:var(--text-muted); font-weight:500;
+  }
+  .acc-image svg { opacity:0.15; }
+  .acc-image .img-inner {
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    width:100%; height:100%;
+    transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .acc-block:hover .img-inner { transform:scale(1.06); }
+
+  .acc-details {}
+  .acc-details > p {
+    font-size:14px; color:var(--text-secondary); line-height:1.65;
+    margin-bottom:20px;
+  }
+
+  .sub-features { display:flex; flex-direction:column; gap:14px; }
+  .sf {
+    display:flex; gap:12px; align-items:flex-start;
+  }
+  .sf-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:var(--lime); flex-shrink:0; margin-top:6px;
+  }
+  .sf h4 {
+    font-size:14px; font-weight:700; color:var(--text-primary);
+    margin-bottom:2px;
+  }
+  .sf p {
+    font-size:12px; color:var(--text-secondary); line-height:1.55;
+  }
+
+  @media (max-width:768px) {
+    .section { padding:40px 16px; }
+    .acc-header { padding:20px 20px; gap:12px; }
+    .acc-body-inner { grid-template-columns:1fr; padding:0 20px 24px; }
+    .acc-num { font-size:22px; min-width:36px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <div class="section-label"><div class="bar"></div><span>How we deliver</span><div class="bar"></div></div>
+      <h2>What makes our consulting different</h2>
+      <p>Click each capability area to explore how we combine consulting expertise with technology to deliver measurable outcomes.</p>
+    </div>
+
+    <div class="acc-stack">
+
+      <!-- Block 1 -->
+      <div class="acc-block active" onclick="toggleAcc(this)">
+        <div class="acc-header">
+          <div class="acc-num">01</div>
+          <div class="acc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--lime)" stroke-width="1.8"><path d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16z"/><path d="M10 6v4l2.5 2.5" stroke-linecap="round"/></svg></div>
+          <div class="acc-title-area">
+            <h3>Consulting-led L&D strategy</h3>
+            <span>Expert-driven frameworks aligned to your business</span>
+          </div>
+          <button class="acc-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="acc-image">
+              <div class="img-inner">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span>Consulting team image</span>
+              </div>
+            </div>
+            <div class="acc-details">
+              <p>Our L&D consultants combine deep industry knowledge with proven frameworks to design learning ecosystems that align with your business strategy — building capability, not dependency.</p>
+              <div class="sub-features">
+                <div class="sf"><div class="sf-dot"></div><div><h4>Strategic partnership, not processing</h4><p>We shape your L&D strategy and prepare you for capability challenges ahead.</p></div></div>
+                <div class="sf"><div class="sf-dot"></div><div><h4>Proactive gap monitoring</h4><p>Experts continually track capability changes and implement updates proactively.</p></div></div>
+                <div class="sf"><div class="sf-dot"></div><div><h4>Confidence through accountability</h4><p>Named experts own your outcomes — no faceless shared-service queues.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 2 -->
+      <div class="acc-block" onclick="toggleAcc(this)">
+        <div class="acc-header">
+          <div class="acc-num">02</div>
+          <div class="acc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--lime)" stroke-width="1.8"><rect x="3" y="6" width="14" height="10" rx="2"/><path d="M7 6V5a3 3 0 0 1 6 0v1"/><path d="M10 10v2" stroke-linecap="round"/></svg></div>
+          <div class="acc-title-area">
+            <h3>Technology-enabled efficiency</h3>
+            <span>Proprietary tools that remove manual steps and error risk</span>
+          </div>
+          <button class="acc-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="acc-image">
+              <div class="img-inner">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span>Platform / dashboard image</span>
+              </div>
+            </div>
+            <div class="acc-details">
+              <p>Our proprietary tools power accurate data collection, analysis, and reporting — removing manual steps and giving your leadership full visibility and control over all L&D operations.</p>
+              <div class="sub-features">
+                <div class="sf"><div class="sf-dot"></div><div><h4>Scalable to your business footprint</h4><p>Add or remove regions easily without rebuilding your L&D processes.</p></div></div>
+                <div class="sf"><div class="sf-dot"></div><div><h4>Full visibility and control</h4><p>Real-time oversight through a single centralised dashboard.</p></div></div>
+                <div class="sf"><div class="sf-dot"></div><div><h4>Real-time intelligence</h4><p>Specialists monitor changes and feed updates directly into your programs.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 3 -->
+      <div class="acc-block" onclick="toggleAcc(this)">
+        <div class="acc-header">
+          <div class="acc-num">03</div>
+          <div class="acc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--lime)" stroke-width="1.8"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a12 12 0 0 1 3 8 12 12 0 0 1-3 8 12 12 0 0 1-3-8 12 12 0 0 1 3-8z"/></svg></div>
+          <div class="acc-title-area">
+            <h3>Global delivery with local expertise</h3>
+            <span>5,000+ trainers across 100+ locations worldwide</span>
+          </div>
+          <button class="acc-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="acc-image">
+              <div class="img-inner">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="3" y="3" width="26" height="26" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 25l7-7 4 4 5-5L29 27" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span>Global team / map image</span>
+              </div>
+            </div>
+            <div class="acc-details">
+              <p>Our global network combines local market knowledge with enterprise-scale delivery, ensuring consistent quality and culturally relevant consulting across every region you operate in.</p>
+              <div class="sub-features">
+                <div class="sf"><div class="sf-dot"></div><div><h4>Proximity and partnership</h4><p>Local consultants who understand your market, culture, and regulatory context.</p></div></div>
+                <div class="sf"><div class="sf-dot"></div><div><h4>Cross-border consistency</h4><p>Standardised frameworks adapted for local requirements across 100+ locations.</p></div></div>
+                <div class="sf"><div class="sf-dot"></div><div><h4>Human-centricity at scale</h4><p>People-first consulting that drives meaningful, sustainable change globally.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleAcc(block) {
+  var wasActive = block.classList.contains('active');
+  document.querySelectorAll('.acc-block').forEach(function(b) { b.classList.remove('active'); });
+  if (!wasActive) block.classList.add('active');
+}
+</script>
+
+</body>
+</html>

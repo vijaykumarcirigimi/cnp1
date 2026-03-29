@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Stats Section: Icon Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-card: #2E3054;
+    --lime: #C5E826;
+    --lime-dim: rgba(197,232,38,0.15);
+    --white: #FFFFFF;
+    --text-body: #B8BAC8;
+    --light-bg: #EDEEF2;
+    --navy-text: #2D2F6B;
+    --chrome-muted: #6B6D7B;
+    --radius-lg: 14px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font);
+    background: var(--light-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stats-section {
+    padding: 56px 48px 60px;
+    background: var(--light-bg);
+  }
+
+  .stats-layout {
+    display: grid;
+    grid-template-columns: 32% 64%;
+    gap: 4%;
+    align-items: start;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .stats-heading-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .stats-heading-bar .bar {
+    width: 24px;
+    height: 3px;
+    background: var(--lime);
+    border-radius: 2px;
+  }
+
+  .stats-heading-bar .label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy-text);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .stats-heading h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--navy-text);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .stats-heading p {
+    font-size: 14px;
+    color: var(--chrome-muted);
+    line-height: 1.6;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .stat-card {
+    background: var(--navy-card);
+    border-radius: var(--radius-lg);
+    padding: 26px 22px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--lime-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stat-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .stat-number .symbol {
+    color: var(--lime);
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-body);
+    margin-top: 6px;
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .stats-section { padding: 36px 20px 40px; }
+    .stats-layout { grid-template-columns: 1fr; gap: 28px; }
+  }
+  @media (max-width: 520px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-number { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="stats-section">
+  <div class="stats-layout">
+
+    <div class="stats-heading">
+      <div class="stats-heading-bar">
+        <div class="bar"></div>
+        <span class="label">By the numbers</span>
+      </div>
+      <h2>Impact that speaks for itself</h2>
+      <p>Our consulting engagements deliver measurable outcomes across every industry we serve.</p>
+    </div>
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16z" stroke="var(--lime)" stroke-width="1.8"/><path d="M10 6v4l2.5 2.5" stroke="var(--lime)" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="stat-number">300<span class="symbol">+</span></div>
+          <div class="stat-label">Clients trust us with their L&D needs</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="var(--lime)" stroke-width="1.8"/><path d="M2 10h16M10 2a12 12 0 0 1 3 8 12 12 0 0 1-3 8 12 12 0 0 1-3-8 12 12 0 0 1 3-8z" stroke="var(--lime)" stroke-width="1.8"/></svg>
+        </div>
+        <div>
+          <div class="stat-number">20<span class="symbol">+</span></div>
+          <div class="stat-label">Industries served globally</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0z" stroke="var(--lime)" stroke-width="1.8"/><path d="M7 10l2 2 4-4" stroke="var(--lime)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="stat-number">95<span class="symbol">%</span></div>
+          <div class="stat-label">Clients identify critical capability gaps</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 14l4-8 4 5 3-3 3 6" stroke="var(--lime)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="3" width="16" height="14" rx="2" stroke="var(--lime)" stroke-width="1.8"/></svg>
+        </div>
+        <div>
+          <div class="stat-number">92<span class="symbol">%</span></div>
+          <div class="stat-label">Say our insights shaped key L&D decisions</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

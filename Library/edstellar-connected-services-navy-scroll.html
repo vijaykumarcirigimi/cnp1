@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Connected Services: Option B (Navy Horizontal Strip)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-card: #2E3054;
+    --navy-light: #383A72;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --lime-dim: rgba(197,232,38,0.10);
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-body: #D0D2E0;
+    --text-muted-navy: #9496B0;
+    --border-navy: rgba(255,255,255,0.1);
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:56px 48px; background:var(--navy); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .section-top {
+    display:flex; align-items:flex-end; justify-content:space-between;
+    margin-bottom:32px; gap:24px; flex-wrap:wrap;
+  }
+  .section-top-left {}
+  .section-label { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
+  .section-label .bar { width:24px; height:3px; background:var(--lime); border-radius:2px; }
+  .section-label span { font-size:12px; font-weight:700; color:var(--lime); letter-spacing:0.06em; text-transform:uppercase; }
+  .section-top h2 { font-size:26px; font-weight:800; color:var(--white); line-height:1.2; letter-spacing:-0.03em; }
+
+  .nav-arrows { display:flex; gap:8px; }
+  .nav-arrow {
+    width:40px; height:40px; border-radius:50%;
+    border:1.5px solid var(--border-navy); background:transparent;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:all 0.2s;
+  }
+  .nav-arrow:hover { border-color:rgba(255,255,255,0.3); background:rgba(255,255,255,0.05); }
+
+  .cards-track {
+    display:flex; gap:16px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    padding-bottom:4px;
+  }
+  .cards-track::-webkit-scrollbar { display:none; }
+
+  .cs-card {
+    min-width:300px; max-width:300px;
+    scroll-snap-align:start;
+    background:var(--navy-card);
+    border:1px solid var(--border-navy);
+    border-radius:var(--radius-xl);
+    padding:28px 24px 24px;
+    display:flex; flex-direction:column;
+    transition:all 0.25s;
+    cursor:pointer;
+    position:relative;
+  }
+  .cs-card:hover {
+    border-color:rgba(197,232,38,0.25);
+    background:var(--navy-light);
+  }
+
+  .cs-top {
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:14px;
+  }
+  .cs-icon {
+    width:44px; height:44px; border-radius:12px;
+    background:var(--lime-dim);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition:background 0.25s;
+  }
+  .cs-card:hover .cs-icon { background:var(--lime); }
+  .cs-card:hover .cs-icon svg { stroke:var(--lime-text); }
+
+  .cs-tag {
+    font-size:10px; font-weight:700; color:var(--lime);
+    letter-spacing:0.04em; text-transform:uppercase;
+    background:rgba(197,232,38,0.08);
+    padding:3px 10px; border-radius:4px;
+  }
+
+  .cs-card h3 {
+    font-size:16px; font-weight:700; color:var(--white);
+    line-height:1.3; margin-bottom:8px;
+  }
+  .cs-card p {
+    font-size:12px; color:var(--text-muted-navy); line-height:1.6;
+    margin-bottom:18px; flex:1;
+  }
+
+  .cs-link {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:700; color:var(--lime);
+    text-decoration:none; transition:gap 0.2s;
+  }
+  .cs-link:hover { gap:10px; }
+
+  .divider-line {
+    width:100%; height:1px;
+    background:var(--border-navy);
+    margin-bottom:18px;
+  }
+
+  @media (max-width:768px) {
+    .section { padding:40px 20px; }
+    .cs-card { min-width:260px; max-width:260px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-top">
+      <div class="section-top-left">
+        <div class="section-label"><div class="bar"></div><span>Related services</span></div>
+        <h2>Explore connected consulting services</h2>
+      </div>
+      <div class="nav-arrows">
+        <button class="nav-arrow" onclick="scrollCards(-1)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 3l-4 4 4 4" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="nav-arrow" onclick="scrollCards(1)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <div class="cards-track" id="cardsTrack">
+
+      <div class="cs-card">
+        <div class="cs-top">
+          <div class="cs-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--lime)" stroke-width="1.6"><path d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16z"/><path d="M10 6v4l2.5 2.5" stroke-linecap="round"/></svg></div>
+          <span class="cs-tag">Consulting</span>
+        </div>
+        <h3>Talent Assessment</h3>
+        <p>Build a governed, auditable skills inventory that gives leadership confidence in workforce data for succession decisions.</p>
+        <div class="divider-line"></div>
+        <a class="cs-link" href="#">Explore service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-top">
+          <div class="cs-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--lime)" stroke-width="1.6"><path d="M4 17V8l6-4 6 4v9" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 17v-4h4v4" stroke-linecap="round"/></svg></div>
+          <span class="cs-tag">Consulting</span>
+        </div>
+        <h3>Leadership Development</h3>
+        <p>Develop leaders who align teams, accelerate growth, and create lasting organisational impact at every level.</p>
+        <div class="divider-line"></div>
+        <a class="cs-link" href="#">Explore service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-top">
+          <div class="cs-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--lime)" stroke-width="1.6"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a12 12 0 0 1 3 8 12 12 0 0 1-3 8 12 12 0 0 1-3-8 12 12 0 0 1 3-8z"/></svg></div>
+          <span class="cs-tag">Consulting</span>
+        </div>
+        <h3>Change Management</h3>
+        <p>Navigate complex transformations with structured frameworks for people, processes, and culture adoption.</p>
+        <div class="divider-line"></div>
+        <a class="cs-link" href="#">Explore service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-top">
+          <div class="cs-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--lime)" stroke-width="1.6"><path d="M3 14l4-8 4 5 3-3 3 6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="3" width="16" height="14" rx="2"/></svg></div>
+          <span class="cs-tag">Consulting</span>
+        </div>
+        <h3>Skills Gap Analysis</h3>
+        <p>Map current workforce capabilities against future requirements and build actionable gap-closing roadmaps.</p>
+        <div class="divider-line"></div>
+        <a class="cs-link" href="#">Explore service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="cs-card">
+        <div class="cs-top">
+          <div class="cs-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--lime)" stroke-width="1.6"><rect x="3" y="5" width="14" height="10" rx="2"/><path d="M7 5V4a3 3 0 0 1 6 0v1"/><path d="M10 9v2" stroke-linecap="round"/></svg></div>
+          <span class="cs-tag">Consulting</span>
+        </div>
+        <h3>Compliance Training Design</h3>
+        <p>Design and deploy compliance training programs that are engaging, audit-ready, and measurable.</p>
+        <div class="divider-line"></div>
+        <a class="cs-link" href="#">Explore service <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+function scrollCards(dir) {
+  var track = document.getElementById('cardsTrack');
+  track.scrollBy({ left: dir * 316, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

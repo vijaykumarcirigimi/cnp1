@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Industries: Option C (Selectable Tiles)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-card: #2E3054;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --lime-dim: rgba(197,232,38,0.08);
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--surface); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .section-header { text-align:center; margin-bottom:36px; }
+  .section-label { display:inline-flex; align-items:center; gap:8px; margin-bottom:14px; }
+  .section-label .bar { width:20px; height:3px; background:var(--lime); border-radius:2px; }
+  .section-label span { font-size:12px; font-weight:700; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; }
+  .section-header h2 { font-size:30px; font-weight:800; color:var(--navy); line-height:1.2; letter-spacing:-0.03em; margin-bottom:8px; }
+  .section-header p { font-size:15px; color:var(--text-secondary); line-height:1.6; max-width:540px; margin:0 auto; }
+
+  .tile-row {
+    display:flex; flex-wrap:wrap; gap:8px;
+    justify-content:center; margin-bottom:28px;
+  }
+
+  .tile {
+    padding:10px 22px;
+    border:1.5px solid var(--border);
+    border-radius:50px;
+    font-size:14px; font-weight:600; color:var(--text-secondary);
+    cursor:pointer; transition:all 0.2s;
+    display:flex; align-items:center; gap:8px;
+    background:var(--surface);
+  }
+  .tile:hover { border-color:var(--navy); color:var(--navy); }
+  .tile.active {
+    background:var(--navy); border-color:var(--navy); color:var(--white);
+  }
+
+  .tile-icon {
+    width:20px; height:20px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .tile.active .tile-icon svg { stroke:var(--lime); }
+
+  .detail-panel {
+    display:none;
+    background:var(--light-bg);
+    border-radius:var(--radius-xl);
+    padding:36px 32px;
+    animation:slideUp 0.3s ease-out;
+  }
+  .detail-panel.active { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
+  @keyframes slideUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  .detail-left {}
+  .detail-left h3 {
+    font-size:22px; font-weight:800; color:var(--navy);
+    line-height:1.25; letter-spacing:-0.02em; margin-bottom:10px;
+  }
+  .detail-left p {
+    font-size:14px; color:var(--text-secondary); line-height:1.65;
+    margin-bottom:20px;
+  }
+
+  .detail-features { display:flex; flex-direction:column; gap:10px; }
+  .df {
+    display:flex; align-items:center; gap:10px;
+    font-size:13px; font-weight:600; color:var(--text-primary);
+  }
+  .df-dot { width:7px; height:7px; border-radius:50%; background:var(--lime); flex-shrink:0; }
+
+  .detail-right {
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .mini-stat {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:20px 18px; text-align:center;
+  }
+  .mini-stat .num {
+    font-size:28px; font-weight:800; color:var(--navy);
+    letter-spacing:-0.04em; line-height:1;
+  }
+  .mini-stat .num .sym { color:var(--lime); }
+  .mini-stat .label {
+    font-size:11px; color:var(--text-muted); margin-top:4px; line-height:1.4;
+  }
+
+  @media (max-width:768px) {
+    .section { padding:40px 20px; }
+    .detail-panel.active { grid-template-columns:1fr; }
+    .tile-row { justify-content:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <div class="section-label"><div class="bar"></div><span>Industry expertise</span><div class="bar"></div></div>
+      <h2>Industries we serve</h2>
+      <p>Select an industry to see how our consulting adapts to its specific workforce challenges.</p>
+    </div>
+
+    <div class="tile-row" id="tileRow">
+      <div class="tile active" onclick="showInd(0,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 6h6M5 9h4" stroke-linecap="round"/></svg></div>IT & technology</div>
+      <div class="tile" onclick="showInd(1,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><path d="M8 2v2.5M8 11.5V14M3.5 3.5l1.8 1.8M10.7 10.7l1.8 1.8M2 8h2.5M11.5 8H14M3.5 12.5l1.8-1.8M10.7 5.3l1.8-1.8"/></svg></div>BFSI</div>
+      <div class="tile" onclick="showInd(2,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><path d="M2 14h12M3 14V5l5-3 5 3v9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Manufacturing</div>
+      <div class="tile" onclick="showInd(3,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><path d="M8 7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/><path d="M13 12A5.5 5.5 0 0 0 3 12" stroke-linecap="round"/></svg></div>Healthcare</div>
+      <div class="tile" onclick="showInd(4,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M2 6h12M2 10h12M8 2v12" stroke-linecap="round"/></svg></div>Retail</div>
+      <div class="tile" onclick="showInd(5,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><path d="M9 2L3 10h6l-.5 4L15 6H8.5L9 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Energy</div>
+      <div class="tile" onclick="showInd(6,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><path d="M14 8h-2.5l-2 6L6.5 2 4.5 8H2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Telecom</div>
+      <div class="tile" onclick="showInd(7,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><path d="M5.5 2h5v2.5h-5zM2 4.5h12v9H2z" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 9h4M8 7v4" stroke-linecap="round"/></svg></div>Pharma</div>
+      <div class="tile" onclick="showInd(8,this)"><div class="tile-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--text-secondary)" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2a10 10 0 0 1 2.5 6A10 10 0 0 1 8 14a10 10 0 0 1-2.5-6A10 10 0 0 1 8 2z"/></svg></div>Government</div>
+    </div>
+
+    <div id="panels">
+
+      <div class="detail-panel active" data-idx="0">
+        <div class="detail-left">
+          <h3>IT & technology</h3>
+          <p>We help technology companies build future-ready workforces through digital transformation training, cloud and cybersecurity upskilling, and agile leadership development.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>Cloud & infrastructure skills</div>
+            <div class="df"><div class="df-dot"></div>Cybersecurity workforce readiness</div>
+            <div class="df"><div class="df-dot"></div>Agile & DevOps leadership</div>
+            <div class="df"><div class="df-dot"></div>AI/ML capability building</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">150<span class="sym">+</span></div><div class="label">IT clients served</div></div>
+          <div class="mini-stat"><div class="num">40<span class="sym">+</span></div><div class="label">Tech skill domains</div></div>
+          <div class="mini-stat"><div class="num">92<span class="sym">%</span></div><div class="label">Client satisfaction</div></div>
+          <div class="mini-stat"><div class="num">5K<span class="sym">+</span></div><div class="label">Professionals trained</div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel" data-idx="1">
+        <div class="detail-left">
+          <h3>BFSI</h3>
+          <p>Banking, financial services, and insurance organisations partner with us for regulatory compliance training, risk management capability, and fintech workforce upskilling.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>Regulatory compliance programs</div>
+            <div class="df"><div class="df-dot"></div>Risk management training</div>
+            <div class="df"><div class="df-dot"></div>Fintech & digital banking skills</div>
+            <div class="df"><div class="df-dot"></div>Leadership development</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">80<span class="sym">+</span></div><div class="label">BFSI clients</div></div>
+          <div class="mini-stat"><div class="num">100<span class="sym">%</span></div><div class="label">Audit compliance</div></div>
+          <div class="mini-stat"><div class="num">35<span class="sym">+</span></div><div class="label">Compliance domains</div></div>
+          <div class="mini-stat"><div class="num">3K<span class="sym">+</span></div><div class="label">Professionals trained</div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel" data-idx="2">
+        <div class="detail-left">
+          <h3>Manufacturing</h3>
+          <p>We support manufacturers with operational excellence training, safety compliance, lean management capability, and supply chain workforce development.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>Lean & six sigma programs</div>
+            <div class="df"><div class="df-dot"></div>Safety & compliance training</div>
+            <div class="df"><div class="df-dot"></div>Supply chain capability</div>
+            <div class="df"><div class="df-dot"></div>Frontline supervisor development</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">60<span class="sym">+</span></div><div class="label">Manufacturers served</div></div>
+          <div class="mini-stat"><div class="num">45<span class="sym">%</span></div><div class="label">Safety incident reduction</div></div>
+          <div class="mini-stat"><div class="num">20<span class="sym">+</span></div><div class="label">Countries covered</div></div>
+          <div class="mini-stat"><div class="num">8K<span class="sym">+</span></div><div class="label">Workers trained</div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel" data-idx="3">
+        <div class="detail-left">
+          <h3>Healthcare</h3>
+          <p>Healthcare organizations rely on us for clinical training, patient safety programs, compliance readiness, and healthcare leadership development at all levels.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>Clinical skills training</div>
+            <div class="df"><div class="df-dot"></div>Patient safety programs</div>
+            <div class="df"><div class="df-dot"></div>Healthcare compliance</div>
+            <div class="df"><div class="df-dot"></div>Clinical leadership pipeline</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">40<span class="sym">+</span></div><div class="label">Healthcare clients</div></div>
+          <div class="mini-stat"><div class="num">95<span class="sym">%</span></div><div class="label">Compliance pass rate</div></div>
+          <div class="mini-stat"><div class="num">15<span class="sym">+</span></div><div class="label">Clinical domains</div></div>
+          <div class="mini-stat"><div class="num">2K<span class="sym">+</span></div><div class="label">Professionals trained</div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel" data-idx="4">
+        <div class="detail-left">
+          <h3>Retail & e-commerce</h3>
+          <p>We help retail brands train for customer experience excellence, digital commerce skills, store operations, and frontline workforce capability at scale.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>Customer experience training</div>
+            <div class="df"><div class="df-dot"></div>Digital commerce upskilling</div>
+            <div class="df"><div class="df-dot"></div>Store operations excellence</div>
+            <div class="df"><div class="df-dot"></div>Frontline manager development</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">30<span class="sym">+</span></div><div class="label">Retail clients</div></div>
+          <div class="mini-stat"><div class="num">37<span class="sym">%</span></div><div class="label">CX score improvement</div></div>
+          <div class="mini-stat"><div class="num">12<span class="sym">+</span></div><div class="label">Countries</div></div>
+          <div class="mini-stat"><div class="num">10K<span class="sym">+</span></div><div class="label">Staff trained</div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel" data-idx="5">
+        <div class="detail-left">
+          <h3>Energy & utilities</h3>
+          <p>Energy companies partner with us for safety compliance, sustainability workforce training, operational capability, and clean energy transition readiness.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>Safety & compliance programs</div>
+            <div class="df"><div class="df-dot"></div>Sustainability workforce training</div>
+            <div class="df"><div class="df-dot"></div>Operational excellence</div>
+            <div class="df"><div class="df-dot"></div>Energy transition readiness</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">25<span class="sym">+</span></div><div class="label">Energy clients</div></div>
+          <div class="mini-stat"><div class="num">100<span class="sym">%</span></div><div class="label">Safety compliance</div></div>
+          <div class="mini-stat"><div class="num">8<span class="sym">+</span></div><div class="label">Countries</div></div>
+          <div class="mini-stat"><div class="num">4K<span class="sym">+</span></div><div class="label">Workers trained</div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel" data-idx="6">
+        <div class="detail-left">
+          <h3>Telecom</h3>
+          <p>Telecom providers work with us on 5G workforce readiness, network operations training, digital service capabilities, and customer-facing team development.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>5G workforce readiness</div>
+            <div class="df"><div class="df-dot"></div>Network operations training</div>
+            <div class="df"><div class="df-dot"></div>Digital service capabilities</div>
+            <div class="df"><div class="df-dot"></div>Customer-facing team skills</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">20<span class="sym">+</span></div><div class="label">Telecom clients</div></div>
+          <div class="mini-stat"><div class="num">28<span class="sym">%</span></div><div class="label">Faster deployment</div></div>
+          <div class="mini-stat"><div class="num">10<span class="sym">+</span></div><div class="label">Countries</div></div>
+          <div class="mini-stat"><div class="num">6K<span class="sym">+</span></div><div class="label">Engineers trained</div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel" data-idx="7">
+        <div class="detail-left">
+          <h3>Pharma & life sciences</h3>
+          <p>Pharma and biotech companies rely on us for GxP compliance training, clinical research capability, regulatory affairs development, and quality system programs.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>GxP compliance programs</div>
+            <div class="df"><div class="df-dot"></div>Clinical research training</div>
+            <div class="df"><div class="df-dot"></div>Regulatory affairs capability</div>
+            <div class="df"><div class="df-dot"></div>Quality management systems</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">35<span class="sym">+</span></div><div class="label">Pharma clients</div></div>
+          <div class="mini-stat"><div class="num">100<span class="sym">%</span></div><div class="label">Audit readiness</div></div>
+          <div class="mini-stat"><div class="num">25<span class="sym">+</span></div><div class="label">Compliance areas</div></div>
+          <div class="mini-stat"><div class="num">3K<span class="sym">+</span></div><div class="label">Professionals trained</div></div>
+        </div>
+      </div>
+
+      <div class="detail-panel" data-idx="8">
+        <div class="detail-left">
+          <h3>Government & public sector</h3>
+          <p>We support government bodies with public administration training, digital governance capability, leadership capacity building, and citizen service improvement.</p>
+          <div class="detail-features">
+            <div class="df"><div class="df-dot"></div>Public administration training</div>
+            <div class="df"><div class="df-dot"></div>Digital governance capability</div>
+            <div class="df"><div class="df-dot"></div>Leadership capacity building</div>
+            <div class="df"><div class="df-dot"></div>Citizen service improvement</div>
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="mini-stat"><div class="num">15<span class="sym">+</span></div><div class="label">Govt agencies served</div></div>
+          <div class="mini-stat"><div class="num">50<span class="sym">+</span></div><div class="label">Programs delivered</div></div>
+          <div class="mini-stat"><div class="num">6<span class="sym">+</span></div><div class="label">Countries</div></div>
+          <div class="mini-stat"><div class="num">5K<span class="sym">+</span></div><div class="label">Officers trained</div></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+function showInd(idx, btn) {
+  document.querySelectorAll('.tile').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.detail-panel').forEach(function(p, i) {
+    p.classList.toggle('active', i === idx);
+  });
+}
+</script>
+
+</body>
+</html>

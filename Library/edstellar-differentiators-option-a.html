@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Differentiators: Option A (Split Image + List)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-card: #2E3054;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --lime-dim: rgba(197,232,38,0.10);
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--surface); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 42% 54%;
+    gap: 4%;
+    align-items: start;
+  }
+
+  .left-col {}
+  .section-label {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+  }
+  .section-label .bar { width: 24px; height: 3px; background: var(--lime); border-radius: 2px; }
+  .section-label span {
+    font-size: 12px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .left-col h2 {
+    font-size: 28px; font-weight: 800; color: var(--navy);
+    line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 10px;
+  }
+  .left-col .bold-sub {
+    font-size: 15px; font-weight: 700; color: var(--text-primary);
+    line-height: 1.5; margin-bottom: 8px;
+  }
+  .left-col .desc {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .img-slot {
+    width: 100%; aspect-ratio: 4/3;
+    border-radius: var(--radius-lg); overflow: hidden;
+    background: #D8DAE8;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    color: var(--navy); font-size: 12px; font-weight: 500;
+    border: 2px dashed rgba(45,47,107,0.2);
+  }
+  .img-slot svg { opacity: 0.2; }
+  .img-slot .note { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 4px; }
+
+  .diff-list { display: flex; flex-direction: column; gap: 0; }
+  .diff-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .diff-item:first-child { padding-top: 0; }
+  .diff-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .diff-accent {
+    width: 4px; height: 36px; border-radius: 2px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .diff-item h4 {
+    font-size: 15px; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 4px; letter-spacing: -0.01em;
+  }
+  .diff-item p {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .section { padding: 40px 20px; }
+    .layout { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="layout">
+
+      <div class="left-col">
+        <div class="section-label">
+          <div class="bar"></div>
+          <span>Why Edstellar</span>
+        </div>
+        <h2>The value our consultants deliver</h2>
+        <p class="bold-sub">We think boldly and act pragmatically. This is how we make a difference.</p>
+        <p class="desc">Our consulting differentiators accelerate the journey to your desired state. We help you choose the best path for your transformation, and we work with you every step of the way.</p>
+
+        <div class="img-slot">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="3" y="3" width="34" height="34" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="15" r="4" stroke="currentColor" stroke-width="2"/><path d="M3 30l9-9 5 5 7-7L37 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>Professional consultant image</span>
+          <span class="note">Senior professional in corporate setting</span>
+        </div>
+      </div>
+
+      <div class="diff-list">
+
+        <div class="diff-item">
+          <div class="diff-accent" style="background:var(--navy)"></div>
+          <div>
+            <h4>In-depth industry knowledge and experience</h4>
+            <p>Leveraging deep industry insight and experience, our approach transforms market opportunities into tangible results in a dynamic business landscape.</p>
+          </div>
+        </div>
+
+        <div class="diff-item">
+          <div class="diff-accent" style="background:var(--lime)"></div>
+          <div>
+            <h4>Actionable innovation</h4>
+            <p>Taking full advantage of our end-to-end capabilities, we help decision-makers drive actionable innovation and create competitive advantage as digital leaders.</p>
+          </div>
+        </div>
+
+        <div class="diff-item">
+          <div class="diff-accent" style="background:var(--navy)"></div>
+          <div>
+            <h4>Global insights and local talent</h4>
+            <p>Our global network of 5,000+ trainers across 100+ locations delivers global insights on a local scale to generate unmatched value.</p>
+          </div>
+        </div>
+
+        <div class="diff-item">
+          <div class="diff-accent" style="background:var(--lime)"></div>
+          <div>
+            <h4>Proximity and partnership</h4>
+            <p>By fostering a culture of accountability and transparency, we partner closely with you to unleash the full potential of your organisation.</p>
+          </div>
+        </div>
+
+        <div class="diff-item">
+          <div class="diff-accent" style="background:var(--navy)"></div>
+          <div>
+            <h4>Augmented consultancy</h4>
+            <p>Empowered by AI and advanced platforms, our consultants embody the fusion of expert insights with continuous knowledge exchange and best practices.</p>
+          </div>
+        </div>
+
+        <div class="diff-item">
+          <div class="diff-accent" style="background:var(--lime)"></div>
+          <div>
+            <h4>Human-centricity</h4>
+            <p>We put people first in everything we do, helping your teams to drive change that enables meaningful, sustainable success.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

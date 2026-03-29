@@ -1,0 +1,485 @@
+{
+  "library_name": "Edstellar Consulting Page Section Library",
+  "brand": "Edstellar",
+  "last_updated": "2026-03-21",
+  "total_files": 42,
+  "total_html_designs": 41,
+  "total_templates": 1,
+  "sections": {
+    "hero": {
+      "label": "Hero Banner Section",
+      "description": "H1 headline + subheadline + checkmark trust points + dual CTA (lime + outline) + image placeholder + breadcrumb + logo strip",
+      "variants": [
+        {
+          "id": "hero-classic-split",
+          "file": "edstellar-hero-classic-split.html",
+          "layout": "Split 55/45 — text left with checkmarks, image right, logo strip below",
+          "features": ["breadcrumb", "checkmark trust points", "dual CTA (lime + outline)", "image placeholder", "Edstellar nav", "logo strip"],
+          "best_for": "Standard consulting service pages needing visual context"
+        }
+      ]
+    },
+    "stats": {
+      "label": "Stats / Trust Numbers Section",
+      "description": "4 stat cards showing key metrics with lime accent bars, white numbers + lime symbols (+, %)",
+      "variants": [
+        {
+          "id": "stats-card-grid",
+          "file": "edstellar-stats-card-grid.html",
+          "layout": "4-column navy card grid on light background",
+          "features": ["lime accent bar per card", "white numbers + lime symbols", "responsive 2-col/1-col"],
+          "best_for": "Standard stats section directly below hero"
+        },
+        {
+          "id": "stats-icon-cards",
+          "file": "edstellar-stats-icon-cards.html",
+          "layout": "Left heading (32%) + right 2x2 icon card grid (64%)",
+          "features": ["lime icon circles", "editorial heading with label", "white numbers + lime symbols", "responsive"],
+          "best_for": "When stats need narrative context and editorial heading"
+        }
+      ]
+    },
+    "problem_statement": {
+      "label": "Problem Statement / Challenges Section",
+      "description": "Key challenges the service addresses, with red visual indicators for urgency",
+      "variants": [
+        {
+          "id": "challenges-card-grid",
+          "file": "edstellar-challenges-section.html",
+          "layout": "3x2 white cards with red left accent border, red icons, no numbers",
+          "features": ["red left border", "red icon circles", "lime CTA at bottom", "centered heading", "bottom connector with CTA"],
+          "best_for": "Clean scannable problem framing on white background"
+        },
+        {
+          "id": "challenges-image-list",
+          "file": "edstellar-challenges-section-with-image.html",
+          "layout": "Left sticky image (42%) + right pain point list (55%) with stat card below image",
+          "features": ["red icons", "impact tags per item", "sticky image on scroll", "navy stat card below image", "hover highlight", "lime CTA at bottom"],
+          "best_for": "Visual storytelling with human image alongside pain points"
+        }
+      ]
+    },
+    "services": {
+      "label": "Key Services / Interactive Services Section",
+      "description": "Clickable service list with rotating detail cards or expanding panels",
+      "variants": [
+        {
+          "id": "services-sidebar-carousel",
+          "file": "edstellar-services-option-a.html",
+          "layout": "Left sidebar nav + right rotating white card on navy background",
+          "features": ["click to rotate", "lime active border", "dot navigation", "6 services", "slide animation", "navy background with curved overlay"],
+          "best_for": "Reference-style carousel matching competitor patterns"
+        },
+        {
+          "id": "services-tab-pills",
+          "file": "edstellar-services-option-b.html",
+          "layout": "Horizontal pill tabs + expanding detail panel with image area below",
+          "features": ["pill-style tabs", "split content + image panel", "floating stat card", "checkmark features", "6 services"],
+          "best_for": "Detailed service exploration with visual and feature list"
+        }
+      ]
+    },
+    "sub_services": {
+      "label": "Sub-Services / Service Cards with Images Section",
+      "description": "3x2 service cards with images, hover zoom effect, and linking capability",
+      "variants": [
+        {
+          "id": "subservices-3col-image-cards",
+          "file": "edstellar-subservices-for-linking-with-image.html",
+          "layout": "3-column (3x2) image cards with lime left accent bar",
+          "features": ["image zoom on hover", "card lift on hover", "lime accent bar on title", "read more link", "6 service cards"],
+          "best_for": "Standard image card grid for linking to individual service pages"
+        }
+      ]
+    },
+    "service_detail": {
+      "label": "Service Detail / Expanded Explanation Section",
+      "description": "Deep-dive into service capabilities with sub-features, images, and interactive elements",
+      "variants": [
+        {
+          "id": "detail-stacked-blocks-with-image",
+          "file": "edstellar-service-explained-in-detail-option-with-image.html",
+          "layout": "Alternating image+text blocks with 3-column sub-features row below each",
+          "features": ["image zoom on hover", "alternating layout (normal/reversed)", "lime icon sub-features", "2 capability blocks"],
+          "best_for": "Detailed capability breakdown with image context per block"
+        },
+        {
+          "id": "detail-accordion-with-image",
+          "file": "edstellar-detailed-explanation-of-service-with-image-and-accordion.html",
+          "layout": "Accordion blocks — click to expand image + description + bullet sub-features",
+          "features": ["interactive expand/collapse", "numbered blocks (01-03)", "lime icon + toggle animation", "image per block", "bullet sub-features"],
+          "best_for": "Compact pages with 3+ capability areas, interactive exploration"
+        }
+      ]
+    },
+    "differentiators": {
+      "label": "Why Edstellar / Key Differentiators Section",
+      "description": "Value propositions and competitive differentiators with image and accent bars",
+      "variants": [
+        {
+          "id": "diff-image-list",
+          "file": "edstellar-differentiators-option-a.html",
+          "layout": "Left image + heading (42%) with right differentiator list (54%)",
+          "features": ["alternating navy/lime accent bars", "image placeholder", "divider-separated list", "6 differentiators", "bold sub-heading"],
+          "best_for": "Split layout matching Capgemini/consultant reference pattern"
+        }
+      ]
+    },
+    "process": {
+      "label": "Process / Methodology Section",
+      "description": "Numbered steps showing how Edstellar delivers consulting engagements, with duration badges and delivery-format tags",
+      "variants": [
+        {
+          "id": "process-horizontal-timeline",
+          "file": "edstellar-process-horizontal-timeline.html",
+          "layout": "5 numbered circles on horizontal connecting line, content below each step",
+          "features": ["horizontal timeline line", "numbered circle markers", "lime active state", "duration badges", "format tags", "bullet sub-items", "responsive stacks to vertical"],
+          "best_for": "Standard process overview on light background, visual left-to-right flow"
+        },
+        {
+          "id": "process-vertical-stepper",
+          "file": "edstellar-process-vertical-stepper.html",
+          "layout": "Navy background, left vertical line with numbered markers, card per step",
+          "features": ["navy background", "vertical timeline line", "numbered step markers", "lime duration badges", "ghost format badges", "checkmark bullet items", "split heading layout"],
+          "best_for": "Premium dark section, detailed process with ample content per step"
+        },
+        {
+          "id": "process-card-grid",
+          "file": "edstellar-process-card-grid.html",
+          "layout": "3+2 white card grid — click any step to expand details",
+          "features": ["3-top + 2-bottom centered layout", "large faded numbers (turn lime on active)", "duration + format badges", "expandable detail section with bullets", "one open at a time"],
+          "best_for": "Interactive exploration, compact pages, light background"
+        }
+      ]
+    },
+    "industries": {
+      "label": "Industries We Serve Section",
+      "description": "Grid or tile layout showing industries Edstellar serves, with icons and short descriptions",
+      "variants": [
+        {
+          "id": "industries-icon-grid",
+          "file": "edstellar-industries-icon-grid.html",
+          "layout": "3x3 centered icon card grid on white background",
+          "features": ["lime icon circles (fill on hover)", "9 industries", "industry name + description", "card lift + lime border on hover", "centered heading"],
+          "best_for": "Clean scannable grid on white/light background"
+        },
+        {
+          "id": "industries-navy-split",
+          "file": "edstellar-industries-navy-split.html",
+          "layout": "Navy background — left heading with stat card, right 2-col icon tags",
+          "features": ["navy background", "left stat card (20+ industries)", "2-column icon tag cards", "9 industries", "lime icon fill on hover", "industry name + short description"],
+          "best_for": "Premium dark section with trust stat, pairs well after light sections"
+        },
+        {
+          "id": "industries-selectable-tiles",
+          "file": "edstellar-industries-selectable-tiles.html",
+          "layout": "Horizontal pill tiles — click to show detail panel with features + 4 mini stat cards",
+          "features": ["9 selectable pill tiles", "detail panel per industry", "4 feature bullets", "4 mini stat cards per industry", "interactive click-to-reveal"],
+          "best_for": "Maximum detail per industry, interactive exploration, most content-rich"
+        }
+      ]
+    },
+    "connected_services": {
+      "label": "Connected / Related Services Section",
+      "description": "Cross-sell strip linking to other consulting service pages with icons, titles, descriptions, and arrow CTAs",
+      "variants": [
+        {
+          "id": "connected-card-strip",
+          "file": "edstellar-connected-services-card-strip.html",
+          "layout": "3-column white cards on light background with icon, title, description, arrow CTA",
+          "features": ["lime icon (fills on hover)", "lime top bar animation", "card lift on hover", "3 service cards", "explore service arrow link"],
+          "best_for": "Standard cross-sell section on light background"
+        },
+        {
+          "id": "connected-navy-scroll",
+          "file": "edstellar-connected-services-navy-scroll.html",
+          "layout": "Navy background with horizontally scrollable cards + arrow navigation",
+          "features": ["navy background", "5 service cards (scroll for more)", "arrow nav buttons", "consulting tag badge", "divider line + lime explore link", "horizontal scroll with snap"],
+          "best_for": "Showing 4-5+ connected services without vertical space, dark section"
+        },
+        {
+          "id": "connected-compact-strip",
+          "file": "edstellar-connected-services-compact-strip.html",
+          "layout": "Minimal single-row with 3 icon+text columns, dividers, and view-all link",
+          "features": ["compact height", "border-top separator", "3 service items with icon + text", "learn more links", "view all consulting services footer link"],
+          "best_for": "Near-footer cross-sell, minimal vertical space, light background"
+        }
+      ]
+    },
+    "download_asset": {
+      "label": "Download Asset / Free Resource Section",
+      "description": "CTA section for downloadable templates, frameworks, or guides",
+      "variants": [
+        {
+          "id": "download-split-preview",
+          "file": "edstellar-download-asset-option-a.html",
+          "layout": "Left asset preview card + right heading and text with CTA",
+          "features": ["lime top accent on card", "asset thumbnail placeholder", "outline navy CTA button", "light background"],
+          "best_for": "Clean split layout on light background"
+        },
+        {
+          "id": "download-banner-card",
+          "file": "edstellar-download-asset-option-c.html",
+          "layout": "Single navy card with left text + right asset preview inset",
+          "features": ["lime left edge accent strip", "dual CTAs (lime + ghost)", "checkmark feature badges", "file format tags", "asset preview card"],
+          "best_for": "Compact self-contained drop-in section, navy background"
+        }
+      ]
+    },
+    "success_stories": {
+      "label": "Success Stories / Case Studies Section",
+      "description": "Client results with quote, stats, image, and carousel navigation",
+      "variants": [
+        {
+          "id": "success-light-split-carousel",
+          "file": "edstellar-success-stories-light-version-with-image.html",
+          "layout": "Light background — split image + quote with stats row, arrow carousel",
+          "features": ["3 stories", "slide animation", "dot navigation", "white numbers + lime symbols", "navy/lime arrow buttons", "image placeholder"],
+          "best_for": "Light background pages, matches Edstellar reference pattern"
+        },
+        {
+          "id": "success-dark-navy-card",
+          "file": "edstellar-success-stories-dark-version-with-image.html",
+          "layout": "Navy card with image left + quote/stats right, numbered nav below",
+          "features": ["3 stories", "01/03 counter navigation", "big decorative quote mark", "image placeholder", "navy enclosed card"],
+          "best_for": "Premium enclosed feel, dark background variation"
+        }
+      ]
+    },
+    "testimonials": {
+      "label": "Client Testimonials / Quote Section",
+      "description": "Client quotes with avatar thumbnail and carousel navigation",
+      "variants": [
+        {
+          "id": "testimonials-split-carousel",
+          "file": "edstellar-testimonials-section-with-small-user-thumbnail.html",
+          "layout": "Left heading + description with arrows, right quote card carousel",
+          "features": ["4 testimonials", "avatar initials circle", "navy arrow buttons (prev faded, next full)", "slide animation", "author name + role"],
+          "best_for": "Standard testimonial section with user thumbnail"
+        }
+      ]
+    },
+    "faq": {
+      "label": "FAQ / Frequently Asked Questions Section",
+      "description": "Accordion-style FAQ with expand/collapse, navy/lime bottom borders",
+      "variants": [
+        {
+          "id": "faq-accordion",
+          "file": "edstellar-faq-section.html",
+          "layout": "Centered heading + accordion list with navy bottom borders turning lime when active",
+          "features": ["5 questions", "expand/collapse one at a time", "+/x toggle rotation", "navy border turns lime on active", "first item open by default"],
+          "best_for": "Standard FAQ section matching Edstellar reference"
+        }
+      ]
+    },
+    "resources": {
+      "label": "Resources / Blog Cards Section",
+      "description": "3-column blog/resource cards with images and hover zoom",
+      "variants": [
+        {
+          "id": "resources-3col",
+          "file": "edstellar-resources-section.html",
+          "layout": "3-column blog cards with image zoom on hover",
+          "features": ["lime BLOG tag", "category label", "date", "image zoom on hover", "card lift on hover"],
+          "best_for": "Standard resources section matching Edstellar reference"
+        }
+      ]
+    },
+    "form": {
+      "label": "Lead Capture / Consultation Form Section",
+      "description": "Contact form with left image and right form panel",
+      "variants": [
+        {
+          "id": "form-split-image",
+          "file": "edstellar-form-section.html",
+          "layout": "Left image (45%) + right form panel (55%) in rounded card",
+          "features": ["8 form fields", "navy submit button", "what happens next note", "focus states with navy border", "country + phone row", "dropdowns for company size and L&D challenge"],
+          "best_for": "Standard lead capture form matching Edstellar reference"
+        }
+      ]
+    },
+    "ranked_leaderboard": {
+      "label": "Ranked Leaderboard / Volume Table Section",
+      "description": "Numbered ranked list showing service categories with delivery volume counts, NEW badges, and hover effects on navy background",
+      "variants": [
+        {
+          "id": "ranked-leaderboard",
+          "file": "edstellar-ranked-leaderboard.html",
+          "layout": "Navy background — split heading + numbered row list with volume counts",
+          "features": ["numbered rank badges (01-09+)", "volume count per row", "NEW badge for new services", "lime hover on rank", "navy background", "split header with total stat", "responsive"],
+          "best_for": "Showing ranked service categories, assessment types, or program popularity with volume data"
+        }
+      ]
+    },
+    "closed_loop_cycle": {
+      "label": "Closed-Loop Cycle / Process Model Section",
+      "description": "4-step circular process model with connecting line, numbered navy circles, and a differentiator callout card",
+      "variants": [
+        {
+          "id": "closed-loop-cycle",
+          "file": "edstellar-closed-loop-cycle.html",
+          "layout": "White background — centered heading, 4-step connected cycle, navy callout card",
+          "features": ["4 numbered navy circles", "connecting line between steps", "lime hover on circles", "navy callout card with icon", "centered heading", "responsive 2x2 grid on mobile"],
+          "best_for": "Cyclical process models (diagnose-develop, plan-do-check-act), differentiator messaging"
+        }
+      ]
+    },
+    "definitional_intro": {
+      "label": "Definitional Intro Section",
+      "description": "Centered narrow-width section with label, H2 heading, and 2-paragraph body text with lime left accent bar on lead paragraph",
+      "variants": [
+        {
+          "id": "definitional-intro",
+          "file": "edstellar-definitional-intro.html",
+          "layout": "Centered narrow container (820px) with label + H2 + 2 paragraphs",
+          "features": ["lime left accent bar on lead paragraph", "centered layout", "section label with bar", "responsive"],
+          "best_for": "Definitional sections explaining what a consulting service is"
+        }
+      ]
+    },
+    "benefit_pillars": {
+      "label": "Benefit Pillars / Why Work With Section",
+      "description": "Navy background section with numbered 4-column benefit cards explaining why enterprises choose Edstellar",
+      "variants": [
+        {
+          "id": "benefit-pillars-4col",
+          "file": "edstellar-benefit-pillars-4col.html",
+          "layout": "4-column numbered card grid on navy background",
+          "features": ["lime numbered indicators (01-04)", "navy background", "semi-transparent cards", "hover lift", "responsive 2-col/1-col"],
+          "best_for": "Value proposition sections with 4 benefit pillars on dark background"
+        }
+      ]
+    },
+    "three_pillars": {
+      "label": "Three Pillars / What We Do Section",
+      "description": "3-column card grid with lime top accent bars, icons, and descriptions on light background",
+      "variants": [
+        {
+          "id": "three-pillars-cards",
+          "file": "edstellar-three-pillars-cards.html",
+          "layout": "Centered heading + 3-column card grid with lime accent bars and icons",
+          "features": ["lime top accent bar per card", "icon circles", "card shadow and hover lift", "centered intro text", "responsive"],
+          "best_for": "Concise 3-pillar intro explaining focus areas of a consulting service"
+        }
+      ]
+    },
+    "logo_wall": {
+      "label": "Client Logo Wall / Brand Grid Section",
+      "description": "Navy background section with flowing grid of brand name tags as social proof",
+      "variants": [
+        {
+          "id": "logo-wall-navy",
+          "file": "edstellar-logo-wall.html",
+          "layout": "Centered heading + flex-wrap grid of brand name tags on navy background",
+          "features": ["semi-transparent brand tags", "lime hover effect", "navy background", "responsive wrap", "centered layout"],
+          "best_for": "Displaying 20+ client brand names as social proof without logo images"
+        }
+      ]
+    },
+    "cta_banner": {
+      "label": "CTA Banner Section",
+      "description": "Full-width lime background CTA strip with heading, description, and navy button",
+      "variants": [
+        {
+          "id": "cta-banner-lime",
+          "file": "edstellar-cta-banner-lime.html",
+          "layout": "Centered heading + description + navy CTA button on lime background",
+          "features": ["high-contrast lime background", "navy button", "centered layout", "hover lift on button", "responsive"],
+          "best_for": "Conversion-focused CTA strip between content sections"
+        }
+      ]
+    },
+    "footer": {
+      "label": "Site Footer Section",
+      "description": "Centered footer with ISO certifications, legal links, social icons, and copyright on dark navy background",
+      "variants": [
+        {
+          "id": "footer-centered",
+          "file": "edstellar-footer.html",
+          "layout": "Centered footer with certs, legal links, social icons, and copyright",
+          "features": ["ISO certification badges", "legal links", "social media SVG icons", "lime top border", "dark navy background (#1a1c4a)", "responsive"],
+          "best_for": "Standard site footer for all consulting pages"
+        }
+      ]
+    },
+    "seo_metadata": {
+      "label": "SEO Metadata Block",
+      "description": "NOT a visual section — developer handoff template for <head> metadata including meta title, description, OG tags, Twitter cards, Schema.org markup, and deployment checklist",
+      "is_visual": false,
+      "variants": [
+        {
+          "id": "seo-metadata-template",
+          "file": "seo-metadata-block-template.md",
+          "format": "markdown",
+          "contents": ["meta title template", "meta description template", "canonical URL", "Open Graph tags", "Twitter card tags", "Schema.org Service JSON-LD", "L&D consulting filled example", "9-item deployment checklist", "dev team notes"],
+          "best_for": "Pass to development team for every consulting page — fill in per-page values"
+        }
+      ]
+    },
+    "services_grid_12": {
+      "label": "Services Grid / 12-Column Card Layout Section",
+      "description": "4x3 card grid with lime top accent bars, unique SVG icons per service, descriptions, and Learn More links on white background",
+      "variants": [
+        {
+          "id": "services-grid-12col",
+          "file": "edstellar-services-grid-12col.html",
+          "layout": "Centered heading + 4-column (4x3) card grid with lime accent bars and icons",
+          "features": ["12 service cards", "lime top accent bar per card", "unique SVG icon per card", "Learn More arrow links", "responsive 3-col/2-col/1-col"],
+          "best_for": "Large service listing pages with 10-12+ individual services"
+        }
+      ]
+    },
+    "content_formats_list": {
+      "label": "Content Formats / 2-Column Numbered List Section",
+      "description": "Split-header layout with 2-column numbered format rows showing content types and short descriptions on light background",
+      "variants": [
+        {
+          "id": "content-formats-2col",
+          "file": "edstellar-content-formats-2col.html",
+          "layout": "Split heading (45%/52%) + 2-column numbered row list with total count badge",
+          "features": ["numbered rank badges", "2-column row layout", "hover lime effect on numbers", "split header with total stat", "responsive"],
+          "best_for": "Displaying 10-14+ content types, format lists, or capability inventories"
+        }
+      ]
+    },
+    "ai_powered_split": {
+      "label": "AI-Powered / Feature Split Section",
+      "description": "Navy background split layout with editorial text left and numbered capability cards right",
+      "variants": [
+        {
+          "id": "ai-powered-split",
+          "file": "edstellar-ai-powered-split.html",
+          "layout": "Navy background — left heading + paragraphs + CTA (52%), right numbered capability cards (44%)",
+          "features": ["navy background", "split layout", "numbered lime capability cards", "ghost CTA button", "hover slide effect on cards", "responsive"],
+          "best_for": "Technology differentiator sections, AI/automation capabilities, innovation features"
+        }
+      ]
+    },
+    "transformation_phases": {
+      "label": "Transformation / Phase Comparison Cards Section",
+      "description": "4-column card grid showing before/after transformation phases with Problem (red), Solution (navy), and Outcome (lime) tri-colour accent system",
+      "variants": [
+        {
+          "id": "transformation-phase-cards",
+          "file": "edstellar-transformation-phase-cards.html",
+          "layout": "Centered heading + 4-column cards with stacked Problem/Solution/Outcome blocks",
+          "features": ["tri-colour accent system (red/navy/lime)", "phase numbering", "hover lift", "responsive 2-col/1-col"],
+          "best_for": "Before/after comparisons, transformation journeys, impact demonstrations"
+        }
+      ]
+    },
+    "outcomes_deliverables": {
+      "label": "Outcomes & Deliverables / Horizontal Tabs Section",
+      "description": "Horizontal tabbed section with split layout — left text with checkmark list, right navy panel with rich embedded HTML visuals (heatmaps, stacked bars, bubble charts, pyramids, donut charts, roadmap timelines)",
+      "variants": [
+        {
+          "id": "outcomes-horizontal-tabs",
+          "file": "edstellar-outcomes-horizontal-tabs.html",
+          "layout": "Numbered horizontal tabs + split panel (text left, navy rich-embed visual right)",
+          "features": ["6 horizontal tabs with numbered badges", "split layout per panel", "rich HTML embeds (heatmap, stacked bars, bubble chart, pyramid, donut, roadmap)", "lime checkmark list", "callout banner on last panel", "interactive tab switching", "responsive"],
+          "best_for": "Outcomes and deliverables sections with rich interactive data visualizations per tab"
+        }
+      ]
+    }
+  }
+}

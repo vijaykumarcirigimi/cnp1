@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Challenges We Solve: Option A</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --red: #D94848;
+    --red-bg: #FDF0F0;
+    --red-dark: #8B2020;
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--surface); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .section-header { text-align:center; margin-bottom:44px; }
+  .section-label { display:inline-flex; align-items:center; gap:8px; margin-bottom:14px; }
+  .section-label .bar { width:20px; height:3px; background:var(--lime); border-radius:2px; }
+  .section-label span { font-size:12px; font-weight:700; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; }
+  .section-header h2 {
+    font-size:30px; font-weight:800; line-height:1.2; letter-spacing:-0.03em; margin-bottom:10px;
+  }
+  .section-header h2 .accent { color:var(--navy); }
+  .section-header h2 .dark { color:var(--text-primary); }
+  .section-header p {
+    font-size:15px; color:var(--text-secondary); line-height:1.6;
+    max-width:560px; margin:0 auto;
+  }
+
+  .cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+
+  .challenge-card {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left:4px solid var(--red);
+    border-radius:0 var(--radius-lg) var(--radius-lg) 0;
+    padding:28px 24px;
+    transition:all 0.25s;
+    cursor:default;
+  }
+  .challenge-card:hover {
+    box-shadow:0 8px 28px rgba(217,72,72,0.08);
+    transform:translateY(-3px);
+  }
+
+  .card-icon {
+    width:44px; height:44px; border-radius:12px;
+    background:var(--red-bg);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px;
+  }
+
+  .challenge-card h4 {
+    font-size:16px; font-weight:700; color:var(--text-primary);
+    line-height:1.3; letter-spacing:-0.01em; margin-bottom:8px;
+  }
+  .challenge-card p {
+    font-size:13px; color:var(--text-secondary); line-height:1.6;
+  }
+
+  .bottom-connector {
+    text-align:center; margin-top:36px;
+    padding-top:28px; border-top:1px solid var(--border);
+  }
+  .bottom-connector p {
+    font-size:15px; color:var(--text-secondary); line-height:1.6;
+    max-width:600px; margin:0 auto 20px;
+  }
+  .bottom-connector p strong { color:var(--text-primary); font-weight:700; }
+  .btn-lime {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 28px; background:var(--lime); color:var(--lime-text);
+    font-size:14px; font-weight:700; border:none; border-radius:8px;
+    cursor:pointer; font-family:var(--font); transition:background 0.15s;
+  }
+  .btn-lime:hover { background:#D4F23A; }
+
+  @media (max-width:900px) {
+    .section { padding:40px 20px; }
+    .cards-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:580px) {
+    .cards-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-header">
+      <div class="section-label"><div class="bar"></div><span>What we solve</span><div class="bar"></div></div>
+      <h2><span class="accent">Challenges</span> <span class="dark">organisations bring to us</span></h2>
+      <p>These are the recurring themes we hear from CHROs, L&D heads, and talent leaders — and exactly where our consulting creates the most impact.</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="challenge-card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16z"/><path d="M10 6v4l2.5 2.5" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Learning investments not tied to business outcomes</h4>
+        <p>Training budgets are spent, but leadership can't connect L&D activity to measurable performance improvement or ROI.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M3 14l4-8 4 5 3-3 3 6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="3" width="16" height="14" rx="2"/></svg>
+        </div>
+        <h4>Skill gaps invisible until it's too late</h4>
+        <p>Workforce capabilities are assumed, not measured. Critical gaps surface only during succession crises or performance failures.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/><path d="M10 7v3M10 13h.01" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Leadership pipeline lacks depth and consistency</h4>
+        <p>High-potential leaders are identified informally, with no structured development path, behavioural benchmarks, or readiness validation.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><circle cx="10" cy="10" r="8"/><path d="M2 10h16M10 2a12 12 0 0 1 3 8 12 12 0 0 1-3 8 12 12 0 0 1-3-8 12 12 0 0 1 3-8z"/></svg>
+        </div>
+        <h4>Fragmented training across regions and teams</h4>
+        <p>Multiple vendors, inconsistent quality, and disconnected systems make enterprise-wide learning governance nearly impossible.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><rect x="3" y="6" width="14" height="10" rx="2"/><path d="M7 6V5a3 3 0 0 1 6 0v1"/><path d="M10 10v2" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Compliance training that's checkbox, not capability</h4>
+        <p>Regulatory programs exist on paper but fail to build real understanding, leaving the organisation exposed during audits.</p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--red)" stroke-width="1.8"><path d="M14 3v4a1 1 0 0 0 1 1h4" stroke-linecap="round"/><path d="M5 17V5a2 2 0 0 1 2-2h5l5 5v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 11h4M9 14h2" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Workforce data that can't support real decisions</h4>
+        <p>Self-reported skills, outdated assessments, and no audit trail mean talent data isn't trusted at the board or leadership level.</p>
+      </div>
+
+    </div>
+
+    <div class="bottom-connector">
+      <p>If any of these resonate, you're in the right place. <strong>Our consulting is built specifically to address these challenges</strong> — with governed frameworks, measurable outcomes, and expert-led delivery.</p>
+      <button class="btn-lime">Talk to a consultant <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

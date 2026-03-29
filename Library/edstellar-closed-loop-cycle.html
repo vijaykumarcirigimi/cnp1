@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Closed-Loop Cycle Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #2D2F6B;
+  --lime: #C5E826;
+  --lime-text: #1A2600;
+  --white: #FFFFFF;
+  --surface: #FFFFFF;
+  --text-primary: #1A1A2E;
+  --text-secondary: #5C5E6E;
+  --text-body: #D0D2E0;
+  --light-bg: #EEF0F4;
+  --border: #DCDEE5;
+  --radius-xl: 24px;
+  --font: 'Inter', -apple-system, sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:var(--font); -webkit-font-smoothing:antialiased; }
+.section { padding:64px 48px; }
+.section-label { display:inline-flex; align-items:center; gap:8px; margin-bottom:14px; }
+.section-label .bar { width:24px; height:3px; background:var(--lime); border-radius:2px; }
+.section-label span { font-size:12px; font-weight:700; color:var(--navy); letter-spacing:0.06em; text-transform:uppercase; }
+
+#closed-loop { background:var(--surface); }
+#closed-loop .section-inner { max-width:1060px; margin:0 auto; }
+#closed-loop .cl-header { text-align:center; margin-bottom:44px; }
+#closed-loop .cl-header h2 { font-size:30px; font-weight:800; color:var(--navy); line-height:1.2; letter-spacing:-0.03em; margin-bottom:8px; }
+#closed-loop .cl-header p { font-size:15px; color:var(--text-secondary); line-height:1.6; max-width:620px; margin:0 auto; }
+.cl-cycle { display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; margin-bottom:36px; }
+.cl-step { text-align:center; padding:0 16px; position:relative; }
+.cl-step::after { content:''; position:absolute; top:28px; right:-12px; width:24px; height:24px; border-radius:50%; background:var(--light-bg); display:flex; align-items:center; justify-content:center; z-index:2; }
+.cl-step:last-child::after { display:none; }
+.cl-step::before { content:''; position:absolute; top:39px; left:50%; right:-50%; height:2px; background:var(--border); z-index:1; }
+.cl-step:last-child::before { background:linear-gradient(90deg, var(--border) 60%, transparent); }
+.cl-num { width:56px; height:56px; border-radius:50%; background:var(--navy); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; position:relative; z-index:3; transition:all 0.3s; }
+.cl-num span { font-size:18px; font-weight:800; color:var(--white); }
+.cl-step:hover .cl-num { background:var(--lime); }
+.cl-step:hover .cl-num span { color:var(--lime-text); }
+.cl-step h4 { font-size:16px; font-weight:700; color:var(--text-primary); letter-spacing:-0.01em; margin-bottom:8px; }
+.cl-step p { font-size:13px; color:var(--text-secondary); line-height:1.6; }
+.cl-callout { background:var(--navy); border-radius:var(--radius-xl); padding:28px 36px; display:flex; align-items:center; gap:20px; }
+.cl-callout-icon { width:48px; height:48px; border-radius:14px; background:rgba(197,232,38,0.15); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.cl-callout p { font-size:14px; color:var(--text-body); line-height:1.65; }
+.cl-callout strong { color:var(--white); font-weight:700; }
+@media (max-width:768px) {
+  #closed-loop { padding:40px 20px; }
+  .cl-cycle { grid-template-columns:1fr 1fr; gap:32px 0; }
+  .cl-step::before, .cl-step::after { display:none; }
+  .cl-callout { flex-direction:column; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<section id="closed-loop" class="section">
+  <div class="section-inner">
+
+    <div class="cl-header">
+      <div class="section-label"><div class="bar"></div><span>Our Model</span></div>
+      <h2>The Closed-Loop Advantage</h2>
+      <p>Most vendors stop at the report. We close the loop. Every finding connects directly to targeted action.</p>
+    </div>
+
+    <div class="cl-cycle">
+      <div class="cl-step">
+        <div class="cl-num"><span>01</span></div>
+        <h4>Step One</h4>
+        <p>Description of the first step in the closed-loop cycle model.</p>
+      </div>
+      <div class="cl-step">
+        <div class="cl-num"><span>02</span></div>
+        <h4>Step Two</h4>
+        <p>Description of the second step in the closed-loop cycle model.</p>
+      </div>
+      <div class="cl-step">
+        <div class="cl-num"><span>03</span></div>
+        <h4>Step Three</h4>
+        <p>Description of the third step in the closed-loop cycle model.</p>
+      </div>
+      <div class="cl-step">
+        <div class="cl-num"><span>04</span></div>
+        <h4>Step Four</h4>
+        <p>Description of the fourth step in the closed-loop cycle model.</p>
+      </div>
+    </div>
+
+    <div class="cl-callout">
+      <div class="cl-callout-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2a9 9 0 1 1 0 18 9 9 0 0 1 0-18z" stroke="var(--lime)" stroke-width="1.8"/><path d="M7 11l3 3 5-5" stroke="var(--lime)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <p><strong>What makes us different:</strong> Key differentiator statement explaining why this closed-loop model is unique compared to competitors.</p>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

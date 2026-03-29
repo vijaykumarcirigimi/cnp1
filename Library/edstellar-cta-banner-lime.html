@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — CTA Banner (Lime Background)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --lime: #C5E826;
+    --font: 'Inter', -apple-system, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font); background: #EEF0F4; -webkit-font-smoothing: antialiased; }
+
+  .cb-section { padding: 64px 48px; background: var(--lime); }
+  .cb-container { max-width: 780px; margin: 0 auto; text-align: center; }
+  .cb-heading { font-size: 34px; font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.25; }
+  .cb-desc { font-size: 17px; line-height: 1.7; color: rgba(45,47,107,0.8); margin-bottom: 32px; }
+  .cb-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: var(--navy); color: #fff; font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.25s; }
+  .cb-btn:hover { background: #1e2054; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(45,47,107,0.25); }
+  @media (max-width: 768px) {
+    .cb-section { padding: 40px 20px; }
+    .cb-heading { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="cb-section">
+  <div class="cb-container">
+    <h2 class="cb-heading">Ready to Get Started?</h2>
+    <p class="cb-desc">Start with a diagnostic conversation. Our consultants will scope the right engagement model for your organization's needs, no commitment required.</p>
+    <a href="#contact-form" class="cb-btn">Get a Free Consultation &rarr;</a>
+  </div>
+</section>
+
+</body>
+</html>

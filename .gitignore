@@ -1,0 +1,17 @@
+# Environments
+.env
+
+# Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Streamlit
+.streamlit/
+generated-landing-page.html
+assessment-development-centers.html
+
+# Word documents
+*.docx
+docx_content.txt

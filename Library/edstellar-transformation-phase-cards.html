@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Transformation Phase Cards Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #2D2F6B;
+  --lime: #C5E826;
+  --lime-hover: #D4F23A;
+  --lime-text: #1A2600;
+  --white: #FFFFFF;
+  --surface: #FFFFFF;
+  --text-secondary: #5C5E6E;
+  --font: 'Inter', -apple-system, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font); -webkit-font-smoothing: antialiased; }
+
+.tf-section { padding: 72px 48px; background: var(--surface); }
+.tf-container { max-width: 1120px; margin: 0 auto; text-align: center; }
+.tf-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.tf-label .tf-bar { width: 28px; height: 3px; background: var(--lime); }
+.tf-label span:last-child { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--navy); }
+.tf-heading { font-size: 36px; font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.25; }
+.tf-intro { font-size: 17px; line-height: 1.7; color: #555; max-width: 780px; margin: 0 auto 44px; }
+.tf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; }
+.tf-card { background: #fff; border: 1px solid #DCDEE5; border-radius: 12px; overflow: hidden; transition: all 0.25s; display: flex; flex-direction: column; }
+.tf-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(45,47,107,0.08); }
+.tf-phase-label { padding: 16px 20px 0; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--navy); }
+.tf-problem, .tf-solution, .tf-outcome { padding: 12px 20px; }
+.tf-problem { border-left: 3px solid #E74C3C; margin: 0 12px; padding: 12px; border-radius: 6px; background: rgba(231,76,60,0.04); }
+.tf-solution { border-left: 3px solid var(--navy); margin: 0 12px; padding: 12px; border-radius: 6px; background: rgba(45,47,107,0.04); }
+.tf-outcome { border-left: 3px solid var(--lime); margin: 0 12px 16px; padding: 12px; border-radius: 6px; background: rgba(197,232,38,0.08); }
+.tf-tag { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px; margin-bottom: 6px; }
+.tf-tag-red { background: rgba(231,76,60,0.1); color: #C0392B; }
+.tf-tag-navy { background: rgba(45,47,107,0.1); color: var(--navy); }
+.tf-tag-lime { background: rgba(197,232,38,0.2); color: #1A2600; }
+.tf-problem p, .tf-solution p, .tf-outcome p { font-size: 13px; line-height: 1.55; color: #444; }
+@media (max-width: 1024px) { .tf-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .tf-section { padding: 40px 20px; }
+  .tf-heading { font-size: 26px; }
+  .tf-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<section class="tf-section">
+  <div class="tf-container">
+    <div class="tf-label"><span class="tf-bar"></span><span>Section Label</span></div>
+    <h2 class="tf-heading">Section Heading Goes Here</h2>
+    <p class="tf-intro">Introductory paragraph describing the transformation journey. Explain the before/after narrative in 1-2 sentences.</p>
+    <div class="tf-grid">
+
+      <div class="tf-card">
+        <div class="tf-phase-label">Phase 1</div>
+        <div class="tf-problem"><div class="tf-tag tf-tag-red">Challenge</div><p>Description of the problem or challenge in this phase</p></div>
+        <div class="tf-solution"><div class="tf-tag tf-tag-navy">Solution</div><p>Description of the solution approach for this phase</p></div>
+        <div class="tf-outcome"><div class="tf-tag tf-tag-lime">Outcome</div><p>Description of the measurable outcome or result</p></div>
+      </div>
+
+      <div class="tf-card">
+        <div class="tf-phase-label">Phase 2</div>
+        <div class="tf-problem"><div class="tf-tag tf-tag-red">Challenge</div><p>Description of the problem or challenge in this phase</p></div>
+        <div class="tf-solution"><div class="tf-tag tf-tag-navy">Solution</div><p>Description of the solution approach for this phase</p></div>
+        <div class="tf-outcome"><div class="tf-tag tf-tag-lime">Outcome</div><p>Description of the measurable outcome or result</p></div>
+      </div>
+
+      <div class="tf-card">
+        <div class="tf-phase-label">Phase 3</div>
+        <div class="tf-problem"><div class="tf-tag tf-tag-red">Challenge</div><p>Description of the problem or challenge in this phase</p></div>
+        <div class="tf-solution"><div class="tf-tag tf-tag-navy">Solution</div><p>Description of the solution approach for this phase</p></div>
+        <div class="tf-outcome"><div class="tf-tag tf-tag-lime">Outcome</div><p>Description of the measurable outcome or result</p></div>
+      </div>
+
+      <div class="tf-card">
+        <div class="tf-phase-label">Phase 4</div>
+        <div class="tf-problem"><div class="tf-tag tf-tag-red">Challenge</div><p>Description of the problem or challenge in this phase</p></div>
+        <div class="tf-solution"><div class="tf-tag tf-tag-navy">Solution</div><p>Description of the solution approach for this phase</p></div>
+        <div class="tf-outcome"><div class="tf-tag tf-tag-lime">Outcome</div><p>Description of the measurable outcome or result</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

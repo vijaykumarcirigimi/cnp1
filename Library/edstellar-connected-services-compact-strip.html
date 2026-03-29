@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Connected Services: Option C (Compact Banner Strip)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-card: #2E3054;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --lime-dim: rgba(197,232,38,0.08);
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:48px 48px; background:var(--surface); border-top:1px solid var(--border); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .strip-header {
+    display:flex; align-items:center; gap:12px; margin-bottom:24px;
+  }
+  .strip-bar { width:24px; height:3px; background:var(--lime); border-radius:2px; }
+  .strip-header h3 {
+    font-size:18px; font-weight:800; color:var(--navy);
+    letter-spacing:-0.02em;
+  }
+
+  .strip-row {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  }
+
+  .strip-item {
+    padding:24px 20px;
+    border-right:1px solid var(--border);
+    display:flex; gap:16px; align-items:flex-start;
+    cursor:pointer;
+    transition:background 0.2s;
+  }
+  .strip-item:last-child { border-right:none; }
+  .strip-item:hover { background:var(--lime-dim); }
+
+  .si-icon {
+    width:40px; height:40px; border-radius:12px;
+    background:var(--lime-dim);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition:background 0.25s;
+  }
+  .strip-item:hover .si-icon { background:var(--lime); }
+  .strip-item:hover .si-icon svg { stroke:var(--lime-text); }
+
+  .si-text {}
+  .si-text h4 {
+    font-size:14px; font-weight:700; color:var(--text-primary);
+    margin-bottom:4px;
+  }
+  .si-text p {
+    font-size:12px; color:var(--text-secondary); line-height:1.5;
+    margin-bottom:10px;
+  }
+  .si-link {
+    display:inline-flex; align-items:center; gap:4px;
+    font-size:12px; font-weight:700; color:var(--navy);
+    text-decoration:none; transition:gap 0.2s;
+  }
+  .si-link:hover { gap:8px; }
+
+  .strip-bottom {
+    display:flex; align-items:center; justify-content:center;
+    margin-top:20px; padding-top:20px;
+    border-top:1px solid var(--border);
+  }
+  .strip-bottom a {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:14px; font-weight:700; color:var(--navy);
+    text-decoration:none; transition:gap 0.2s;
+  }
+  .strip-bottom a:hover { gap:10px; }
+
+  @media (max-width:768px) {
+    .section { padding:36px 20px; }
+    .strip-row { grid-template-columns:1fr; }
+    .strip-item { border-right:none; border-bottom:1px solid var(--border); }
+    .strip-item:last-child { border-bottom:none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="strip-header">
+      <div class="strip-bar"></div>
+      <h3>Explore related consulting services</h3>
+    </div>
+
+    <div class="strip-row">
+
+      <div class="strip-item">
+        <div class="si-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--lime)" stroke-width="1.6"><path d="M9 2a7 7 0 1 1 0 14A7 7 0 0 1 9 2z"/><path d="M9 5v4l2.5 2.5" stroke-linecap="round"/></svg></div>
+        <div class="si-text">
+          <h4>Talent Assessment</h4>
+          <p>Governed skills inventory and workforce intelligence for strategic decisions.</p>
+          <a class="si-link" href="#">Learn more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="strip-item">
+        <div class="si-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--lime)" stroke-width="1.6"><path d="M4 16V8l5-3.5L14 8v8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 16v-4h4v4" stroke-linecap="round"/></svg></div>
+        <div class="si-text">
+          <h4>Leadership Development</h4>
+          <p>Structured capability frameworks for leaders at every organisational level.</p>
+          <a class="si-link" href="#">Learn more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="strip-item">
+        <div class="si-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--lime)" stroke-width="1.6"><circle cx="9" cy="9" r="7"/><path d="M2 9h14M9 2a10 10 0 0 1 2.5 7A10 10 0 0 1 9 16a10 10 0 0 1-2.5-7A10 10 0 0 1 9 2z"/></svg></div>
+        <div class="si-text">
+          <h4>Change Management</h4>
+          <p>Structured frameworks for people, processes, and culture adoption at scale.</p>
+          <a class="si-link" href="#">Learn more <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="strip-bottom">
+      <a href="#">View all consulting services <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

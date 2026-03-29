@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Service Detail: Option A (Stacked Blocks)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-card: #2E3054;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --lime-dim: rgba(197,232,38,0.08);
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --text-body-light: #D0D2E0;
+    --text-muted-navy: #9496B0;
+    --border: #DCDEE5;
+    --border-navy: rgba(255,255,255,0.1);
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--light-bg); }
+  .section-inner { max-width:1060px; margin:0 auto; display:flex; flex-direction:column; gap:24px; }
+
+  .feature-block {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+    overflow:hidden;
+  }
+
+  .block-top {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+  }
+  .block-top.reverse { direction:rtl; }
+  .block-top.reverse > * { direction:ltr; }
+
+  .block-image {
+    background:#C8CAD8;
+    min-height:260px;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:6px;
+    font-size:11px; color:var(--text-muted); font-weight:500;
+    overflow:hidden; position:relative;
+  }
+  .block-image svg { opacity:0.15; }
+  .block-image .img-inner {
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:6px;
+    width:100%; height:100%;
+    transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .feature-block:hover .img-inner { transform:scale(1.06); }
+
+  .block-text {
+    padding:40px 36px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .block-num {
+    font-size:11px; font-weight:700; color:var(--lime);
+    letter-spacing:0.08em; text-transform:uppercase;
+    margin-bottom:10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .block-num .bar { width:20px; height:3px; background:var(--lime); border-radius:2px; }
+  .block-text h3 {
+    font-size:24px; font-weight:800; color:var(--navy);
+    line-height:1.25; letter-spacing:-0.02em; margin-bottom:10px;
+  }
+  .block-text p {
+    font-size:14px; color:var(--text-secondary); line-height:1.65;
+  }
+
+  .block-bottom {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border);
+  }
+
+  .sub-feature {
+    padding:28px 24px;
+    border-right:1px solid var(--border);
+    display:flex; gap:14px; align-items:flex-start;
+  }
+  .sub-feature:last-child { border-right:none; }
+
+  .sf-icon {
+    width:40px; height:40px; border-radius:12px;
+    background:var(--lime-dim); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sub-feature h4 {
+    font-size:14px; font-weight:700; color:var(--text-primary);
+    line-height:1.3; margin-bottom:6px;
+  }
+  .sub-feature p {
+    font-size:12px; color:var(--text-secondary); line-height:1.55;
+  }
+
+  @media (max-width:768px) {
+    .section { padding:40px 16px; }
+    .block-top, .block-top.reverse { grid-template-columns:1fr; direction:ltr; }
+    .block-top.reverse > * { direction:ltr; }
+    .block-image { min-height:200px; }
+    .block-bottom { grid-template-columns:1fr; }
+    .sub-feature { border-right:none; border-bottom:1px solid var(--border); }
+    .sub-feature:last-child { border-bottom:none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <!-- Block 1 -->
+    <div class="feature-block">
+      <div class="block-top">
+        <div class="block-image">
+          <div class="img-inner">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="3" y="3" width="34" height="34" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="15" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 30l9-9 5 5 7-7L37 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Consulting team image</span>
+          </div>
+        </div>
+        <div class="block-text">
+          <div class="block-num"><div class="bar"></div>Consulting-led expertise</div>
+          <h3>Consulting-led L&D strategy design</h3>
+          <p>Our L&D consultants combine deep industry knowledge with proven frameworks to design learning ecosystems that align with your business strategy — not generic off-the-shelf solutions.</p>
+        </div>
+      </div>
+      <div class="block-bottom">
+        <div class="sub-feature">
+          <div class="sf-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2a7 7 0 1 1 0 14A7 7 0 0 1 9 2z" stroke="var(--lime)" stroke-width="1.5"/><path d="M9 5v4l2.5 2" stroke="var(--lime)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div>
+            <h4>Strategic partnership, not processing</h4>
+            <p>We shape your L&D strategy, reduce exposure, and prepare you for audits or complex capability challenges.</p>
+          </div>
+        </div>
+        <div class="sub-feature">
+          <div class="sf-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13l3-6 3 4 2.5-2.5L15 13" stroke="var(--lime)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="3" width="14" height="12" rx="2" stroke="var(--lime)" stroke-width="1.5"/></svg></div>
+          <div>
+            <h4>Proactive gap monitoring</h4>
+            <p>Experts continually track and interpret capability changes, implementing updates before they impact your business.</p>
+          </div>
+        </div>
+        <div class="sub-feature">
+          <div class="sf-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15 9a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" stroke="var(--lime)" stroke-width="1.5"/><path d="M6 9l2 2 4-4" stroke="var(--lime)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h4>Confidence through accountability</h4>
+            <p>You work with named experts who own your outcomes — not a faceless shared-service queue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Block 2 (reversed) -->
+    <div class="feature-block">
+      <div class="block-top reverse">
+        <div class="block-image">
+          <div class="img-inner">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="3" y="3" width="34" height="34" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="15" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 30l9-9 5 5 7-7L37 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Technology platform image</span>
+          </div>
+        </div>
+        <div class="block-text">
+          <div class="block-num"><div class="bar"></div>Technology-enabled</div>
+          <h3>Technology-enabled efficiency</h3>
+          <p>Our proprietary tools power accurate data collection, analysis, and reporting — removing manual steps and error risk from your L&D operations while giving you full visibility.</p>
+        </div>
+      </div>
+      <div class="block-bottom">
+        <div class="sub-feature">
+          <div class="sf-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="var(--lime)" stroke-width="1.5"/><path d="M2 9h14M9 2a10 10 0 0 1 2.5 7A10 10 0 0 1 9 16a10 10 0 0 1-2.5-7A10 10 0 0 1 9 2z" stroke="var(--lime)" stroke-width="1.5"/></svg></div>
+          <div>
+            <h4>Scalable to your footprint</h4>
+            <p>Add or remove regions easily as your operations evolve, without rebuilding your L&D processes from scratch.</p>
+          </div>
+        </div>
+        <div class="sub-feature">
+          <div class="sf-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="5" width="12" height="9" rx="2" stroke="var(--lime)" stroke-width="1.5"/><path d="M6 5V4a3 3 0 0 1 6 0v1" stroke="var(--lime)" stroke-width="1.5"/><path d="M9 9v2" stroke="var(--lime)" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div>
+            <h4>Full visibility and control</h4>
+            <p>Gain real-time oversight of all programs, statuses, and audit trails through a single centralised dashboard.</p>
+          </div>
+        </div>
+        <div class="sub-feature">
+          <div class="sf-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 13V8l4-4 4 4v5" stroke="var(--lime)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 13v-3h2v3" stroke="var(--lime)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h4>Real-time intelligence</h4>
+            <p>Our specialists monitor changes across industries and feed updates directly into your programs automatically.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

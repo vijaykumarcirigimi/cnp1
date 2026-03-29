@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Outcomes & Deliverables: Horizontal Tabs with Rich Content</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-dark: #1a1c4a;
+    --navy-card: #2E3054;
+    --navy-light: #3A3C7E;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --lime-dim: rgba(197,232,38,0.10);
+    --white: #FFFFFF;
+    --light-bg: #F5F6FA;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #9496B0;
+    --border: #DCDEE5;
+    --border-light: #ECEDF2;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+
+    /* Chart accent palette */
+    --accent-green: #16A34A;
+    --accent-green-light: #DCFCE7;
+    --accent-red: #DC2626;
+    --accent-red-light: #FEE2E2;
+    --accent-amber: #E67E22;
+    --accent-amber-light: #FEF3C7;
+    --accent-blue: #1B6EF3;
+    --accent-blue-light: #DBEAFE;
+    --accent-violet: #7C3AED;
+    --accent-violet-light: #EDE9FE;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  /* ── Section Shell ── */
+  .section {
+    padding: 72px 48px;
+    background: var(--light-bg);
+  }
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Header ── */
+  .section-label {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+  }
+  .section-label .bar { width: 24px; height: 3px; background: var(--lime); border-radius: 2px; }
+  .section-label span {
+    font-size: 12px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .section h2 {
+    font-size: 32px; font-weight: 800; color: var(--navy);
+    line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 15px; color: var(--text-secondary); line-height: 1.6;
+    max-width: 680px; margin-bottom: 36px;
+  }
+
+  /* ── Horizontal Tabs ── */
+  .outcome-tabs {
+    display: flex; gap: 0; border-bottom: 2px solid var(--border-light);
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    margin-bottom: 0;
+    scrollbar-width: none;
+  }
+  .outcome-tabs::-webkit-scrollbar { display: none; }
+  .o-tab {
+    padding: 14px 22px; font-family: var(--font);
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    background: none; border: none; cursor: pointer;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+    white-space: nowrap; transition: all 0.2s;
+    position: relative;
+  }
+  .o-tab:hover { color: var(--navy); }
+  .o-tab.active {
+    color: var(--navy); border-bottom-color: var(--lime);
+    font-weight: 700;
+  }
+  .o-tab .tab-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--border-light); color: var(--text-muted);
+    font-size: 10px; font-weight: 700; margin-right: 6px;
+    transition: all 0.2s;
+  }
+  .o-tab.active .tab-num {
+    background: var(--navy); color: var(--white);
+  }
+
+  /* ── Panel ── */
+  .o-panel {
+    display: none;
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-top: none;
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+    overflow: hidden;
+    animation: panelIn 0.35s ease;
+  }
+  .o-panel.active { display: block; }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Split Layout ── */
+  .o-split {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 420px;
+  }
+
+  /* Left: Text Content */
+  .o-text {
+    padding: 40px 36px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .o-text h3 {
+    font-size: 22px; font-weight: 800; color: var(--text-primary);
+    line-height: 1.3; letter-spacing: -0.02em; margin-bottom: 12px;
+  }
+  .o-text > p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .o-list {
+    list-style: none; margin-bottom: 24px;
+  }
+  .o-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 0; font-size: 13.5px; color: var(--text-primary);
+    border-bottom: 1px solid var(--border-light);
+    line-height: 1.5;
+  }
+  .o-list li:last-child { border-bottom: none; }
+  .o-check {
+    width: 20px; height: 20px; border-radius: 50%; background: var(--lime);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .o-check svg { width: 10px; height: 10px; }
+
+  .o-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 24px; background: var(--navy); color: var(--white);
+    font-size: 13px; font-weight: 700; border: none; border-radius: 8px;
+    cursor: pointer; font-family: var(--font); transition: background 0.15s;
+    text-decoration: none; width: fit-content;
+  }
+  .o-cta:hover { background: var(--navy-light); }
+
+  /* Right: Rich Embed / Chart Area */
+  .o-visual {
+    background: var(--navy);
+    padding: 32px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+  }
+  .o-visual-label {
+    font-size: 10px; font-weight: 700; color: var(--lime);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
+  }
+  .o-visual-title {
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7);
+    margin-bottom: 20px; line-height: 1.4;
+  }
+
+  /* ── Rich Embed: Heatmap ── */
+  .heatmap-grid {
+    display: grid; grid-template-columns: 100px repeat(5,1fr); gap: 3px;
+    font-size: 11px;
+  }
+  .hm-hdr {
+    padding: 8px 4px; font-weight: 700;
+    color: rgba(255,255,255,0.5); text-align: center;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .hm-row-label {
+    padding: 10px 8px; font-weight: 600;
+    color: rgba(255,255,255,0.8); display: flex; align-items: center;
+    font-size: 11px;
+  }
+  .hm-cell {
+    padding: 10px 4px; text-align: center; font-weight: 700;
+    color: #fff; border-radius: 6px; font-size: 12px;
+    transition: transform 0.15s;
+  }
+  .hm-cell:hover { transform: scale(1.08); }
+  .hm-cell.green { background: var(--accent-green); }
+  .hm-cell.amber { background: var(--accent-amber); }
+  .hm-cell.red { background: var(--accent-red); }
+
+  .chart-legend {
+    display: flex; gap: 14px; flex-wrap: wrap; margin-top: 16px;
+  }
+  .cl-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 10px; color: rgba(255,255,255,0.5); font-weight: 500;
+  }
+  .cl-swatch { width: 8px; height: 8px; border-radius: 3px; }
+
+  /* ── Rich Embed: Stacked Bars ── */
+  .stacked-bars { display: flex; flex-direction: column; gap: 12px; }
+  .sb-row { display: flex; align-items: center; gap: 12px; }
+  .sb-label {
+    font-size: 11px; color: rgba(255,255,255,0.6);
+    width: 80px; text-align: right; flex-shrink: 0; font-weight: 500;
+  }
+  .sb-track {
+    flex: 1; height: 28px; display: flex;
+    border-radius: 6px; overflow: hidden;
+  }
+  .sb-seg {
+    height: 100%; display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; color: #fff;
+    transition: flex-grow 0.4s ease;
+  }
+
+  /* ── Rich Embed: Bubble Chart ── */
+  .bubble-area {
+    position: relative; height: 240px;
+    border-left: 1.5px solid rgba(255,255,255,0.12);
+    border-bottom: 1.5px solid rgba(255,255,255,0.12);
+    margin: 8px 0 8px 16px;
+  }
+  .b-axis-x {
+    position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
+    font-size: 9px; color: rgba(255,255,255,0.3); font-weight: 600; letter-spacing: 0.05em;
+  }
+  .b-axis-y {
+    position: absolute; left: -14px; top: 50%; transform: translateY(-50%) rotate(-90deg);
+    font-size: 9px; color: rgba(255,255,255,0.3); font-weight: 600; white-space: nowrap; letter-spacing: 0.05em;
+  }
+  .bub {
+    position: absolute; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 700; color: #fff;
+    cursor: default; transition: transform 0.2s; opacity: 0.85;
+  }
+  .bub:hover { transform: scale(1.18); opacity: 1; }
+  .bub-tip {
+    display: none; position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%);
+    background: var(--navy-dark); color: #fff; padding: 6px 10px;
+    border-radius: 6px; font-size: 10px; white-space: nowrap; z-index: 10;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .bub:hover .bub-tip { display: block; }
+
+  /* ── Rich Embed: Pyramid ── */
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .pyramid-bar {
+    padding: 14px 16px; color: #fff; text-align: center;
+    border-radius: 8px; font-size: 12px; font-weight: 600;
+    transition: transform 0.2s;
+  }
+  .pyramid-bar:hover { transform: scale(1.02); }
+
+  /* ── Rich Embed: Donut/Pie ── */
+  .donut-wrap { display: flex; align-items: center; gap: 28px; }
+  .donut-svg { width: 160px; height: 160px; flex-shrink: 0; }
+  .donut-legend { flex: 1; }
+  .donut-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 11px; color: rgba(255,255,255,0.7);
+  }
+  .donut-row:last-child { border-bottom: none; }
+  .donut-swatch { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .donut-pct { font-weight: 700; margin-left: auto; color: #fff; }
+
+  /* ── Rich Embed: Roadmap Timeline ── */
+  .roadmap-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .rm-phase { border-radius: var(--radius); overflow: hidden; }
+  .rm-head {
+    padding: 12px 14px; font-size: 11px; font-weight: 700; color: #fff;
+    letter-spacing: 0.02em;
+  }
+  .rm-body {
+    padding: 14px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08); border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .rm-body li {
+    font-size: 11px; color: rgba(255,255,255,0.7); padding: 4px 0;
+    list-style: none; display: flex; gap: 6px; line-height: 1.4;
+  }
+  .rm-body li::before { content: '→'; color: var(--lime); flex-shrink: 0; font-weight: 700; }
+
+  /* ── Callout Banner ── */
+  .callout-bar {
+    background: var(--lime-dim);
+    border: 1px solid rgba(197,232,38,0.2);
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+    padding: 16px 36px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .callout-bar .callout-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--lime); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+  }
+  .callout-bar p {
+    font-size: 13px; color: var(--navy); font-weight: 600; line-height: 1.5;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .section { padding: 40px 20px; }
+    .section h2 { font-size: 24px; }
+    .o-split { grid-template-columns: 1fr; }
+    .o-visual { min-height: 280px; }
+    .heatmap-grid { grid-template-columns: 80px repeat(5,1fr); font-size: 9px; }
+    .roadmap-cols { grid-template-columns: 1fr; }
+    .donut-wrap { flex-direction: column; }
+    .callout-bar { border-radius: 0 0 var(--radius-lg) var(--radius-lg); padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <!-- Header -->
+    <div class="section-label">
+      <div class="bar"></div>
+      <span>Outcomes &amp; Deliverables</span>
+    </div>
+    <h2>Diagnostic Outcomes &amp; Deliverables</h2>
+    <p class="section-sub">Each deliverable enables a specific enterprise decision — from board-level investment cases to team-level learning plans.</p>
+
+    <!-- Tabs -->
+    <div class="outcome-tabs" role="tablist">
+      <button class="o-tab active" data-panel="p-heatmap"><span class="tab-num">1</span>Skill Heatmap</button>
+      <button class="o-tab" data-panel="p-coverage"><span class="tab-num">2</span>Role Coverage</button>
+      <button class="o-tab" data-panel="p-risk"><span class="tab-num">3</span>Risk Classification</button>
+      <button class="o-tab" data-panel="p-leadership"><span class="tab-num">4</span>Leadership Readiness</button>
+      <button class="o-tab" data-panel="p-root"><span class="tab-num">5</span>Root Cause Clarity</button>
+      <button class="o-tab" data-panel="p-roadmap"><span class="tab-num">6</span>30-60-90 Roadmap</button>
+    </div>
+
+    <!-- ═══ Panel 1: Skill Heatmap ═══ -->
+    <div class="o-panel active" id="p-heatmap">
+      <div class="o-split">
+        <div class="o-text">
+          <h3>Skill Mapping &amp; Capability Assessment</h3>
+          <p>Role-based skill mapping quantified across teams, levels, and leadership pipelines. Every capability gap is measured, not assumed.</p>
+          <ul class="o-list">
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Role-specific skill proficiency mapping across all assessed job families</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Team- and department-level capability aggregation with drill-down</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Quantified gap severity scores (1–5) with confidence intervals</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Leadership pipeline readiness indicators by competency cluster</li>
+          </ul>
+        </div>
+        <div class="o-visual">
+          <div class="o-visual-label">Sample Output</div>
+          <div class="o-visual-title">Skill Gap Heatmap — Role Groups × Skill Domains</div>
+          <div class="heatmap-grid">
+            <div class="hm-hdr"></div><div class="hm-hdr">Strategic</div><div class="hm-hdr">Technical</div><div class="hm-hdr">Digital</div><div class="hm-hdr">Leadership</div><div class="hm-hdr">Analytical</div>
+            <div class="hm-row-label">Senior Leaders</div><div class="hm-cell green">4.2</div><div class="hm-cell amber">2.8</div><div class="hm-cell red">1.9</div><div class="hm-cell green">4.0</div><div class="hm-cell amber">3.1</div>
+            <div class="hm-row-label">Mid Managers</div><div class="hm-cell amber">3.0</div><div class="hm-cell green">3.8</div><div class="hm-cell amber">2.5</div><div class="hm-cell red">2.1</div><div class="hm-cell green">3.6</div>
+            <div class="hm-row-label">Team Leads</div><div class="hm-cell red">2.0</div><div class="hm-cell green">3.9</div><div class="hm-cell amber">2.7</div><div class="hm-cell red">1.8</div><div class="hm-cell amber">3.2</div>
+            <div class="hm-row-label">IC / Specialists</div><div class="hm-cell red">1.5</div><div class="hm-cell green">4.3</div><div class="hm-cell green">3.5</div><div class="hm-cell red">1.4</div><div class="hm-cell green">4.1</div>
+            <div class="hm-row-label">Operations</div><div class="hm-cell red">1.8</div><div class="hm-cell amber">2.9</div><div class="hm-cell red">1.7</div><div class="hm-cell amber">2.4</div><div class="hm-cell amber">2.6</div>
+          </div>
+          <div class="chart-legend">
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-green)"></div> 3.5+ Proficient</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-amber)"></div> 2.5–3.4 Developing</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-red)"></div> &lt;2.5 Critical</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Panel 2: Role Coverage ═══ -->
+    <div class="o-panel" id="p-coverage">
+      <div class="o-split">
+        <div class="o-text">
+          <h3>Role-Based Skill Coverage Analysis</h3>
+          <p>Role-wise readiness vs. requirement across critical job families. Identifies which roles need the most investment.</p>
+          <ul class="o-list">
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Skill coverage percentage by role group and proficiency tier</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Gap-to-target ratios for priority competencies</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Team-level comparisons for resource allocation decisions</li>
+          </ul>
+        </div>
+        <div class="o-visual">
+          <div class="o-visual-label">Sample Output</div>
+          <div class="o-visual-title">Role Coverage — Stacked Proficiency Breakdown</div>
+          <div class="chart-legend" style="margin-top:0;margin-bottom:14px">
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-red)"></div> Foundational</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-amber)"></div> Intermediate</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-blue)"></div> Advanced</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-green)"></div> Expert</div>
+          </div>
+          <div class="stacked-bars">
+            <div class="sb-row"><div class="sb-label">Engineering</div><div class="sb-track"><div class="sb-seg" style="flex:12;background:var(--accent-red)">12%</div><div class="sb-seg" style="flex:28;background:var(--accent-amber)">28%</div><div class="sb-seg" style="flex:38;background:var(--accent-blue)">38%</div><div class="sb-seg" style="flex:22;background:var(--accent-green)">22%</div></div></div>
+            <div class="sb-row"><div class="sb-label">Product</div><div class="sb-track"><div class="sb-seg" style="flex:8;background:var(--accent-red)"></div><div class="sb-seg" style="flex:35;background:var(--accent-amber)">35%</div><div class="sb-seg" style="flex:40;background:var(--accent-blue)">40%</div><div class="sb-seg" style="flex:17;background:var(--accent-green)">17%</div></div></div>
+            <div class="sb-row"><div class="sb-label">Operations</div><div class="sb-track"><div class="sb-seg" style="flex:22;background:var(--accent-red)">22%</div><div class="sb-seg" style="flex:38;background:var(--accent-amber)">38%</div><div class="sb-seg" style="flex:28;background:var(--accent-blue)">28%</div><div class="sb-seg" style="flex:12;background:var(--accent-green)">12%</div></div></div>
+            <div class="sb-row"><div class="sb-label">Sales</div><div class="sb-track"><div class="sb-seg" style="flex:18;background:var(--accent-red)">18%</div><div class="sb-seg" style="flex:42;background:var(--accent-amber)">42%</div><div class="sb-seg" style="flex:30;background:var(--accent-blue)">30%</div><div class="sb-seg" style="flex:10;background:var(--accent-green)">10%</div></div></div>
+            <div class="sb-row"><div class="sb-label">Leadership</div><div class="sb-track"><div class="sb-seg" style="flex:5;background:var(--accent-red)"></div><div class="sb-seg" style="flex:25;background:var(--accent-amber)">25%</div><div class="sb-seg" style="flex:45;background:var(--accent-blue)">45%</div><div class="sb-seg" style="flex:25;background:var(--accent-green)">25%</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Panel 3: Risk Classification ═══ -->
+    <div class="o-panel" id="p-risk">
+      <div class="o-split">
+        <div class="o-text">
+          <h3>Skill Criticality &amp; Risk Classification</h3>
+          <p>Ranks every identified skill gap by business impact and workforce exposure for risk-weighted investment allocation.</p>
+          <ul class="o-list">
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Business impact scoring (revenue, safety, compliance)</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Workforce exposure measurement (% of roles affected)</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Board-ready risk visualization for executive reporting</li>
+          </ul>
+        </div>
+        <div class="o-visual">
+          <div class="o-visual-label">Sample Output</div>
+          <div class="o-visual-title">Skill Risk Matrix — Business Impact × Availability</div>
+          <div class="chart-legend" style="margin-top:0;margin-bottom:8px">
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-red)"></div> Revenue Risk</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-amber)"></div> Compliance Risk</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-blue)"></div> Safety Risk</div>
+          </div>
+          <div class="bubble-area">
+            <div class="b-axis-x">Business Impact →</div>
+            <div class="b-axis-y">Skill Availability →</div>
+            <div class="bub" style="width:62px;height:62px;background:var(--accent-red);left:70%;bottom:16%">AI/ML<div class="bub-tip">AI/ML — High impact, low availability — 340 roles</div></div>
+            <div class="bub" style="width:48px;height:48px;background:var(--accent-amber);left:52%;bottom:36%">GRC<div class="bub-tip">Governance — Moderate impact — 210 roles</div></div>
+            <div class="bub" style="width:40px;height:40px;background:var(--accent-blue);left:30%;bottom:52%">Safety<div class="bub-tip">Safety — Moderate impact — 180 roles</div></div>
+            <div class="bub" style="width:56px;height:56px;background:var(--accent-red);left:78%;bottom:26%">Cloud<div class="bub-tip">Cloud Architecture — Very high impact — 280 roles</div></div>
+            <div class="bub" style="width:34px;height:34px;background:var(--accent-amber);left:16%;bottom:62%">PM<div class="bub-tip">Project Mgmt — Lower impact — 120 roles</div></div>
+            <div class="bub" style="width:44px;height:44px;background:var(--accent-red);left:60%;bottom:40%">Data<div class="bub-tip">Data Engineering — High impact — 240 roles</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Panel 4: Leadership Readiness ═══ -->
+    <div class="o-panel" id="p-leadership">
+      <div class="o-split">
+        <div class="o-text">
+          <h3>Leadership &amp; Critical Capability Readiness</h3>
+          <p>Maps leadership competency readiness across the hierarchy and identifies succession opportunities in critical roles.</p>
+          <ul class="o-list">
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Leadership competency profiling by tier (C-suite to first-time managers)</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Succession readiness scores for critical positions</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Future-state capability model aligned to strategic goals</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>High-potential identification with development pathways</li>
+          </ul>
+        </div>
+        <div class="o-visual">
+          <div class="o-visual-label">Sample Output</div>
+          <div class="o-visual-title">Leadership Competency Pyramid — Readiness by Tier</div>
+          <div class="pyramid">
+            <div class="pyramid-bar" style="width:35%;background:var(--accent-green)">C-Suite — 82% Ready</div>
+            <div class="pyramid-bar" style="width:52%;background:var(--accent-amber)">Senior Directors — 61% Ready</div>
+            <div class="pyramid-bar" style="width:72%;background:var(--accent-red)">Mid-Level Managers — 43% Ready</div>
+            <div class="pyramid-bar" style="width:92%;background:var(--accent-red)">First-Time Managers — 28% Ready</div>
+          </div>
+          <div class="chart-legend" style="justify-content:center;">
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-green)"></div> Ready (≥70%)</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-amber)"></div> Developing (50–69%)</div>
+            <div class="cl-item"><div class="cl-swatch" style="background:var(--accent-red)"></div> Opportunity (&lt;50%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Panel 5: Root Cause Clarity ═══ -->
+    <div class="o-panel" id="p-root">
+      <div class="o-split">
+        <div class="o-text">
+          <h3>Root Cause Clarity: Learning vs. Operational</h3>
+          <p>Not every performance gap is a training gap. This analysis separates true skill deficiencies from process, tools, role design, and leadership constraints.</p>
+          <ul class="o-list">
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Performance gap categorization by root cause type</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Non-training intervention recommendations</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Training spend redirection opportunities quantified</li>
+          </ul>
+        </div>
+        <div class="o-visual">
+          <div class="o-visual-label">Sample Output</div>
+          <div class="o-visual-title">Performance Gap Root Cause Distribution</div>
+          <div class="donut-wrap">
+            <svg class="donut-svg" viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="30"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--accent-blue)" stroke-width="30" stroke-dasharray="167 440" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--accent-amber)" stroke-width="30" stroke-dasharray="106 440" stroke-dashoffset="-167" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--accent-green)" stroke-width="30" stroke-dasharray="79 440" stroke-dashoffset="-273" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--accent-violet)" stroke-width="30" stroke-dasharray="53 440" stroke-dashoffset="-352" transform="rotate(-90 100 100)"/>
+              <circle cx="100" cy="100" r="70" fill="none" stroke="var(--accent-red)" stroke-width="30" stroke-dasharray="35 440" stroke-dashoffset="-405" transform="rotate(-90 100 100)"/>
+              <text x="100" y="96" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">62%</text>
+              <text x="100" y="114" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.5)" font-weight="500">Non-Training</text>
+            </svg>
+            <div class="donut-legend">
+              <div class="donut-row"><div class="donut-swatch" style="background:var(--accent-blue)"></div> Training / Skill Gaps <div class="donut-pct">38%</div></div>
+              <div class="donut-row"><div class="donut-swatch" style="background:var(--accent-amber)"></div> Process Gaps <div class="donut-pct">24%</div></div>
+              <div class="donut-row"><div class="donut-swatch" style="background:var(--accent-green)"></div> Tools &amp; Systems <div class="donut-pct">18%</div></div>
+              <div class="donut-row"><div class="donut-swatch" style="background:var(--accent-violet)"></div> Role Design <div class="donut-pct">12%</div></div>
+              <div class="donut-row"><div class="donut-swatch" style="background:var(--accent-red)"></div> Leadership <div class="donut-pct">8%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Panel 6: 30-60-90 Roadmap ═══ -->
+    <div class="o-panel" id="p-roadmap">
+      <div class="o-split">
+        <div class="o-text">
+          <h3>Prioritized 30–60–90 Day Capability Roadmap</h3>
+          <p>Role- and level-specific interventions organized into a phased, executable plan with clear ownership and success metrics.</p>
+          <ul class="o-list">
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Phased intervention calendar with role-specific pathways</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Modular learning architecture (not monolithic programs)</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Non-training recommendations integrated into the roadmap</li>
+            <li><span class="o-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#1A2600" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Measurement framework with leading and lagging indicators</li>
+          </ul>
+          <a href="#" class="o-cta">Download Sample Roadmap <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M12 5v14m0 0l-6-6m6 6l6-6"/></svg></a>
+        </div>
+        <div class="o-visual">
+          <div class="o-visual-label">Sample Output</div>
+          <div class="o-visual-title">Phased Capability Roadmap</div>
+          <div class="roadmap-cols">
+            <div class="rm-phase"><div class="rm-head" style="background:var(--accent-red)">Days 1–30: Critical</div><div class="rm-body"><ul><li>Close compliance-critical skill gaps</li><li>Deploy safety &amp; regulatory training</li><li>Address role-design issues</li><li>Launch manager capability baselines</li></ul></div></div>
+            <div class="rm-phase"><div class="rm-head" style="background:var(--accent-amber)">Days 31–60: Build</div><div class="rm-body"><ul><li>Roll out technical upskilling</li><li>Launch leadership tracks</li><li>Implement process improvements</li><li>Begin tools/systems remediation</li></ul></div></div>
+            <div class="rm-phase"><div class="rm-head" style="background:var(--accent-green)">Days 61–90: Growth</div><div class="rm-body"><ul><li>Deploy future-state programs</li><li>Activate succession pipeline</li><li>Measure impact vs. baseline KPIs</li><li>Calibrate learning architecture</li></ul></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="callout-bar">
+        <div class="callout-icon"><svg width="14" height="14" fill="none" stroke="#1A2600" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+        <p>Clear visibility on what to fix, what to train, what not to train, and where to invest first.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.o-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelectorAll('.o-panel').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById(tab.getAttribute('data-panel'));
+      if (panel) panel.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

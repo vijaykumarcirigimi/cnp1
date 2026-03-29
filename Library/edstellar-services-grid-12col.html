@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — 12 Service Cards Grid Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #2D2F6B;
+  --lime: #C5E826;
+  --lime-hover: #D4F23A;
+  --lime-text: #1A2600;
+  --white: #FFFFFF;
+  --surface: #FFFFFF;
+  --text-secondary: #5C5E6E;
+  --font: 'Inter', -apple-system, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font); -webkit-font-smoothing: antialiased; }
+
+.sg12-section { padding: 72px 48px; background: var(--surface); }
+.sg12-container { max-width: 1120px; margin: 0 auto; text-align: center; }
+.sg12-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.sg12-label .sg12-bar { width: 28px; height: 3px; background: var(--lime); }
+.sg12-label span:last-child { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--navy); }
+.sg12-heading { font-size: 36px; font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.25; }
+.sg12-intro { font-size: 17px; line-height: 1.7; color: var(--text-secondary); max-width: 720px; margin: 0 auto 44px; }
+.sg12-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: left; }
+.sg12-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(45,47,107,0.05); transition: all 0.25s; display: flex; flex-direction: column; }
+.sg12-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(45,47,107,0.08); }
+.sg12-accent { height: 4px; background: var(--lime); }
+.sg12-icon { width: 48px; height: 48px; background: rgba(45,47,107,0.06); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 24px 24px 14px; }
+.sg12-icon svg { width: 22px; height: 22px; stroke: var(--navy); fill: none; stroke-width: 2; }
+.sg12-card-title { font-size: 17px; font-weight: 700; color: var(--navy); margin: 0 24px 8px; line-height: 1.3; }
+.sg12-card-desc { font-size: 14px; line-height: 1.65; color: #555; margin: 0 24px 16px; flex: 1; }
+.sg12-link { font-size: 13px; font-weight: 600; color: var(--navy); text-decoration: none; margin: 0 24px 24px; display: inline-flex; align-items: center; gap: 4px; transition: color 0.2s; }
+.sg12-link:hover { color: var(--lime); }
+.sg12-link span { transition: transform 0.2s; }
+.sg12-link:hover span { transform: translateX(3px); }
+@media (max-width: 1024px) { .sg12-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) {
+  .sg12-section { padding: 40px 20px; }
+  .sg12-heading { font-size: 26px; }
+  .sg12-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+@media (max-width: 480px) { .sg12-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<section class="sg12-section">
+  <div class="sg12-container">
+    <div class="sg12-label"><span class="sg12-bar"></span><span>SECTION LABEL</span></div>
+    <h2 class="sg12-heading">Section Heading Goes Here</h2>
+    <p class="sg12-intro">Introductory paragraph describing the services listed below. Keep to 1-2 sentences for optimal readability.</p>
+    <div class="sg12-grid">
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 1</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 2</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 3</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 4</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 5</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 6</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 7</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 8</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 9</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 10</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 11</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+      <div class="sg12-card">
+        <div class="sg12-accent"></div>
+        <div class="sg12-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/></svg></div>
+        <h3 class="sg12-card-title">Service Title 12</h3>
+        <p class="sg12-card-desc">Short description of this service offering. Explain the value proposition in 1-2 sentences.</p>
+        <a href="#" class="sg12-link">Learn More <span>&rarr;</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

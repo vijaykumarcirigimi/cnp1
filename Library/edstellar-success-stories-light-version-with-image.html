@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — Success Stories: Option A (Split Quote + Stats)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --lime: #C5E826;
+    --lime-text: #1A2600;
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--light-bg); }
+  .section-inner { max-width:1060px; margin:0 auto; }
+
+  .section-top {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:36px;
+  }
+  .section-top h2 {
+    font-size:30px; font-weight:800; line-height:1.2; letter-spacing:-0.03em;
+  }
+  .section-top h2 .accent { color:var(--navy); }
+  .section-top h2 .normal { color:var(--text-primary); }
+
+  .nav-arrows { display:flex; gap:8px; }
+  .nav-arrow {
+    width:44px; height:44px; border-radius:50%;
+    border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font); transition:all 0.2s;
+  }
+  .nav-arrow.prev { background:var(--navy); }
+  .nav-arrow.next { background:var(--lime); }
+  .nav-arrow:hover { transform:scale(1.08); }
+
+  .stories-track { position:relative; overflow:hidden; }
+  .story-slide {
+    display:none;
+    animation:fadeSlide 0.4s ease-out;
+  }
+  .story-slide.active { display:grid; grid-template-columns:52% 45%; gap:3%; }
+  @keyframes fadeSlide {
+    from { opacity:0; transform:translateX(30px); }
+    to { opacity:1; transform:translateX(0); }
+  }
+
+  .story-image {
+    border-radius:var(--radius-xl); overflow:hidden;
+    background:#C8CAD8; min-height:340px;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:6px;
+    font-size:11px; color:var(--text-muted); font-weight:500;
+  }
+  .story-image svg { opacity:0.15; }
+
+  .story-content { display:flex; flex-direction:column; justify-content:center; }
+
+  .quote-block {
+    border-left:4px solid var(--navy);
+    padding-left:20px;
+    margin-bottom:20px;
+  }
+  .quote-block p {
+    font-size:15px; color:var(--text-primary); line-height:1.7;
+    font-style:italic;
+  }
+  .quote-author {
+    font-size:14px; font-weight:700; color:var(--text-primary);
+    margin-bottom:28px;
+  }
+
+  .result-stats {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+  }
+  .result-stat {}
+  .result-stat .num {
+    font-size:36px; font-weight:800; color:var(--text-primary);
+    letter-spacing:-0.04em; line-height:1;
+  }
+  .result-stat .num .sym { color:var(--lime); }
+  .result-stat .label {
+    font-size:12px; color:var(--text-secondary); line-height:1.5;
+    margin-top:6px; font-weight:500;
+  }
+
+  .slide-dots {
+    display:flex; gap:6px; justify-content:center; margin-top:28px;
+  }
+  .slide-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:var(--border); cursor:pointer; transition:all 0.2s;
+  }
+  .slide-dot.active { background:var(--lime); width:24px; border-radius:4px; }
+
+  @media (max-width:768px) {
+    .section { padding:40px 20px; }
+    .story-slide.active { grid-template-columns:1fr; gap:24px; }
+    .story-image { min-height:220px; }
+    .result-stats { grid-template-columns:1fr; gap:12px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <div class="section-top">
+      <h2><span class="accent">L&D Consulting</span> <span class="normal">Success Stories & Results</span></h2>
+      <div class="nav-arrows">
+        <button class="nav-arrow prev" onclick="changeSlide(-1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4l-4 4 4 4" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="nav-arrow next" onclick="changeSlide(1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="var(--lime-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <div class="stories-track" id="storiesTrack">
+
+      <div class="story-slide active">
+        <div class="story-image">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="3" y="3" width="34" height="34" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="15" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 30l9-9 5 5 7-7L37 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Team celebration image</span>
+        </div>
+        <div class="story-content">
+          <div class="quote-block">
+            <p>"We needed more than a set of leadership workshops. Edstellar helped us define leadership expectations, map role-based capability gaps, and launch a structured development journey across business units. The result was a more consistent leadership pipeline and stronger alignment between learning and business goals."</p>
+          </div>
+          <div class="quote-author">— CHRO, Large multi-location organization</div>
+          <div class="result-stats">
+            <div class="result-stat">
+              <div class="num">42<span class="sym">%</span></div>
+              <div class="label">Improvement in leadership readiness</div>
+            </div>
+            <div class="result-stat">
+              <div class="num">28<span class="sym">%</span></div>
+              <div class="label">Increase in successor readiness for key roles</div>
+            </div>
+            <div class="result-stat">
+              <div class="num">37<span class="sym">%</span></div>
+              <div class="label">Higher learning adoption across business units</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-slide">
+        <div class="story-image">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="3" y="3" width="34" height="34" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="15" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 30l9-9 5 5 7-7L37 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Workshop session image</span>
+        </div>
+        <div class="story-content">
+          <div class="quote-block">
+            <p>"Edstellar's talent assessment framework gave us the first-ever enterprise-wide view of our workforce capabilities. We went from scattered self-reported data to a governed, auditable skills inventory that our board trusts for succession decisions."</p>
+          </div>
+          <div class="quote-author">— VP Talent, Fortune 500 manufacturing company</div>
+          <div class="result-stats">
+            <div class="result-stat">
+              <div class="num">95<span class="sym">%</span></div>
+              <div class="label">Skill data now verified and auditable</div>
+            </div>
+            <div class="result-stat">
+              <div class="num">3<span class="sym">×</span></div>
+              <div class="label">Faster succession planning cycle</div>
+            </div>
+            <div class="result-stat">
+              <div class="num">60<span class="sym">%</span></div>
+              <div class="label">Reduction in external hiring for senior roles</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-slide">
+        <div class="story-image">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="3" y="3" width="34" height="34" rx="6" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="15" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 30l9-9 5 5 7-7L37 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Training delivery image</span>
+        </div>
+        <div class="story-content">
+          <div class="quote-block">
+            <p>"The compliance training program Edstellar designed for us wasn't just checkbox learning. It was engaging, role-specific, and gave our regulators exactly the documentation trail they needed. We went from audit anxiety to audit confidence."</p>
+          </div>
+          <div class="quote-author">— Head of Compliance, Global financial services firm</div>
+          <div class="result-stats">
+            <div class="result-stat">
+              <div class="num">100<span class="sym">%</span></div>
+              <div class="label">Audit pass rate across all jurisdictions</div>
+            </div>
+            <div class="result-stat">
+              <div class="num">54<span class="sym">%</span></div>
+              <div class="label">Reduction in compliance training time</div>
+            </div>
+            <div class="result-stat">
+              <div class="num">89<span class="sym">%</span></div>
+              <div class="label">Employee engagement with compliance modules</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-dots" id="slideDots">
+      <div class="slide-dot active" onclick="goToSlide(0)"></div>
+      <div class="slide-dot" onclick="goToSlide(1)"></div>
+      <div class="slide-dot" onclick="goToSlide(2)"></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+var current = 0;
+var total = document.querySelectorAll('.story-slide').length;
+
+function goToSlide(idx) {
+  current = idx;
+  document.querySelectorAll('.story-slide').forEach(function(s,i) { s.classList.toggle('active', i===idx); });
+  document.querySelectorAll('.slide-dot').forEach(function(d,i) { d.classList.toggle('active', i===idx); });
+}
+
+function changeSlide(dir) {
+  current = (current + dir + total) % total;
+  goToSlide(current);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar Consulting — Hero Section: Classic Split</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --navy-deep: #232558;
+    --navy-light: #3A3C7E;
+    --lime: #C5E826;
+    --lime-hover: #D4F23A;
+    --lime-text: #1A2600;
+    --white: #FFFFFF;
+    --off-white: #F4F5F7;
+    --text-body: #D0D2E0;
+    --text-muted: #9496B0;
+    --border-navy: rgba(255,255,255,0.12);
+    --border-light: #E2E3E8;
+    --surface: #FFFFFF;
+    --chrome-text: #1A1A1A;
+    --chrome-muted: #6B6D7B;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font);
+    background: var(--off-white);
+    color: var(--chrome-text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: var(--surface);
+    min-height: 100vh;
+  }
+
+  /* ─── Nav ─── */
+  .ed-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .ed-nav-left { display: flex; align-items: center; gap: 32px; }
+  .ed-logo {
+    font-size: 20px; font-weight: 800; color: var(--navy);
+    letter-spacing: -0.03em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ed-logo-icon {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 2.5px solid var(--navy);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ed-logo-icon span { font-size: 11px; font-weight: 800; color: var(--navy); }
+  .ed-nav-links { display: flex; gap: 24px; list-style: none; }
+  .ed-nav-links li {
+    font-size: 14px; font-weight: 500; color: var(--chrome-muted);
+    cursor: pointer; transition: color 0.15s;
+  }
+  .ed-nav-links li:hover { color: var(--chrome-text); }
+  .ed-nav-links li.active { color: var(--chrome-text); font-weight: 700; }
+  .ed-nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-search {
+    width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-light);
+    background: transparent; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ed-nav-cta {
+    padding: 10px 22px; background: var(--navy); color: var(--white);
+    font-size: 14px; font-weight: 700; border: none; border-radius: 8px;
+    cursor: pointer; font-family: var(--font); letter-spacing: -0.01em;
+    transition: background 0.15s;
+  }
+  .ed-nav-cta:hover { background: var(--navy-deep); }
+
+  /* ─── Hero ─── */
+  .hero {
+    background: var(--navy);
+    padding: 52px 48px 56px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 55% 42%;
+    gap: 3%;
+    align-items: center;
+  }
+
+  .breadcrumb {
+    font-size: 13px; color: var(--text-muted); margin-bottom: 18px;
+  }
+  .breadcrumb a { color: var(--text-body); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .hero h1 {
+    font-size: 40px; font-weight: 800; line-height: 1.15;
+    color: var(--white); letter-spacing: -0.03em;
+  }
+  .hero h1 .accent { color: var(--lime); }
+
+  .hero-sub {
+    font-size: 15px; line-height: 1.7; color: var(--text-body);
+    margin-top: 18px; max-width: 490px;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 700; }
+
+  /* ─── Check trust points ─── */
+  .check-list { display: flex; flex-direction: column; gap: 12px; margin: 28px 0 32px; }
+  .check-item {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px; font-weight: 500; color: var(--text-body);
+  }
+  .check-icon {
+    width: 24px; height: 24px; border-radius: 50%; background: var(--lime);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  /* ─── CTAs ─── */
+  .cta-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn-lime {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 14px 30px; background: var(--lime); color: var(--lime-text);
+    font-size: 15px; font-weight: 700; border: none; border-radius: 8px;
+    cursor: pointer; font-family: var(--font); letter-spacing: -0.01em;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .btn-lime:hover { background: var(--lime-hover); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 14px 30px; background: transparent; color: var(--white);
+    font-size: 15px; font-weight: 600; border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: 8px; cursor: pointer; font-family: var(--font); letter-spacing: -0.01em;
+    transition: all 0.15s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.06); }
+
+  /* ─── Image placeholder ─── */
+  .hero-image {
+    width: 100%; aspect-ratio: 4/3;
+    border-radius: var(--radius-lg); overflow: hidden;
+    background: #C8CAD8;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px;
+    color: var(--navy); font-size: 13px; font-weight: 500;
+    border: 2px dashed rgba(45,47,107,0.2);
+  }
+  .hero-image svg { opacity: 0.25; }
+  .hero-image .note {
+    font-size: 11px; color: var(--chrome-muted);
+    text-align: center; margin-top: 6px; line-height: 1.5;
+  }
+
+  /* ─── Logo strip ─── */
+  .logo-strip {
+    padding: 18px 48px;
+    display: flex; align-items: center; gap: 24px;
+    background: var(--surface);
+    border-top: 1px solid var(--border-light);
+  }
+  .logo-strip .label {
+    font-size: 12px; color: var(--chrome-muted);
+    white-space: nowrap; font-weight: 600;
+  }
+  .logo-strip .logos { display: flex; gap: 28px; flex: 1; flex-wrap: wrap; }
+  .logo-pill {
+    width: 72px; height: 20px; border-radius: 4px;
+    background: #E8E9ED; border: 1px solid var(--border-light);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 900px) {
+    .hero { padding: 36px 24px 40px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero h1 { font-size: 30px; }
+    .ed-nav { padding: 12px 24px; }
+    .ed-nav-links { display: none; }
+    .logo-strip { padding: 16px 24px; }
+    .hero-image { aspect-ratio: 16/10; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- Navigation -->
+  <nav class="ed-nav">
+    <div class="ed-nav-left">
+      <div class="ed-logo">
+        <div class="ed-logo-icon"><span>e</span></div>
+        edstellar
+      </div>
+      <ul class="ed-nav-links">
+        <li>Training Programs</li>
+        <li>Platform</li>
+        <li>Managed Training</li>
+        <li class="active">Consulting</li>
+        <li>Company</li>
+        <li>Resources</li>
+      </ul>
+    </div>
+    <div class="ed-nav-right">
+      <button class="nav-search">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="var(--chrome-muted)" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="var(--chrome-muted)" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <button class="ed-nav-cta">View Pricing</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-grid">
+
+      <!-- Left Column -->
+      <div>
+        <div class="breadcrumb">
+          <a href="#">Home</a> &nbsp;&gt;&nbsp; <span style="color:var(--lime)">L&D Consulting</span>
+        </div>
+
+        <h1>
+          Learning and Development<br>
+          <span class="accent">Consulting Services</span>
+        </h1>
+
+        <p class="hero-sub">
+          <strong>Transform capability into business performance with Edstellar's L&D consulting.</strong>
+          We help organizations design strategic learning ecosystems that align workforce development with business goals, close critical skill gaps, and deliver measurable impact.
+        </p>
+
+        <div class="check-list">
+          <div class="check-item">
+            <div class="check-icon">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5l3 3 5-5" stroke="var(--lime-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Transfer of expertise, not dependency
+          </div>
+          <div class="check-item">
+            <div class="check-icon">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5l3 3 5-5" stroke="var(--lime-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Custom L&D frameworks built for your industry
+          </div>
+          <div class="check-item">
+            <div class="check-icon">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5l3 3 5-5" stroke="var(--lime-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Trusted by Fortune 500 enterprises
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <button class="btn-lime">Schedule a Free L&D Consultation</button>
+          <button class="btn-outline">View Our Methodology</button>
+        </div>
+      </div>
+
+      <!-- Right Column: Image -->
+      <div>
+        <div class="hero-image">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="4" width="40" height="40" rx="8" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17" cy="18" r="5" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 36l11-11 6 6 8-8L44 38" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Corporate training room</span>
+          <span>or team collaboration scene</span>
+          <span class="note">Recommended: professionals in a meeting,<br>training workshop, or whiteboard session<br>600 x 450px minimum</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Logo Strip -->
+  <div class="logo-strip">
+    <span class="label">Trusted by</span>
+    <div class="logos">
+      <div class="logo-pill"></div>
+      <div class="logo-pill"></div>
+      <div class="logo-pill"></div>
+      <div class="logo-pill"></div>
+      <div class="logo-pill"></div>
+      <div class="logo-pill"></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — FAQ Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2D2F6B;
+    --lime: #C5E826;
+    --white: #FFFFFF;
+    --light-bg: #EEF0F4;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #5C5E6E;
+    --text-muted: #8A8C9A;
+    --border: #DCDEE5;
+    --radius-lg: 16px;
+    --font: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--font); background:var(--light-bg); -webkit-font-smoothing:antialiased; }
+
+  .section { padding:64px 48px; background:var(--light-bg); }
+  .section-inner { max-width:760px; margin:0 auto; }
+
+  .section-inner h2 {
+    font-size:30px; font-weight:800; line-height:1.2;
+    letter-spacing:-0.03em; margin-bottom:8px;
+  }
+  .section-inner h2 .dark { color:var(--text-primary); }
+  .section-inner h2 .accent { color:var(--navy); }
+  .section-inner > p {
+    font-size:15px; color:var(--text-secondary); line-height:1.6;
+    margin-bottom:36px;
+  }
+
+  .faq-list { display:flex; flex-direction:column; gap:0; }
+
+  .faq-item {
+    border-bottom:2px solid var(--navy);
+    transition:border-color 0.2s;
+  }
+  .faq-item.active { border-bottom-color:var(--lime); }
+
+  .faq-question {
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; padding:22px 0; cursor:pointer;
+    transition:padding 0.2s;
+  }
+  .faq-question h3 {
+    font-size:16px; font-weight:700; color:var(--text-primary);
+    line-height:1.4; letter-spacing:-0.01em;
+    flex:1;
+  }
+
+  .faq-toggle {
+    width:32px; height:32px; border-radius:50%;
+    border:none; background:transparent;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; flex-shrink:0;
+    transition:all 0.25s;
+    color:var(--text-muted);
+    font-size:22px; font-weight:300;
+    font-family:var(--font);
+  }
+  .faq-item.active .faq-toggle {
+    color:var(--navy);
+    transform:rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height:0; overflow:hidden;
+    transition:max-height 0.35s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+    padding:0 0 0 0;
+  }
+  .faq-item.active .faq-answer {
+    max-height:300px;
+    padding:0 0 24px 0;
+  }
+  .faq-answer p {
+    font-size:14px; color:var(--text-secondary); line-height:1.7;
+    max-width:640px;
+  }
+
+  @media (max-width:768px) {
+    .section { padding:40px 20px; }
+    .faq-question h3 { font-size:15px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+
+    <h2><span class="dark">Frequently asked questions on</span> <span class="accent">L&D consulting</span></h2>
+    <p>Everything you need to know about partnering with Edstellar</p>
+
+    <div class="faq-list">
+
+      <div class="faq-item active" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <h3>How can organizations determine their L&D needs?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>We conduct a comprehensive Training Needs Analysis (TNA) that includes skills gap assessments, stakeholder interviews, performance data review, and competency mapping. This data-driven approach identifies priority areas where L&D investment will have the greatest impact on business outcomes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <h3>How do you measure the effectiveness of L&D programs?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>We use a multi-level evaluation framework that measures reaction, learning, behaviour change, and business impact. Each engagement includes defined KPIs, baseline measurements, and post-program assessments to quantify ROI and demonstrate the connection between learning activity and performance improvement.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <h3>What is the typical timeline for an L&D consulting engagement?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Timelines vary based on scope. A focused skills gap analysis can be completed in 4–6 weeks, while a full L&D strategy redesign typically takes 3–6 months. We begin every engagement with a scoping workshop to align on deliverables, milestones, and timeline expectations before work begins.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <h3>Can we start with a small project before committing to a larger engagement?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Absolutely. Many of our clients begin with a diagnostic engagement — a focused assessment or pilot program that delivers immediate value while giving both sides a clear picture of the opportunity. This low-risk starting point often evolves into a broader strategic partnership.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          <h3>What makes Edstellar different from other L&D consulting firms?</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Three things set us apart: our global network of 5,000+ trainers across 100+ locations gives us unmatched delivery scale; our consulting transfers expertise rather than creating dependency; and our frameworks are built on governed, auditable data — not assumptions or self-reported skill claims.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+function toggleFaq(item) {
+  var wasActive = item.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(function(el) { el.classList.remove('active'); });
+  if (!wasActive) item.classList.add('active');
+}
+</script>
+
+</body>
+</html>

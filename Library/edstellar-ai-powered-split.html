@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edstellar — AI-Powered Split Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #2D2F6B;
+  --lime: #C5E826;
+  --lime-hover: #D4F23A;
+  --lime-text: #1A2600;
+  --white: #FFFFFF;
+  --font: 'Inter', -apple-system, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font); -webkit-font-smoothing: antialiased; }
+
+.aip-section { padding: 72px 48px; background: var(--navy); }
+.aip-container { max-width: 1120px; margin: 0 auto; }
+.aip-split { display: grid; grid-template-columns: 52% 44%; gap: 4%; align-items: start; }
+.aip-label { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.aip-label .aip-bar { width: 28px; height: 3px; background: var(--lime); }
+.aip-label span:last-child { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lime); }
+.aip-heading { font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 20px; line-height: 1.25; }
+.aip-body { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.75); margin-bottom: 16px; }
+.aip-cta { display: inline-block; margin-top: 12px; padding: 12px 28px; border: 1.5px solid rgba(255,255,255,0.3); border-radius: 8px; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.25s; }
+.aip-cta:hover { border-color: var(--lime); color: var(--lime); }
+.aip-right { display: flex; flex-direction: column; gap: 12px; }
+.aip-cap { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px 24px; transition: all 0.25s; }
+.aip-cap:hover { background: rgba(255,255,255,0.1); transform: translateX(4px); }
+.aip-cap-num { font-size: 22px; font-weight: 800; color: var(--lime); flex-shrink: 0; min-width: 32px; }
+.aip-cap-text { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.9); line-height: 1.5; }
+@media (max-width: 768px) {
+  .aip-section { padding: 40px 20px; }
+  .aip-heading { font-size: 26px; }
+  .aip-split { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<section class="aip-section">
+  <div class="aip-container">
+    <div class="aip-split">
+      <div class="aip-left">
+        <div class="aip-label"><span class="aip-bar"></span><span>Section Label</span></div>
+        <h2 class="aip-heading">Section Heading Goes Here</h2>
+        <p class="aip-body">First paragraph of editorial content describing the feature, technology, or differentiator. Explain the strategic value in 2-3 sentences.</p>
+        <p class="aip-body">Second paragraph providing additional detail, methodology, or proof points. Keep to 2-3 sentences for readability.</p>
+        <a href="#" class="aip-cta">Call to Action Label</a>
+      </div>
+      <div class="aip-right">
+        <div class="aip-cap"><div class="aip-cap-num">01</div><div class="aip-cap-text">Capability description 1</div></div>
+        <div class="aip-cap"><div class="aip-cap-num">02</div><div class="aip-cap-text">Capability description 2</div></div>
+        <div class="aip-cap"><div class="aip-cap-num">03</div><div class="aip-cap-text">Capability description 3</div></div>
+        <div class="aip-cap"><div class="aip-cap-num">04</div><div class="aip-cap-text">Capability description 4</div></div>
+        <div class="aip-cap"><div class="aip-cap-num">05</div><div class="aip-cap-text">Capability description 5</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
