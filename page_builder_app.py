@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+import re
 import zipfile
 import xml.etree.ElementTree as ET
 import json
@@ -8,156 +9,349 @@ import logging
 import google.generativeai as genai
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+from io import BytesIO
 
 # Disable CSS parsing warnings
 cssutils.log.setLevel(logging.CRITICAL)
-
-# Load env variables (if standard .env is used)
 load_dotenv()
 
 st.set_page_config(page_title="Edstellar Page Builder", page_icon="📝", layout="wide")
 
-def extract_docx_text_from_bytes(file_bytes):
-    """Extracts raw text from a docx file byte stream."""
+LIBRARY_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Library")
+LIBRARY_INDEX = os.path.join(LIBRARY_DIR, "library-index.json")
+
+# ── Helpers ──────────────────────────────────────────────────────────────────
+
+def extract_docx_text(file_bytes):
+    """Extract raw text from a .docx byte stream."""
     text = []
     with zipfile.ZipFile(file_bytes) as docx:
-        xml_content = docx.read('word/document.xml')
+        xml_content = docx.read("word/document.xml")
         tree = ET.XML(xml_content)
-        for node in tree.iter('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}t'):
+        for node in tree.iter("{http://schemas.openxmlformats.org/wordprocessingml/2006/main}t"):
             if node.text:
                 text.append(node.text)
     return "\n".join(text)
 
-def scope_selectorList(selectorList, scope_id):
-    """Prefixes generic CSS rules with a distinct wrapper ID to prevent bleeding."""
-    for selector in selectorList:
+
+def parse_page_flow(docx_text):
+    """Deterministically extract the ordered module list from the PAGE FLOW OVERVIEW table.
+    Returns list of dicts: [{number, section_name, module_file}, ...]
+    """
+    sections = []
+    # Match lines like:  02\nHero + Meta Tags\nedstellar-hero-classic-split.html
+    # The docx text has rows as: number \n section_name \n module_file
+    lines = docx_text.split("\n")
+
+    # Find the PAGE FLOW OVERVIEW region
+    start_idx = None
+    end_idx = None
+    for i, line in enumerate(lines):
+        if "PAGE FLOW OVERVIEW" in line:
+            start_idx = i
+        if start_idx and "NOTES" == line.strip() and i > start_idx + 5:
+            end_idx = i
+            break
+        # Also stop at the section separator
+        if start_idx and line.strip().startswith("S01") or (start_idx and "________________" in line and i > start_idx + 10):
+            if end_idx is None:
+                end_idx = i
+            break
+
+    if start_idx is None:
+        return []
+
+    flow_text = "\n".join(lines[start_idx:end_idx] if end_idx else lines[start_idx:start_idx + 200])
+
+    # Extract .html filenames in order
+    html_pattern = re.compile(r"(edstellar-[\w-]+\.html|seo-metadata-block-template\.md)")
+    matches = html_pattern.findall(flow_text)
+
+    # Also try to capture section names — look for numbered rows
+    number_pattern = re.compile(r"^(\d{2})$", re.MULTILINE)
+    numbers = number_pattern.findall(flow_text)
+
+    # Build section list from matches, skip non-HTML entries
+    for idx, match in enumerate(matches):
+        num = numbers[idx] if idx < len(numbers) else f"{idx + 1:02d}"
+        sections.append({
+            "number": num,
+            "module_file": match,
+            "is_html": match.endswith(".html"),
+        })
+
+    return sections
+
+
+def parse_section_content(docx_text):
+    """Parse the per-section content blocks from the docx.
+    Returns dict keyed by section number like 'S01', 'S02', etc.
+    """
+    sections = {}
+    # Split on the separator pattern
+    parts = re.split(r"_{10,}", docx_text)
+    for part in parts:
+        # Look for section header like: S01  |  \nHero + Meta Tags
+        match = re.match(r"\s*S(\d{2})\s*\|\s*\n(.+?)(?:\n|$)", part)
+        if match:
+            sec_num = f"S{match.group(1)}"
+            sections[sec_num] = part.strip()
+    return sections
+
+
+def scope_selector_list(selector_list, scope_id):
+    """Prefix CSS selectors with a scope wrapper ID."""
+    for selector in selector_list:
         text = selector.selectorText
-        # Preserve root bindings but scope them inside the module block
-        if text.startswith(':root') or text.startswith('body') or text.startswith('html'):
-            selector.selectorText = text.replace(':root', f'#{scope_id}').replace('body', f'#{scope_id}').replace('html', f'#{scope_id}')
+        if text.startswith(":root") or text.startswith("body") or text.startswith("html"):
+            selector.selectorText = (
+                text.replace(":root", f"#{scope_id}")
+                .replace("body", f"#{scope_id}")
+                .replace("html", f"#{scope_id}")
+            )
         else:
             selector.selectorText = f"#{scope_id} {text}"
 
+
 def scope_module_css(html_content, scope_id):
-    """Takes isolated raw HTML, scopes its <style> tags, and wraps it in a <div>."""
+    """Scope <style> tags and wrap body content in a scoped <div>."""
     soup = BeautifulSoup(html_content, "html.parser")
     styles = []
-    for style in soup.find_all('style'):
+    for style in soup.find_all("style"):
+        if not style.string:
+            continue
         sheet = cssutils.parseString(style.string)
         for rule in sheet:
             if rule.type == rule.STYLE_RULE:
-                scope_selectorList(rule.selectorList, scope_id)
+                scope_selector_list(rule.selectorList, scope_id)
             elif rule.type == rule.MEDIA_RULE:
                 for inner_rule in rule.cssRules:
                     if inner_rule.type == inner_rule.STYLE_RULE:
-                        scope_selectorList(inner_rule.selectorList, scope_id)
-        styles.append(sheet.cssText.decode('utf-8'))
-        style.decompose() # Remove the old style
+                        scope_selector_list(inner_rule.selectorList, scope_id)
+        styles.append(sheet.cssText.decode("utf-8"))
+        style.decompose()
 
-    body = soup.find('body')
+    body = soup.find("body")
     if body:
-        inner_html = "".join([str(c) for c in body.contents])
+        inner_html = "".join(str(c) for c in body.contents)
     else:
         inner_html = str(soup)
 
     final_css = "\n".join(styles)
-    scoped_html = f'<style>\n{final_css}\n</style>\n<div id="{scope_id}">\n{inner_html}\n</div>'
-    return scoped_html
+    return f'<style>\n{final_css}\n</style>\n<div id="{scope_id}">\n{inner_html}\n</div>'
 
-def get_mapping_from_gemini(docx_text):
-    """Asks Gemini to extract the page flow architecture table into a JSON list."""
-    prompt = f"""
-    You are an AI architect parsing a Consulting Page Design developer reference.
-    Below is the raw extracted text from a Microsoft Word document.
-    Find the 'PAGE FLOW OVERVIEW' table or section. It should map section names to HTML module names (like 'edstellar-hero-classic-split.html').
-    Return a strictly formatted JSON list of strings containing the exact filenames in chronological order.
-    Do NOT return markdown blocks (no ```json), just the raw list array like ["file1.html", "file2.html"].
-    
-    TEXT:
-    {docx_text[:15000]}  # passing first 15k chars is usually enough for the TOC
-    """
-    model = genai.GenerativeModel('gemini-2.5-flash')
+
+def inject_content_with_gemini(module_filename, scoped_html, section_content, section_number, full_docx_text):
+    """Use Gemini to replace placeholder text with real content from the document."""
+    prompt = f"""You are building an Edstellar consulting landing page.
+
+Below is:
+1. The FULL document content for reference.
+2. The SPECIFIC section content block (Section {section_number}) from the developer reference document.
+3. The HTML boilerplate for module `{module_filename}`.
+
+Your job: Replace ALL placeholder/boilerplate text in the HTML with the actual content from the section content block. Map headings, paragraphs, list items, stats, CTAs, FAQ questions/answers, testimonials, etc. to their corresponding HTML elements.
+
+RULES:
+1. DO NOT change any CSS classes, inline styles, IDs, structural divs, or layout.
+2. DO NOT add or remove HTML elements — only replace text content.
+3. REPLACE placeholders like "Generic Headline", "Placeholder paragraph", "Lorem ipsum" etc. with content from the document.
+4. For stats/numbers, ensure the exact values from the document are used.
+5. Return ONLY the final valid HTML block. No markdown fences, no commentary.
+
+── SECTION CONTENT BLOCK ({section_number}) ──
+{section_content}
+
+── FULL DOCUMENT (for cross-reference) ──
+{full_docx_text[:12000]}
+
+── HTML BOILERPLATE TO INJECT ──
+{scoped_html}
+"""
+    model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content(prompt)
-    try:
-        return json.loads(response.text.strip())
-    except Exception as e:
-        st.error(f"Failed to parse JSON list from Gemini: {response.text}")
-        return []
-
-def inject_content_with_gemini(module_filename, scoped_html, docx_text, index):
-    """Uses Gemini to intelligently substitute the boilerplate text in the scoped HTML with correct text."""
-    prompt = f"""
-    I am building an automated landing page.
-    Below is the raw text of the entire design requirement document, and the specific HTML boilerplate for Section {index+1} (Module: {module_filename}).
-    
-    Your job is to read the document, find the specific content intended for Section {index+1} (or content that logically maps to the module `{module_filename}`), and inject it into the HTML provided.
-    
-    RULES:
-    1. DO NOT change any CSS classes, inline styles, IDs, or structural div layouts.
-    2. REPLACE placeholders (like "Generic Headline", "Placeholder paragraph content") with the specific text from the document.
-    3. Return ONLY the final valid HTML block. Do NOT wrap in ```html markdown blocks. Do not add any conversational text.
-    
-    DOCX TEXT:
-    {docx_text}
-
-    SCOPED BOILERPLATE HTML TO INJECT:
-    {scoped_html}
-    """
-    model = genai.GenerativeModel('gemini-2.5-flash')
-    response = model.generate_content(prompt)
-    
     html = response.text.strip()
     if html.startswith("```html"):
         html = html[7:]
+    if html.startswith("```"):
+        html = html[3:]
     if html.endswith("```"):
         html = html[:-3]
     return html.strip()
 
 
-# --- Streamlit UI ---
+def load_library_index():
+    """Load the library-index.json for section metadata."""
+    if os.path.exists(LIBRARY_INDEX):
+        with open(LIBRARY_INDEX, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
 
-st.title("🚀 Edstellar AI Page Builder")
-st.markdown("Upload a Consulting Page `.docx` Developer Reference to automatically build the final stitched HTML.")
 
-# API Key Handling
-api_key = os.getenv("GEMINI_API_KEY")
-if not api_key:
-    api_key = st.sidebar.text_input("Enter your Gemini API Key", type="password")
-else:
-    st.sidebar.success("Gemini API Key detected via Environment!")
+def get_available_modules():
+    """List all .html files in the Library folder."""
+    if not os.path.exists(LIBRARY_DIR):
+        return []
+    return sorted(f for f in os.listdir(LIBRARY_DIR) if f.endswith(".html"))
 
-if api_key:
-    genai.configure(api_key=api_key)
 
-uploaded_file = st.file_uploader("Upload Developer Reference Document (.docx)", type="docx")
+# ── Streamlit UI ─────────────────────────────────────────────────────────────
 
-if uploaded_file is not None and api_key:
-    if st.button("Build Landing Page"):
-        progress_bar = st.progress(0)
-        status = st.empty()
-        
-        status.info("Extracting text from DOCX...")
-        docx_text = extract_docx_text_from_bytes(uploaded_file)
-        
-        status.info("Asking Gemini to extract Page Flow Overview...")
-        module_sequence = get_mapping_from_gemini(docx_text)
-        
-        if not module_sequence:
-            st.error("Could not extract module sequence. Ensure document contains a typical mapping table.")
-            st.stop()
-            
-        st.write("### Identified Module Flow:")
-        st.json(module_sequence)
-        
-        library_path = os.path.join(os.getcwd(), "Library")
-        if not os.path.exists(library_path):
-            st.error(f"Library folder not found at {library_path}. Ensure it exists next to this app.")
-            st.stop()
-            
-        final_blocks = []
-        
-        # We need a generic wrapper
-        master_header = """<!DOCTYPE html>
+st.title("📝 Edstellar Page Builder")
+st.caption("Upload a Developer Reference .docx → build a fully stitched HTML page from the design library.")
+
+# Sidebar config
+with st.sidebar:
+    st.header("⚙️ Configuration")
+    api_key = os.getenv("GEMINI_API_KEY", "")
+    if not api_key:
+        api_key = st.text_input("Gemini API Key", type="password")
+    else:
+        st.success("Gemini API Key loaded from .env")
+
+    if api_key:
+        genai.configure(api_key=api_key)
+
+    st.divider()
+    st.header("📚 Design Library")
+    lib_index = load_library_index()
+    available = get_available_modules()
+    st.metric("Available Modules", len(available))
+
+    with st.expander("Browse Library Sections"):
+        if lib_index and "sections" in lib_index:
+            for key, sec in lib_index["sections"].items():
+                is_visual = sec.get("is_visual", True)
+                if not is_visual:
+                    continue
+                st.markdown(f"**{sec['label']}**")
+                for v in sec.get("variants", []):
+                    st.markdown(f"- `{v['file']}` — {v['layout'][:60]}")
+
+# ── Main area ────────────────────────────────────────────────────────────────
+
+uploaded_file = st.file_uploader("Upload Developer Reference (.docx)", type="docx")
+
+if uploaded_file and not api_key:
+    st.warning("Enter your Gemini API Key in the sidebar to continue.")
+    st.stop()
+
+if not uploaded_file:
+    st.info("Upload a `.docx` developer reference document to get started.")
+    st.stop()
+
+# Step 1: Extract text
+if "docx_text" not in st.session_state or st.session_state.get("docx_filename") != uploaded_file.name:
+    with st.spinner("Extracting text from document..."):
+        st.session_state.docx_text = extract_docx_text(BytesIO(uploaded_file.read()))
+        st.session_state.docx_filename = uploaded_file.name
+        st.session_state.pop("page_flow", None)
+        st.session_state.pop("final_html", None)
+
+docx_text = st.session_state.docx_text
+
+# Step 2: Parse page flow
+if "page_flow" not in st.session_state:
+    st.session_state.page_flow = parse_page_flow(docx_text)
+
+page_flow = st.session_state.page_flow
+
+if not page_flow:
+    st.error("Could not find a PAGE FLOW OVERVIEW table in the document. Check document format.")
+    st.stop()
+
+# Step 3: Section editor
+st.subheader("Page Flow")
+st.caption(f"Found **{len(page_flow)}** sections in the document. Toggle sections on/off or swap modules.")
+
+section_content_map = parse_section_content(docx_text)
+
+# Build editable section list
+cols_header = st.columns([0.5, 3, 4, 1])
+cols_header[0].markdown("**#**")
+cols_header[1].markdown("**Module File**")
+cols_header[2].markdown("**Content Preview**")
+cols_header[3].markdown("**Include**")
+
+enabled_sections = []
+for i, sec in enumerate(page_flow):
+    if not sec["is_html"]:
+        continue  # skip non-HTML like seo-metadata-block-template.md
+
+    sec_key = f"S{sec['number']}"
+    content_preview = ""
+    if sec_key in section_content_map:
+        # First meaningful line after the header
+        content_lines = section_content_map[sec_key].split("\n")
+        for cl in content_lines[2:6]:
+            if cl.strip() and "DESIGN MODULE" not in cl and "edstellar-" not in cl:
+                content_preview = cl.strip()[:80]
+                break
+
+    col = st.columns([0.5, 3, 4, 1])
+    col[0].markdown(f"`{sec['number']}`")
+    col[1].code(sec["module_file"], language=None)
+    col[2].markdown(f"_{content_preview}_" if content_preview else "_—_")
+    include = col[3].checkbox("", value=True, key=f"include_{i}", label_visibility="collapsed")
+
+    if include:
+        enabled_sections.append((i, sec))
+
+st.divider()
+st.markdown(f"**{len(enabled_sections)}** sections enabled for build.")
+
+# Step 4: Build
+if st.button("🚀 Build HTML Page", type="primary", use_container_width=True):
+    if not api_key:
+        st.error("No Gemini API key configured.")
+        st.stop()
+
+    progress = st.progress(0, text="Starting build...")
+    status_area = st.empty()
+    log_area = st.expander("Build Log", expanded=True)
+
+    final_blocks = []
+    total = len(enabled_sections)
+
+    for step, (orig_idx, sec) in enumerate(enabled_sections):
+        module_file = sec["module_file"]
+        sec_num = f"S{sec['number']}"
+        file_path = os.path.join(LIBRARY_DIR, module_file)
+
+        progress.progress((step) / total, text=f"Processing {sec_num}: {module_file}")
+
+        if not os.path.exists(file_path):
+            log_area.warning(f"⚠️ {module_file} not found in Library — skipping.")
+            continue
+
+        with open(file_path, "r", encoding="utf-8") as f:
+            raw_html = f.read()
+
+        # Scope CSS
+        scope_id = f"s{orig_idx:02d}_module"
+        scoped_html = scope_module_css(raw_html, scope_id)
+        log_area.info(f"✅ Scoped CSS for {module_file} → #{scope_id}")
+
+        # Inject content via Gemini
+        section_content = section_content_map.get(sec_num, "")
+        if section_content:
+            try:
+                injected = inject_content_with_gemini(
+                    module_file, scoped_html, section_content, sec_num, docx_text
+                )
+                final_blocks.append(f"<!-- {sec_num}: {module_file} -->\n{injected}")
+                log_area.success(f"✅ Content injected for {sec_num}: {module_file}")
+            except Exception as e:
+                final_blocks.append(f"<!-- {sec_num}: {module_file} (fallback) -->\n{scoped_html}")
+                log_area.error(f"❌ Gemini injection failed for {sec_num}: {e} — using boilerplate.")
+        else:
+            final_blocks.append(f"<!-- {sec_num}: {module_file} -->\n{scoped_html}")
+            log_area.warning(f"⚠️ No content block found for {sec_num} — using boilerplate.")
+
+    progress.progress(1.0, text="Build complete!")
+
+    # Assemble final HTML
+    final_html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -166,45 +360,33 @@ if uploaded_file is not None and api_key:
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-"""
-        master_footer = "</body>\n</html>"
-        
-        for idx, module_file in enumerate(module_sequence):
-            status.info(f"Processing Block {idx+1}/{len(module_sequence)}: {module_file}")
-            progress_bar.progress((idx) / len(module_sequence))
-            
-            file_p = os.path.join(library_path, module_file)
-            if not os.path.exists(file_p):
-                # Perhaps handle slight name mismatches
-                st.warning(f"Could not find {module_file} in Library. Skipping.")
-                continue
-                
-            with open(file_p, 'r', encoding='utf-8') as f:
-                raw_html = f.read()
-                
-            # 1. Scope the CSS exclusively for this module
-            scope_id = f"section_{idx:02d}_generated"
-            scoped_html = scope_module_css(raw_html, scope_id)
-            
-            # 2. Ask Gemini to perform text injection 
-            try:
-                injected_html = inject_content_with_gemini(module_file, scoped_html, docx_text, idx)
-                final_blocks.append(injected_html)
-            except Exception as e:
-                st.error(f"Error injecting {module_file}: {e}")
-                final_blocks.append(scoped_html) # fallback to boilerplate
-                
-        progress_bar.progress(1.0)
-        status.success("Page Successfully Built!")
-        
-        final_output = master_header + "\n".join(final_blocks) + "\n" + master_footer
-        
+{chr(10).join(final_blocks)}
+</body>
+</html>"""
+
+    st.session_state.final_html = final_html
+    status_area.success(f"Page built with {len(final_blocks)} sections.")
+
+# Step 5: Preview & Download
+if "final_html" in st.session_state:
+    st.divider()
+    st.subheader("Output")
+
+    tab_preview, tab_download, tab_source = st.tabs(["🔍 Preview", "📥 Download", "📄 Source"])
+
+    with tab_preview:
+        st.components.v1.html(st.session_state.final_html, height=800, scrolling=True)
+
+    with tab_download:
         st.download_button(
-            label="Download Final HTML",
-            data=final_output,
-            file_name="generated-landing-page.html",
-            mime="text/html"
+            label="Download HTML File",
+            data=st.session_state.final_html,
+            file_name="generated-consulting-page.html",
+            mime="text/html",
+            use_container_width=True,
         )
-        
-elif uploaded_file is not None and not api_key:
-    st.warning("Please enter your Gemini API Key in the sidebar to run the builder.")
+        st.metric("File Size", f"{len(st.session_state.final_html) / 1024:.1f} KB")
+        st.metric("Sections", len([b for b in st.session_state.final_html.split("<!--") if "module" in b.lower()]))
+
+    with tab_source:
+        st.code(st.session_state.final_html[:5000] + "\n\n... (truncated)", language="html")
