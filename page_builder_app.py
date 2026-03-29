@@ -142,6 +142,8 @@ def call_openrouter(api_key, model, prompt):
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
+        "HTTP-Referer": "https://edstellar.com",
+        "X-Title": "Edstellar Page Builder",
     }
     payload = {
         "model": model,
@@ -159,8 +161,17 @@ def call_openrouter(api_key, model, prompt):
         "temperature": 0.2,
     }
     response = requests.post(OPENROUTER_API_URL, headers=headers, json=payload, timeout=120)
-    response.raise_for_status()
-    data = response.json()
+
+    # Parse response body before raising so we get the actual error message
+    try:
+        data = response.json()
+    except Exception:
+        response.raise_for_status()
+        raise RuntimeError(f"Non-JSON response ({response.status_code}): {response.text[:500]}")
+
+    if not response.ok:
+        err_msg = data.get("error", {}).get("message", "") if isinstance(data.get("error"), dict) else str(data.get("error", ""))
+        raise RuntimeError(f"OpenRouter {response.status_code}: {err_msg or response.text[:300]}")
 
     if "error" in data:
         raise RuntimeError(data["error"].get("message", str(data["error"])))
